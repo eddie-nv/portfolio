@@ -49,9 +49,7 @@ const Hero = () => {
                     </Title>    
                 </Box>
                 <AspectRatio ratio={1} w={500} className='fade-in-up'>
-                    <Box h='100%' w='100%' >
-                        <GridFace />
-                    </Box>
+                    <GridFace />
                 </AspectRatio>
             </Group>
         </Stack>

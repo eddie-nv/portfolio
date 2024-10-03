@@ -7,7 +7,9 @@ const MainNode = memo(({ data }: { data: { label: string } }) => {
 
     return (
         <>
-            <Box  p='10px 20px' 
+            <Box
+                bg='white'  
+                p='10px 20px' 
                 style={{ 
                     borderRadius: '3px', 
                     border: '2px solid #000', 
@@ -18,10 +20,14 @@ const MainNode = memo(({ data }: { data: { label: string } }) => {
                     {data.label}
                 </Text>
             </Box>
-            <Handle type="source" id="left" position={Position.Left} style={{ opacity: 0 }}/>
-            <Handle type="source" id="right" position={Position.Right} style={{ opacity: 0 }}/>
-            <Handle type="source" id="bottom" position={Position.Bottom} style={{ opacity: 0 }}/>
-            <Handle type="target" id="top" position={Position.Top} style={{ opacity: 0 }}/>
+            <Handle type="target" id="left-t" position={Position.Left} style={{ opacity: 0 }}/>
+            <Handle type="source" id="left-s" position={Position.Left} style={{ opacity: 0 }}/>
+            <Handle type="target" id="right-t" position={Position.Right} style={{ opacity: 0 }}/>
+            <Handle type="source" id="right-s" position={Position.Right} style={{ opacity: 0 }}/>
+            <Handle type="target" id="bottom-t" position={Position.Bottom} style={{ opacity: 0 }}/>
+            <Handle type="source" id="bottom-s" position={Position.Bottom} style={{ opacity: 0 }}/>
+            <Handle type="target" id="top-t" position={Position.Top} style={{ opacity: 0 }}/>
+            <Handle type="source" id="top-s" position={Position.Top} style={{ opacity: 0 }}/>
         </>
     );
 });
