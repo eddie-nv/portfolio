@@ -55,7 +55,7 @@ svg {
 /* Add this CSS to your existing stylesheet */
 
 :root {
-  --duration: 1500ms;
+  --duration: 1000ms;
   --timing-fn: ease-in-out;
 }
 
