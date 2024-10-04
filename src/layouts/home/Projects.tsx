@@ -1,21 +1,25 @@
 import { Stack, Title, Group, AspectRatio, Box, Flex, Text } from '@mantine/core'
+import Link from 'next/link'
 import React from 'react'
 
 const PROJECTS_DATA = [
     {
         image: '',
         title: 'Touchstone',
-        description: 'Developed branding and worked on mobile frontend architecture '
+        description: 'Developed branding and worked on mobile frontend architecture ',
+        slug: 'touchstone',
     },
     {
         image: '',
         title: 'Wrap and Tint My Ride',
-        description: 'Applied Client-First principles to develop a site on Webflow for window tinting classes'
+        description: 'Applied Client-First principles to develop a site on Webflow for window tinting classes',
+        slug: 'wrap_tint_my_ride',
     },
     {
         image: '',
         title: 'Infinite Ui',
-        description: 'A plugin for Figma that took a sketch input and used AI to generate images of UI Mockups based on the sketch'
+        description: 'A plugin for Figma that took a sketch input and used AI to generate images of UI Mockups based on the sketch',
+        slug: 'infinite_ui',
     }
 ]
 
@@ -25,9 +29,11 @@ const Projects = () => {
             if (i % 2 === 0) {
                 return (
                     <Group key={project.title} pl={( i + 1 ) % 3 === 0 ? 80 : 0} gap={40}>
-                        <AspectRatio ratio={1.3} w={200} bg='gray'>
-                            <Box />
-                        </AspectRatio>
+                        <Link href={`/projects/${project.slug}`} passHref>
+                            <AspectRatio ratio={1.3} w={200} bg='gray'>
+                                <Box />
+                            </AspectRatio>
+                        </Link>
                         <Box w={200} pos='relative'>
                             <Stack pos='absolute' top={62}>
                                 <Text size='sm'>{i + 1}</Text>
@@ -42,9 +48,11 @@ const Projects = () => {
             } else {
                 return (
                     <Group key={project.title} style={{flexDirection: 'row-reverse'}} gap={40}>
-                        <AspectRatio ratio={1.3} w={200} bg='gray'>
-                            <Box />
-                        </AspectRatio>
+                        <Link href={`/projects/${project.slug}`} passHref>
+                            <AspectRatio ratio={1.3} w={200} bg='gray'>
+                                <Box />
+                            </AspectRatio>
+                        </Link>
                         <Box w={200} pos='relative'>
                             <Stack pos='absolute' top={62} ta='right'>
                                 <Text size='sm'>{i + 1}</Text>

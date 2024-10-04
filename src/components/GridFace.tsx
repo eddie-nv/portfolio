@@ -27,9 +27,6 @@ function GridFace() {
         return Math.round(Math.atan2(y, x) / 1.57079633 + 5) % 4;
     };
 
-    // const colors = ['#0d1b2a', '#1b263b', '#415a77', '#778da9', '#e0e1dd'];
-    // const [colorIndex, setColorIndex] = useState(0);
-
     const handleMouseOver = (ev: React.MouseEvent<HTMLDivElement>, node: HTMLDivElement) => {
         const direction = getDirectionKey(ev, node);
         node.classList.remove('in-top', 'in-right', 'in-bottom', 'in-left', 'out-top', 'out-right', 'out-bottom', 'out-left');
@@ -58,12 +55,11 @@ function GridFace() {
                         backgroundColor = 'red';
                     }
                     return (
-                        <Grid.Col span={1} key={index}>
+                        <Grid.Col span={1} key={index} className='grid-box'>
                             {height && 
                                 <Box 
                                 w='100%' 
                                 h={rem(height)} 
-                                className='grid-box'
                                 style={{ backgroundColor, borderTop: '1px solid lightgray', borderLeft: '1px solid lightgray', borderRadius: rem(2) }}
                                 onMouseOver={(ev: React.MouseEvent<HTMLDivElement>) => handleMouseOver(ev, ev.currentTarget)}
                                 onMouseOut={(ev: React.MouseEvent<HTMLDivElement>) => handleMouseOut(ev, ev.currentTarget)}
