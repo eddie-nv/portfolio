@@ -1,11 +1,18 @@
 import React from 'react'
 import { Container, Stack } from '@mantine/core'
 import ProjectHero from '@/layouts/projects/ProjectHero'
-import Approach from '@/layouts/projects/Approach'
 import Showcase from '@/layouts/projects/Showcase'
+import touchHeader from '/public/images/touchstone_header.png'
+import touchBg from '/public/images/touchstone_bg.png'
+import wrapTintHeader from '/public/images/wrap_and_tint_header.png'
+import wrapTintBg from '/public/images/wrap_and_tint_bg.png'
+import infiniteUiHeader from '/public/images/infinite_ui_header.png'
+import infiniteUiBg from '/public/images/infinite_ui_bg.png'
+import { StaticImageData } from 'next/image'
+
 
 type Hero = {
-    pic: string;
+    pic: StaticImageData;
     title: string;
     info: string[];
 };
@@ -13,7 +20,12 @@ type Hero = {
 type Project = {
     hero: Hero;
     approach: string;
-    showcase: string;
+    showcase: {
+        bg: StaticImageData;
+        video: string;
+        prev: string;
+        next: string;
+    };
 };
 
 type Projects = {
@@ -25,7 +37,7 @@ type Projects = {
 const PROJECT_CONTENT: Projects = {
     touchstone: {
         hero: {
-            pic: '',
+            pic: touchHeader,
             title: 'TouchStone',
             info: [
                 'Touchstone aims at reducing STD infections by providing convinent at home testing, and allowing for verified sharing of results.', 
@@ -34,11 +46,16 @@ const PROJECT_CONTENT: Projects = {
             ],
         },
         approach: '',
-        showcase: '',
+        showcase: {
+            bg: touchBg,
+            video: '/videos/touchstone.mp4',
+            prev: '',
+            next: 'wrap_tint_my_ride',
+        },
     },
     wrap_tint_my_ride: {
         hero: {
-            pic: '',
+            pic: wrapTintHeader,
             title: 'Wrap andTint My Ride',
             info: [
                 'I worked alongside a designer to create a website using WebFlow for a client who wanted to offer custom car wrapping and tinting training to others.', 
@@ -47,11 +64,16 @@ const PROJECT_CONTENT: Projects = {
             ],
         },
         approach: '',
-        showcase: '',
+        showcase: {
+            bg: wrapTintBg,
+            video: '/videos/wrap_and_tint.mp4',
+            prev: 'touchstone',
+            next: 'infinite_ui',
+        },
     },
     infinite_ui: {
         hero: {
-            pic: '',
+            pic: infiniteUiHeader,
             title: 'Infinite UI',
             info: [
                 '3rd place entry to the AGI House UI/UX hackathon. I worked with a designer and a backend developer to build aplugin for figma that would allow users to generate infinite UI mockups from a sketch.', 
@@ -60,7 +82,12 @@ const PROJECT_CONTENT: Projects = {
             ],
         },
         approach: '',
-        showcase: '',
+        showcase: {
+            bg: infiniteUiBg,
+            video: '/videos/infinite_ui.mp4',
+            prev: 'wrap_tint_my_ride',
+            next: '',
+        },
     },
 };
 
@@ -70,7 +97,6 @@ const Projects = ({ params }: { params: { projectName: string } }) => {
         <Container mt={50} mb={150}>
             <Stack gap={250}>
                 <ProjectHero project={PROJECT_CONTENT[project]?.hero}/>
-                <Approach project={PROJECT_CONTENT[project]?.approach}/>
                 <Showcase project={PROJECT_CONTENT[project]?.showcase}/>
             </Stack>
         </Container>

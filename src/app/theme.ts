@@ -1,5 +1,5 @@
 import { createTheme } from '@mantine/core';
-import '@/assets/font/fonts.css';
+import '/public/font/fonts.css';
 
 export const theme = createTheme({
     fontFamily: `Infra, sans-serif`,
