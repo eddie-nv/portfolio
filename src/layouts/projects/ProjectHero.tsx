@@ -1,8 +1,9 @@
 import React from 'react'
-import { AspectRatio, Box, Stack, Title, Text, Flex } from '@mantine/core'
+import { AspectRatio, Stack, Title, Text, Flex } from '@mantine/core'
+import Image, { StaticImageData } from 'next/image';
 
 type Hero = {
-    pic: string;
+    pic: StaticImageData;
     title: string;
     info: string[];
 };
@@ -10,8 +11,8 @@ type Hero = {
 const ProjectHero = ({ project } : { project: Hero }) => {
     return (
         <Stack gap={70}>
-            <AspectRatio bg='gray' ratio={4.5} >
-                <Box />
+            <AspectRatio ratio={3.5} style={{borderRadius: '5px', overflow: 'hidden'}}>
+                <Image src={project?.pic} alt={project?.title} style={{objectFit: 'cover', width: '100%', height: '100%'}}/>
             </AspectRatio> 
             <Title order={3} mt={50}>
                 {project?.title}
