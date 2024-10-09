@@ -4,8 +4,9 @@ import { useGSAP } from '@gsap/react'
 import {Group, Stack, Title, Box, AspectRatio } from '@mantine/core'
 import React from 'react'
 import gsap from 'gsap'
-import GridFace  from '@/components/GridFace'
-
+// import GridFace  from '@/components/GridFace'
+import GridParent from '@/components/GridParent'
+import BackgroundFiller from '@/components/BackgroundFiller'
 gsap.registerPlugin(useGSAP);
 
 const Hero = () => {
@@ -49,7 +50,13 @@ const Hero = () => {
                     </Title>    
                 </Box>
                 <AspectRatio ratio={1} w={500} className='fade-in-up'>
-                    <GridFace />
+                    <GridParent 
+                        numRows={18} 
+                        numColumns={18} 
+                        fill={({ cellHeight, cellWidth, index }) => (
+                            <BackgroundFiller cellHeight={cellHeight} cellWidth={cellWidth} index={index} />
+                        )}
+                    />
                 </AspectRatio>
             </Group>
         </Stack>
