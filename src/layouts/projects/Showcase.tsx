@@ -1,12 +1,21 @@
 'use client'
-import { AspectRatio, Stack, Title, Flex, Box, Button, ButtonGroup } from '@mantine/core'
+import { AspectRatio, Stack, Title, Flex, Box } from '@mantine/core'
 import React from 'react'
 import Image, { StaticImageData } from 'next/image'
-import Link from 'next/link'
 
-const Showcase = ({ project } : { project: { bg: StaticImageData, video: string, prev: string, next: string } }) => {
+const Showcase = ({ project }: { 
+  project: { 
+    title: string
+    video: string, 
+    pic: StaticImageData, 
+    bg: StaticImageData,  
+  } 
+}) => {
   return (
-    <Stack gap={100}>
+    <Stack gap={70}>
+      <AspectRatio ratio={3.5} style={{borderRadius: '5px', overflow: 'hidden'}}>
+          <Image src={project?.pic} alt={project?.title} style={{objectFit: 'cover', width: '100%', height: '100%'}}/>
+      </AspectRatio>
       <Flex justify='end'>
         <Title order={2}>
               Showcase
@@ -17,63 +26,9 @@ const Showcase = ({ project } : { project: { bg: StaticImageData, video: string,
           <Flex justify='center' align='center' h='100%'>
             <video width="800" controls src={project?.video} autoPlay muted loop style={{borderRadius: '5px'}}/>
           </Flex>
-          
         </Box>
         <Image src={project?.bg} alt='showcase' style={{objectFit: 'cover', width: '100%', height: '100%'}}/>
       </AspectRatio>
-      <Flex justify='end'>
-        <ButtonGroup >
-          {project?.prev ? (
-            <Button
-              component={Link}
-              href={`/projects/${project?.prev}`}
-              bg='white'
-              c='black'
-              w={100}
-              h={100}
-              style={{ border: '2px solid black', borderRight: '1px solid black' }} 
-            >
-              {'<'}
-            </Button>
-          ) :
-            <Button
-              bg='white'
-              c='black'
-              w={100}
-              h={100}
-              disabled
-              style={{ border: '2px solid black', borderRight: '1px solid black' }} 
-            >
-              {'<'}
-            </Button>
-          }
-          {project?.next ? (
-            <Button
-              component={Link}
-              href={`/projects/${project?.next}`}
-              bg='white'
-              c='black'
-              w={100}
-              h={100}
-              style={{ border: '2px solid black', borderLeft: '1px solid black' }} 
-            >
-              {'>'}
-            </Button>
-          ):
-            <Button
-              bg='white'
-              c='black'
-              w={100}
-              h={100}
-              disabled
-              style={{ border: '2px solid black', borderLeft: '1px solid black' }} 
-            >
-              {'>'}
-            </Button>
-          }
-        </ButtonGroup>
-          
-      </Flex>
     </Stack>
   )
 }

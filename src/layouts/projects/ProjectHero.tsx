@@ -1,19 +1,17 @@
 import React from 'react'
-import { AspectRatio, Stack, Title, Text, Flex } from '@mantine/core'
-import Image, { StaticImageData } from 'next/image';
+import {  Stack, Title, Text, Flex } from '@mantine/core'
+import ProjectSwitch from '@/components/ProjectSwitch';
 
 type Hero = {
-    pic: StaticImageData;
     title: string;
     info: string[];
+    prev: string;
+    next: string;
 };
 
 const ProjectHero = ({ project } : { project: Hero }) => {
     return (
         <Stack gap={70}>
-            <AspectRatio ratio={3.5} style={{borderRadius: '5px', overflow: 'hidden'}}>
-                <Image src={project?.pic} alt={project?.title} style={{objectFit: 'cover', width: '100%', height: '100%'}}/>
-            </AspectRatio> 
             <Title order={3} mt={50}>
                 {project?.title}
             </Title>   
@@ -25,6 +23,9 @@ const ProjectHero = ({ project } : { project: Hero }) => {
                         </Text>
                     ))}
                 </Stack>    
+            </Flex>
+            <Flex justify='end'>
+                <ProjectSwitch prev={project?.prev} next={project?.next} />
             </Flex>
         </Stack>
     )
