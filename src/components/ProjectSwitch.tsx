@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, ButtonGroup } from '@mantine/core';
 import Link from 'next/link';
 
-const NavigationButton = ({ href, disabled, children }: { href: string, disabled?: boolean, children: React.ReactNode }) => (
+const NavigationButton = ({ href, disabled, children, left, right }: { href: string, disabled?: boolean, children: React.ReactNode, left?: boolean, right?: boolean }) => (
   <Button
     component={Link}
     href={href}
@@ -12,7 +12,11 @@ const NavigationButton = ({ href, disabled, children }: { href: string, disabled
     h={100}
     variant={disabled ? 'light' : undefined}
     disabled={disabled}
-    style={{ border: '2px solid black', borderRight: href ? '1px solid black' : '1px solid black' }}
+    style={{ 
+        border: '2px solid black', 
+        borderLeft: left ? '1px solid black' : '2px solid black', 
+        borderRight: right ? '1px solid black' : '2px solid black' 
+    }}
   >
     {children}
   </Button>
@@ -20,10 +24,10 @@ const NavigationButton = ({ href, disabled, children }: { href: string, disabled
 
 const ProjectSwitch = ({ prev, next }: { prev: string, next: string }) => (
   <ButtonGroup>
-    <NavigationButton href={`/projects/${prev}`} disabled={!prev}>
+    <NavigationButton href={`${prev}`} disabled={!prev} right>
       {'<'}
     </NavigationButton>
-    <NavigationButton href={`/projects/${next}`} disabled={!next}>
+    <NavigationButton href={`${next}`} disabled={!next} left>
       {'>'}
     </NavigationButton>
   </ButtonGroup>

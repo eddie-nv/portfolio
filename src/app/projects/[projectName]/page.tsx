@@ -45,7 +45,7 @@ const PROJECT_CONTENT: Projects = {
                 "Check out TouchStone's journey so far here"
             ],
             prev: '/',
-            next: 'wrap_tint_my_ride',
+            next: '/projects/wrap_tint_my_ride',
         },
         approach: '',
         showcase: {
@@ -57,14 +57,14 @@ const PROJECT_CONTENT: Projects = {
     },
     wrap_tint_my_ride: {
         hero: {
-            title: 'Wrap andTint My Ride',
+            title: 'Wrap and Tint My Ride',
             info: [
                 'I worked alongside a designer to create a website using WebFlow for a client who wanted to offer custom car wrapping and tinting training to others.', 
                 'I followed the client first guidelines by finsweet which includes a strategy for classes, a style guide, and design system.', 
                 'Check out the website here'
             ],
-            prev: 'touchstone',
-            next: 'infinite_ui',
+            prev: '/projects/touchstone',
+            next: '/projects/infinite_ui',
         },
         approach: '',
         showcase: {
@@ -78,11 +78,11 @@ const PROJECT_CONTENT: Projects = {
         hero: {
             title: 'Infinite UI',
             info: [
-                '3rd place entry to the AGI House UI/UX hackathon. I worked with a designer and a backend developer to build aplugin for figma that would allow users to generate infinite UI mockups from a sketch.', 
+                '3rd place entry to the AGI House UI/UX hackathon. I worked with a designer and a backend developer to build a plugin for figma that would allow users to generate infinite UI mockups from a sketch.', 
                 'I learned how to work with Figma\'s API to create the plugin in typescript. Once the user sumbitted a sketch, I used axios to send the data to the backend server which would then generate a mockup and send it back to the user.', 
                 'Check out the plugin here'
             ],
-            prev: 'wrap_tint_my_ride',
+            prev: '/projects/wrap_tint_my_ride',
             next: '/',
         },
         approach: '',

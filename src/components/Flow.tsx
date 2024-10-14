@@ -17,58 +17,47 @@ const Flow = () => {
 
   const strokeDasharray = '10 10';
 
-  
-  const p1 = 0
-  const p2 = p1 + 80
-  const p3 = p2 + 40
-  const p4 = p3 + 80
-  const p5 = p4 + 80
-  const p6 = p5 + 80
-  const p7 = p6 + 80
-  const p8 = p7 + 80
-  const p9 = p8 + 80
-  const p10 = p9 + 120
-  const p11 = p10 + 90
-  const p12 = p11 + 110
-  const p13 = p12 + 160
-  const p14 = p13 + 40
-  const p15 = p14 + 40
-  const p16 = p15 + 110
-  const p17 = p16 + 120
-  
+  const calculateYPositions = (initial: number, increments: number[]) => {
+    return increments.reduce((acc, increment) => {
+      acc.push(acc[acc.length - 1] + increment);
+      return acc;
+    }, [initial]);
+  };
+
+  const yPositions = calculateYPositions(0, [80, 40, 80, 80, 80, 80, 80, 80, 120, 90, 110, 160, 40, 40, 110, 120]);
 
   const initialNodes: Node[] = [
-    { id: '0', position: { x: 0, y: p1 }, data: { label: '' }, type: 'anchor'},
-    { id: '1', position: { x: 0, y: p3 }, data: { label: 'Frontend Basics' }, type: 'main'},
-    { id: '1.1', position: { x: 400, y: p1 }, data: { label: 'HTML' }, type: 'sub'},
-    { id: '1.2', position: { x: 400, y: p2 }, data: { label: 'CSS' }, type: 'sub'},
-    { id: '1.3', position: { x: 400, y: p4 }, data: { label: 'JavaScript' }, type: 'sub'},
-    { id: '1.4', position: { x: 400, y: p5 }, data: { label: 'TypeScript' }, type: 'sub'},
-    { id: '2', position: { x: 200, y: p7 }, data: { label: 'Libraries' }, type: 'main'},
-    { id: '2.1', position: { x: 0, y: p7 }, data: { label: 'React' }, type: 'sub'},
-    { id: '3', position: { x: 600, y: p7 }, data: { label: 'Frameworks' }, type: 'main'},
-    { id: '3.1', position: { x: 625, y: p5 }, data: { label: 'Next.js' }, type: 'sub'},
-    { id: '4', position: { x: 380, y: p10 }, data: { label: 'Build Tools' }, type: 'main'},
-    { id: '4.1', position: { x: 625, y: p10 }, data: { label: 'Linters & Formatters' }, type: 'sub'},
-    { id: '4.1.a', position: { x: 690, y: p9 }, data: { label: 'ESLint' }, type: 'sub'},
-    { id: '4.1.b', position: { x: 687, y: p11 }, data: { label: 'Prettier' }, type: 'sub'},
-    { id: '4.2', position: { x: 390, y: p12 }, data: { label: 'Bundlers' }, type: 'sub'},
-    { id: '4.2.a', position: { x: 625, y: p12 }, data: { label: 'Webpack' }, type: 'sub'},
-    { id: '4.2.b', position: { x: 775, y: p12 }, data: { label: 'Vite' }, type: 'sub'},
-    { id: '5', position: { x: 0, y: p10 + 80 }, data: { label: 'Version Control' }, type: 'main'},
-    { id: '5.1', position: { x: 60, y: p9 + 90}, data: { label: 'Git' }, type: 'sub'},
-    { id: '5.1.a', position: { x: 40, y: p9 - 10}, data: { label: 'GitHub' }, type: 'sub'},
-    { id: '6', position: { x: 400, y: p14 }, data: { label: 'Deployment' }, type: 'main'},
-    { id: '6.1', position: { x: 650, y: p13 }, data: { label: 'AWS Amplify' }, type: 'sub'},
-    { id: '6.2', position: { x: 650, y: p15 }, data: { label: 'Firebase' }, type: 'sub'},
-    { id: '7', position: { x: 150, y: p14 }, data: { label: 'Authentication' }, type: 'main'},
-    { id: '7.1', position: { x: 0, y: p14 }, data: { label: 'OAuth' }, type: 'sub'},
-    { id: '8', position: { x: 157, y: p16 }, data: { label: 'Web Security' }, type: 'main'},
-    { id: '8.1', position: { x: 410, y: p16 }, data: { label: 'HTTPS' }, type: 'sub'},
-    { id: '8.2', position: { x: 600, y: p16 }, data: { label: 'CORS' }, type: 'sub'},
-    { id: '9', position: { x: 480, y: p17 }, data: { label: 'Package Managers' }, type: 'main'},
-    { id: '9.1', position: { x: 157, y: p17 }, data: { label: 'npm' }, type: 'sub'},
-    { id: '9.2', position: { x: 320, y: p17 }, data: { label: 'yarn' }, type: 'sub'},
+    { id: '0', position: { x: 0, y: yPositions[0] }, data: { label: '' }, type: 'anchor'},
+    { id: '1', position: { x: 0, y: yPositions[2] }, data: { label: 'Frontend Basics' }, type: 'main'},
+    { id: '1.1', position: { x: 400, y: yPositions[0] }, data: { label: 'HTML' }, type: 'sub'},
+    { id: '1.2', position: { x: 400, y: yPositions[1] }, data: { label: 'CSS' }, type: 'sub'},
+    { id: '1.3', position: { x: 400, y: yPositions[3] }, data: { label: 'JavaScript' }, type: 'sub'},
+    { id: '1.4', position: { x: 400, y: yPositions[4] }, data: { label: 'TypeScript' }, type: 'sub'},
+    { id: '2', position: { x: 200, y: yPositions[6] }, data: { label: 'Libraries' }, type: 'main'},
+    { id: '2.1', position: { x: 0, y: yPositions[6] }, data: { label: 'React' }, type: 'sub'},
+    { id: '3', position: { x: 600, y: yPositions[6] }, data: { label: 'Frameworks' }, type: 'main'},
+    { id: '3.1', position: { x: 625, y: yPositions[4] }, data: { label: 'Next.js' }, type: 'sub'},
+    { id: '4', position: { x: 380, y: yPositions[9] }, data: { label: 'Build Tools' }, type: 'main'},
+    { id: '4.1', position: { x: 625, y: yPositions[9] }, data: { label: 'Linters & Formatters' }, type: 'sub'},
+    { id: '4.1.a', position: { x: 690, y: yPositions[8] }, data: { label: 'ESLint' }, type: 'sub'},
+    { id: '4.1.b', position: { x: 687, y: yPositions[10] }, data: { label: 'Prettier' }, type: 'sub'},
+    { id: '4.2', position: { x: 390, y: yPositions[11] }, data: { label: 'Bundlers' }, type: 'sub'},
+    { id: '4.2.a', position: { x: 625, y: yPositions[11] }, data: { label: 'Webpack' }, type: 'sub'},
+    { id: '4.2.b', position: { x: 775, y: yPositions[11] }, data: { label: 'Vite' }, type: 'sub'},
+    { id: '5', position: { x: 0, y: yPositions[9] + 80 }, data: { label: 'Version Control' }, type: 'main'},
+    { id: '5.1', position: { x: 60, y: yPositions[8] + 90}, data: { label: 'Git' }, type: 'sub'},
+    { id: '5.1.a', position: { x: 40, y: yPositions[8] - 10}, data: { label: 'GitHub' }, type: 'sub'},
+    { id: '6', position: { x: 400, y: yPositions[13] }, data: { label: 'Deployment' }, type: 'main'},
+    { id: '6.1', position: { x: 650, y: yPositions[12] }, data: { label: 'AWS Amplify' }, type: 'sub'},
+    { id: '6.2', position: { x: 650, y: yPositions[14] }, data: { label: 'Firebase' }, type: 'sub'},
+    { id: '7', position: { x: 150, y: yPositions[13] }, data: { label: 'Authentication' }, type: 'main'},
+    { id: '7.1', position: { x: 0, y: yPositions[13] }, data: { label: 'OAuth' }, type: 'sub'},
+    { id: '8', position: { x: 157, y: yPositions[15] }, data: { label: 'Web Security' }, type: 'main'},
+    { id: '8.1', position: { x: 410, y: yPositions[15] }, data: { label: 'HTTPS' }, type: 'sub'},
+    { id: '8.2', position: { x: 600, y: yPositions[15] }, data: { label: 'CORS' }, type: 'sub'},
+    { id: '9', position: { x: 480, y: yPositions[16] }, data: { label: 'Package Managers' }, type: 'main'},
+    { id: '9.1', position: { x: 157, y: yPositions[16] }, data: { label: 'npm' }, type: 'sub'},
+    { id: '9.2', position: { x: 320, y: yPositions[16] }, data: { label: 'yarn' }, type: 'sub'},
   ];
 
   const initialEdges: Edge[] = [
