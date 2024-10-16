@@ -1,6 +1,7 @@
+import React from 'react'
 import Flow from '@/components/Flow'
 import { Stack, Title } from '@mantine/core'
-import React from 'react'
+import { heroNodes, heroEdges } from '@/utils/flowData'
 
 
 const MyStack = () => {
@@ -9,7 +10,7 @@ const MyStack = () => {
             <Title order={2}>
                 My Stack
             </Title>    
-            <Flow />
+            <Flow nodes={heroNodes} edges={heroEdges} />
         </Stack>
     )
 }

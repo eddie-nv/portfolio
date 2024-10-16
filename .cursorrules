@@ -1,0 +1,43 @@
+{
+  "rules": {
+    "typescript": {
+      "use": true,
+      "preferInterfaces": false,
+      "avoidEnums": true,
+      "preferMaps": true
+    },
+    "fileStructure": {
+      "components": "functional",
+      "organization": {
+        "exportedComponent": "true",
+        "subcomponents": "true",
+        "helpers": "true",
+        "staticContent": "true",
+        "types": "true"
+      }
+    },
+    "react": {
+      "functionalComponents": "true",
+      "declarativeJSX": "true"
+    },
+    "styling": {
+      "uiFramework": "Mantine",
+      "responsiveDesign": "true"
+    },
+    "animation": {
+      "library": "GSAP"
+    },
+    "performance": {
+      "minimizeUseClient": "true",
+      "optimizeWebVitals": "true",
+      "dynamicLoading": "nonCritical"
+    },
+    "errorHandling": {
+      "validateInputs": "true",
+      "useErrorBoundaries": "true"
+    },
+    "eslint": {
+      "extends": ["next/core-web-vitals", "next/typescript"]
+    }
+  }
+}
