@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { Container, Stack } from '@mantine/core'
 import ProjectHero from '@/layouts/projects/ProjectHero'
@@ -8,6 +9,7 @@ import wrapTintHeader from '/public/images/wrap_and_tint_header.png'
 import wrapTintBg from '/public/images/wrap_and_tint_bg.png'
 import infiniteUiHeader from '/public/images/infinite_ui_header.png'
 import infiniteUiBg from '/public/images/infinite_ui_bg.png'
+import { getTouchstoneFlowData, getWrapTintFlowData, getInfiniteUiFlowData } from '@/utils/flowData'
 import { StaticImageData } from 'next/image'
 
 
@@ -26,7 +28,7 @@ type Project = {
         pic: StaticImageData;
         bg: StaticImageData;
         video: string;
-    };
+    }
 };
 
 type Projects = {
@@ -95,12 +97,26 @@ const PROJECT_CONTENT: Projects = {
     },
 };
 
+const getFlowData = (projectName: string) => {
+    switch (projectName) {
+        case 'touchstone':
+            return getTouchstoneFlowData;
+        case 'wrap_tint_my_ride':
+            return getWrapTintFlowData;
+        case 'infinite_ui':
+            return getInfiniteUiFlowData;
+    }
+};
+
 const Projects = ({ params }: { params: { projectName: string } }) => {
     const project = params.projectName as keyof Projects;
     return (
         <Container mt={50} mb={150}>
             <Stack gap={135}>
-                <Showcase project={PROJECT_CONTENT[project]?.showcase}/>
+                <Showcase 
+                    project={PROJECT_CONTENT[project]?.showcase} 
+                    flow={getFlowData(params.projectName) || (() => ({ projectNodes: [], projectEdges: [] }))}
+                />
                 <ProjectHero project={PROJECT_CONTENT[project]?.hero}/>
             </Stack>
         </Container>

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import ReactFlow, { useNodesState, useEdgesState, addEdge, Connection, Edge, Node, ReactFlowInstance } from 'reactflow';
+import ReactFlow, { useNodesState, useEdgesState, addEdge, Connection, ReactFlowInstance, Node, Edge } from 'reactflow';
+import { useMediaQuery } from '@mantine/hooks';
 import MainNode from './MainNode';
 import SubNode from './SubNode';
 import AnchorNode from './AnchorNode';
@@ -10,42 +11,64 @@ const nodeTypes = {
   anchor: AnchorNode,
 };
 
-interface FlowProps {
-  nodes: Node[];
-  edges: Edge[];
-}
+type FlowProps = {
+  initialNodes: Node[];
+  initialEdges: Edge[];
+};
 
-const Flow: React.FC<FlowProps> = ({ nodes: initialNodes, edges: initialEdges }) => { 
+const Flow: React.FC<FlowProps> = ({ initialNodes, initialEdges }) => {
   const flowWrapperRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-  const [nodes, , onNodesChange] = useNodesState(initialNodes);
+  const isSmallScreen = useMediaQuery('(max-width: 931px)');
+
+  const [zoomLevel, setZoomLevel] = useState(isSmallScreen ? 0.7 : 1);
+  const reactFlowInstance = useRef<ReactFlowInstance | null>(null);
+
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
-  useEffect(() => {
-    const updateDimensions = () => {
-      if (flowWrapperRef.current) {
-        setDimensions({
-          width: flowWrapperRef.current.offsetWidth,
-          height: flowWrapperRef.current.offsetHeight,
-        });
-      }
-    };
+  const updateDimensions = useCallback(() => {
+    if (flowWrapperRef.current) {
+      const { offsetWidth, offsetHeight } = flowWrapperRef.current;
+      setDimensions({ width: offsetWidth, height: offsetHeight });
+    }
+  }, []);
 
+  useEffect(() => {
     updateDimensions();
     window.addEventListener('resize', updateDimensions);
 
     return () => window.removeEventListener('resize', updateDimensions);
-  }, []);
-  
+  }, [updateDimensions]);
+
   const onConnect = useCallback(
-    (params: Connection) => setEdges((eds) => addEdge({ ...params}, eds)),
+    (params: Connection) => setEdges((eds) => addEdge({ ...params }, eds)),
     [setEdges]
   );
 
   const onInit = useCallback((instance: ReactFlowInstance) => {
-    instance.setViewport({ x: 0, y: 0, zoom: 1 });
+    reactFlowInstance.current = instance;
+    instance.setViewport({ x: 0, y: 0, zoom: zoomLevel });
+  }, [zoomLevel]);
+
+  const changeZoom = useCallback((newZoom: number) => {
+    if (reactFlowInstance.current) {
+      reactFlowInstance.current.setViewport({ x: 0, y: 0, zoom: newZoom });
+      setZoomLevel(newZoom);
+    }
   }, []);
+
+  useEffect(() => {
+    setNodes(initialNodes);
+    setEdges(initialEdges);
+  }, [initialNodes, initialEdges, setNodes, setEdges]);
+
+  useEffect(() => {
+    const newZoomLevel = isSmallScreen ? 0.7 : 1;
+    setZoomLevel(newZoomLevel);
+    changeZoom(newZoomLevel);
+  }, [isSmallScreen, changeZoom]);
 
   return (
     <div style={{ width: '100%', height: '1500px' }} ref={flowWrapperRef}>
@@ -62,11 +85,10 @@ const Flow: React.FC<FlowProps> = ({ nodes: initialNodes, edges: initialEdges })
         zoomOnDoubleClick={false}
         preventScrolling={false}
         panOnDrag={false}
-        translateExtent={[[0, 0], [dimensions.width, dimensions.height]]}
-        nodeExtent={[[0, 0], [dimensions.width, dimensions.height]]}
+        translateExtent={[[0, 0], [dimensions.width / zoomLevel, dimensions.height / zoomLevel]]}
+        nodeExtent={[[0, 0], [dimensions.width / zoomLevel, dimensions.height / zoomLevel]]}
         proOptions={{ hideAttribution: true }}
-      >
-      </ReactFlow>
+      />
     </div>
   );
 };
