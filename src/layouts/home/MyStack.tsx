@@ -1,16 +1,41 @@
-import React from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import Flow from '@/components/Flow'
-import { Stack, Title } from '@mantine/core'
-import { heroNodes, heroEdges } from '@/utils/flowData'
+import { Box, Stack, Title } from '@mantine/core'
+import { getHeroFlowData } from '@/utils/flowData'
 
 
 const MyStack = () => {
+    const flowWrapperRef = useRef<HTMLDivElement>(null);
+    // const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+    const { heroNodes, heroEdges } = getHeroFlowData();
+
+    
+    // useEffect(() => {
+    //     const updateDimensions = () => {
+    //       if (flowWrapperRef.current) {
+    //         setDimensions({
+    //           width: flowWrapperRef.current.offsetWidth,
+    //           height: flowWrapperRef.current.offsetHeight,
+    //         });
+    //       }
+    //     };
+    
+    //     updateDimensions();
+    //     window.addEventListener('resize', updateDimensions);
+    
+    //     return () => window.removeEventListener('resize', updateDimensions);
+    //   }, []);    
+        
     return (
         <Stack mt={50} gap={50}>
             <Title order={2}>
                 My Stack
             </Title>    
-            <Flow nodes={heroNodes} edges={heroEdges} />
+            <Box ref={flowWrapperRef}>
+                <Flow initialNodes={heroNodes} initialEdges={heroEdges} />    
+            </Box>
+            
         </Stack>
     )
 }

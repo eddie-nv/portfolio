@@ -22,8 +22,6 @@ function GridParent({ numColumns = 18, numRows = 18, gap = 0, fill }: GridParent
         if (!parentRef.current) return;
         const calculatedHeight = calculateCellHeight(parentRef.current.clientWidth);
         const calculatedWidth = calculateCellWidth(parentRef.current.clientHeight);
-        console.log('parent: ', parentRef.current.clientHeight, parentRef.current.clientWidth)
-        console.log('calculated: ', calculatedHeight, calculatedWidth)
         setCellHeight(calculatedHeight);
         setCellWidth(calculatedWidth);
     }, [parentRef, numColumns, numRows, gap]);

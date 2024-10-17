@@ -7,11 +7,22 @@ const calculateYPositions = (initial: number, increments: number[]) => {
   }, [initial]);
 };
 
-const yPositions = calculateYPositions(0, [80, 40, 80, 80, 80, 80, 80, 80, 120, 90, 110, 160, 40, 40, 110, 120]);
+const calculateColumnPositions = (parentWidth: number): number[] => {
+  const columnWidth = parentWidth / 3;
+  return [
+    columnWidth - columnWidth, 
+    columnWidth + (columnWidth / 2), 
+    2 * columnWidth + (columnWidth / 3)
+  ];
+};
+
+const yPositions = calculateYPositions(0, [80, 40, 40, 80, 80, 80, 80, 80, 120, 90, 110, 160, 40, 40, 110, 120]);
 
 const strokeDasharray = '10 10';
 
-export const heroNodes: Node[] = [
+export const getHeroFlowData = () => {
+
+  const heroNodes: Node[] = [
     { id: '0', position: { x: 0, y: yPositions[0] }, data: { label: '' }, type: 'anchor'},
     { id: '1', position: { x: 0, y: yPositions[2] }, data: { label: 'Frontend Basics' }, type: 'main'},
     { id: '1.1', position: { x: 400, y: yPositions[0] }, data: { label: 'HTML' }, type: 'sub'},
@@ -21,7 +32,7 @@ export const heroNodes: Node[] = [
     { id: '2', position: { x: 200, y: yPositions[6] }, data: { label: 'Libraries' }, type: 'main'},
     { id: '2.1', position: { x: 0, y: yPositions[6] }, data: { label: 'React' }, type: 'sub'},
     { id: '3', position: { x: 600, y: yPositions[6] }, data: { label: 'Frameworks' }, type: 'main'},
-    { id: '3.1', position: { x: 625, y: yPositions[4] }, data: { label: 'Next.js' }, type: 'sub'},
+    { id: '3.1', position: { x: 600 + 25, y: yPositions[4] }, data: { label: 'Next.js' }, type: 'sub'},
     { id: '4', position: { x: 380, y: yPositions[9] }, data: { label: 'Build Tools' }, type: 'main'},
     { id: '4.1', position: { x: 625, y: yPositions[9] }, data: { label: 'Linters & Formatters' }, type: 'sub'},
     { id: '4.1.a', position: { x: 690, y: yPositions[8] }, data: { label: 'ESLint' }, type: 'sub'},
@@ -43,9 +54,9 @@ export const heroNodes: Node[] = [
     { id: '9', position: { x: 480, y: yPositions[16] }, data: { label: 'Package Managers' }, type: 'main'},
     { id: '9.1', position: { x: 157, y: yPositions[16] }, data: { label: 'npm' }, type: 'sub'},
     { id: '9.2', position: { x: 320, y: yPositions[16] }, data: { label: 'yarn' }, type: 'sub'},
-];
+  ];
 
-export const heroEdges: Edge[] = [
+  const heroEdges: Edge[] = [
     { id: 'e0-1', source: '0', target: '1', sourceHandle: 'bottom-s', targetHandle: 'top-t'},
     { id: 'e1-1.1', source: '1', target: '1.1', sourceHandle: 'right-s', targetHandle: 'left-t', style: { strokeDasharray: strokeDasharray }},
     { id: 'e1-1.2', source: '1', target: '1.2', sourceHandle: 'right-s', targetHandle: 'left-t', style: { strokeDasharray: strokeDasharray }},
@@ -76,4 +87,54 @@ export const heroEdges: Edge[] = [
     { id: 'e8-9', source: '8', target: '9', sourceHandle: 'bottom-s', targetHandle: 'top-t'},
     { id: 'e9-9.1', source: '9', target: '9.1', sourceHandle: 'left-s', targetHandle: 'right-t', style: { strokeDasharray: strokeDasharray }},
     { id: 'e9-9.2', source: '9', target: '9.2', sourceHandle: 'left-s', targetHandle: 'right-t', style: { strokeDasharray: strokeDasharray }},
-];
+  ];
+
+  return { heroNodes, heroEdges };
+};
+
+export const getTouchstoneFlowData = (parentWidth: number): { projectNodes: Node[], projectEdges: Edge[] } => {
+  const [column1, column2, column3] = calculateColumnPositions(parentWidth);
+
+  const projectNodes: Node[] = [
+    { id: '0', position: { x: column1, y: yPositions[0] }, data: { label: '' }, type: 'anchor'},
+    { id: '1', position: { x: column1 + 58, y: yPositions[2] }, data: { label: 'Vite' }, type: 'main'},
+    { id: '2', position: { x: column2, y: yPositions[2] }, data: { label: 'React' }, type: 'sub'},
+  ];
+  
+  const projectEdges: Edge[] = [
+    { id: 'e0-1', source: '0', target: '1', sourceHandle: 'bottom-s', targetHandle: 'top-t'},
+    { id: 'e1-2', source: '1', target: '2', sourceHandle: 'right-s', targetHandle: 'left-t', style: { strokeDasharray: strokeDasharray }},
+  ];
+
+  return { projectNodes, projectEdges };
+}
+
+export const getWrapTintFlowData = (parentWidth: number): { projectNodes: Node[], projectEdges: Edge[] } => {
+  const [column1, column2, column3] = calculateColumnPositions(parentWidth);
+
+  const projectNodes: Node[] = [
+    { id: '0', position: { x: column1 + 50, y: yPositions[0] }, data: { label: '' }, type: 'anchor'},
+    { id: '1', position: { x: column1 + 50, y: yPositions[2] }, data: { label: '' }, type: 'main'},
+  ];
+  
+  const projectEdges: Edge[] = [
+    { id: 'e0-1', source: '0', target: '1', sourceHandle: 'bottom-s', targetHandle: 'top-t'},
+  ];
+
+  return { projectNodes, projectEdges };
+}
+
+export const getInfiniteUiFlowData = (parentWidth: number): { projectNodes: Node[], projectEdges: Edge[] } => {
+  const [column1, column2, column3] = calculateColumnPositions(parentWidth);
+
+  const projectNodes: Node[] = [
+    { id: '0', position: { x: column1 + 50, y: yPositions[0] }, data: { label: '' }, type: 'anchor'},
+    { id: '1', position: { x: column1 + 50, y: yPositions[2] }, data: { label: '' }, type: 'main'},
+  ];
+  
+  const projectEdges: Edge[] = [
+    { id: 'e0-1', source: '0', target: '1', sourceHandle: 'bottom-s', targetHandle: 'top-t'},
+  ];
+
+  return { projectNodes, projectEdges };
+}
