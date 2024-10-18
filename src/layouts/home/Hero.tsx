@@ -4,13 +4,12 @@ import { useGSAP } from '@gsap/react'
 import {Group, Stack, Title, Box, AspectRatio } from '@mantine/core'
 import React from 'react'
 import gsap from 'gsap'
-// import GridFace  from '@/components/GridFace'
 import GridParent from '@/components/GridParent'
 import BackgroundFiller from '@/components/BackgroundFiller'
+
 gsap.registerPlugin(useGSAP);
 
 const Hero = () => {
-    
     const { ref } = useGsapInView({
         opacity: 1,
         y: 0,
@@ -30,7 +29,7 @@ const Hero = () => {
                         </span>
                     </Stack>
                 </Title>
-                <Box >
+                <Box>
                     <Title order={5} ta='right' className='fade-in-right'>
                         <Stack gap={0}>
                             <span>
@@ -49,10 +48,8 @@ const Hero = () => {
                         I set out to walk the path of a coder 3 years ago, along the way learning what it takes to bring dreams to life. 
                     </Title>    
                 </Box>
-                <AspectRatio ratio={1} w={500} className='fade-in-up'>
+                <AspectRatio ratio={1} w={500} className='fade-in-up' style={{overflow: 'hidden'}}>
                     <GridParent 
-                        numRows={18} 
-                        numColumns={18} 
                         fill={({ cellHeight, cellWidth, index }) => (
                             <BackgroundFiller cellHeight={cellHeight} cellWidth={cellWidth} index={index} />
                         )}

@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, addEdge, Connection, ReactFlowInstance, Node, Edge } from 'reactflow';
-import { useMediaQuery } from '@mantine/hooks';
 import MainNode from './MainNode';
 import SubNode from './SubNode';
 import AnchorNode from './AnchorNode';
@@ -20,9 +19,7 @@ const Flow: React.FC<FlowProps> = ({ initialNodes, initialEdges }) => {
   const flowWrapperRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-  const isSmallScreen = useMediaQuery('(max-width: 931px)');
-
-  const [zoomLevel, setZoomLevel] = useState(isSmallScreen ? 0.7 : 1);
+  const [zoomLevel, setZoomLevel] = useState(1);
   const reactFlowInstance = useRef<ReactFlowInstance | null>(null);
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -32,6 +29,12 @@ const Flow: React.FC<FlowProps> = ({ initialNodes, initialEdges }) => {
     if (flowWrapperRef.current) {
       const { offsetWidth, offsetHeight } = flowWrapperRef.current;
       setDimensions({ width: offsetWidth, height: offsetHeight });
+
+      const newZoomLevel = Math.max(0.5, Math.min(1, offsetWidth / 1000));
+      setZoomLevel(newZoomLevel);
+      if (reactFlowInstance.current) {
+        reactFlowInstance.current.setViewport({ x: 0, y: 0, zoom: newZoomLevel});
+      }
     }
   }, []);
 
@@ -49,26 +52,13 @@ const Flow: React.FC<FlowProps> = ({ initialNodes, initialEdges }) => {
 
   const onInit = useCallback((instance: ReactFlowInstance) => {
     reactFlowInstance.current = instance;
-    instance.setViewport({ x: 0, y: 0, zoom: zoomLevel });
+    instance.setViewport({ x: 0, y: 0, zoom: zoomLevel});
   }, [zoomLevel]);
-
-  const changeZoom = useCallback((newZoom: number) => {
-    if (reactFlowInstance.current) {
-      reactFlowInstance.current.setViewport({ x: 0, y: 0, zoom: newZoom });
-      setZoomLevel(newZoom);
-    }
-  }, []);
 
   useEffect(() => {
     setNodes(initialNodes);
     setEdges(initialEdges);
   }, [initialNodes, initialEdges, setNodes, setEdges]);
-
-  useEffect(() => {
-    const newZoomLevel = isSmallScreen ? 0.7 : 1;
-    setZoomLevel(newZoomLevel);
-    changeZoom(newZoomLevel);
-  }, [isSmallScreen, changeZoom]);
 
   return (
     <div style={{ width: '100%', height: '1500px' }} ref={flowWrapperRef}>
@@ -85,7 +75,7 @@ const Flow: React.FC<FlowProps> = ({ initialNodes, initialEdges }) => {
         zoomOnDoubleClick={false}
         preventScrolling={false}
         panOnDrag={false}
-        translateExtent={[[0, 0], [dimensions.width / zoomLevel, dimensions.height / zoomLevel]]}
+        translateExtent={[[0, 0], [(dimensions.width ) / zoomLevel, dimensions.height / zoomLevel]]}
         nodeExtent={[[0, 0], [dimensions.width / zoomLevel, dimensions.height / zoomLevel]]}
         proOptions={{ hideAttribution: true }}
       />
