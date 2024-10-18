@@ -11,8 +11,6 @@ const Footer = () => {
     return (
         <Flex justify='center' h={125} pos='relative'>
             <GridParent 
-                numRows={5} 
-                numColumns={75} 
                 fill={({ cellHeight, cellWidth, index }) => (
                     <MouseDirectionHandler cellHeight={cellHeight} cellWidth={cellWidth} index={index} />
                 )}
