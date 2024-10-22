@@ -18,7 +18,7 @@ function GridParent({ gap = 0, fill }: GridParentProps) {
     useEffect(() => {
         const calculateGridSize = () => {
             if (!parentRef.current) return;
-            const size = window.innerWidth > 800 ? 27 : 50;
+            const size = 27
             const newColumns = Math.floor(parentRef.current.clientWidth / size);
             const newRows = Math.floor(parentRef.current.clientHeight / size);
             setColumns(newColumns);
