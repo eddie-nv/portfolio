@@ -7,14 +7,6 @@ const calculateYPositions = (initial: number, increments: number[]) => {
   }, [initial]);
 };
 
-const calculateColumnPositions = (parentWidth: number): number[] => {
-  const columnWidth = parentWidth / 3;
-  return [
-    columnWidth - columnWidth, 
-    columnWidth + (columnWidth / 2), 
-    2 * columnWidth + (columnWidth / 3)
-  ];
-};
 
 const yPositions = calculateYPositions(0, [80, 40, 40, 80, 80, 80, 80, 80, 120, 90, 110, 160, 40, 40, 110, 120]);
 
@@ -93,47 +85,86 @@ export const getHeroFlowData = () => {
 };
 
 export const getTouchstoneFlowData = (parentWidth: number): { projectNodes: Node[], projectEdges: Edge[] } => {
-  const [column1, column2, column3] = calculateColumnPositions(parentWidth);
 
   const projectNodes: Node[] = [
-    { id: '0', position: { x: column1, y: yPositions[0] }, data: { label: '' }, type: 'anchor'},
-    { id: '1', position: { x: column1 + 58, y: yPositions[2] }, data: { label: 'Vite' }, type: 'main'},
-    { id: '2', position: { x: column2, y: yPositions[2] }, data: { label: 'React' }, type: 'sub'},
+    { id: '0', position: { x: 0, y: yPositions[0] }, data: { label: '' }, type: 'anchor'},
+    { id: '1', position: { x: 27, y: yPositions[2] }, data: { label: 'JavaScript' }, type: 'main'},
+    { id: '1.1', position: { x: 51, y: yPositions[4] }, data: { label: 'React' }, type: 'sub'},
+    { id: '2', position: { x: 795, y: yPositions[5] }, data: { label: 'Module Bundler' }, type: 'main'},
+    { id: '2.1', position: { x: 851, y: yPositions[6] + 40 }, data: { label: 'Vite' }, type: 'sub'},
+    { id: '3', position: { x: 27, y: yPositions[8]}, data: { label: 'UI Library' }, type: 'main'},
+    { id: '3.1', position: { x: 21, y: yPositions[9]}, data: { label: 'Material UI' }, type: 'sub'},
+    { id: '4', position: { x: 710, y: yPositions[10] }, data: { label: 'Authentication Strategy' }, type: 'main'},
+    { id: '4.1', position: { x: 795, y: yPositions[11] + 10}, data: { label: 'OAuth' }, type: 'sub'},
   ];
   
   const projectEdges: Edge[] = [
     { id: 'e0-1', source: '0', target: '1', sourceHandle: 'bottom-s', targetHandle: 'top-t'},
-    { id: 'e1-2', source: '1', target: '2', sourceHandle: 'right-s', targetHandle: 'left-t', style: { strokeDasharray: strokeDasharray }},
+    { id: 'e1-1.1', source: '1', target: '1.1', sourceHandle: 'bottom-s', targetHandle: 'top-t', style: { strokeDasharray: strokeDasharray }},
+    { id: 'e1-2', source: '1', target: '2', sourceHandle: 'right-s', targetHandle: 'left-t'},
+    { id: 'e2-2.1', source: '2', target: '2.1', sourceHandle: 'bottom-s', targetHandle: 'top-t', style: { strokeDasharray: strokeDasharray }},
+    { id: 'e2-3', source: '2', target: '3', sourceHandle: 'left-s', targetHandle: 'right-t'},
+    { id: 'e3-3.1', source: '3', target: '3.1', sourceHandle: 'bottom-s', targetHandle: 'top-t', style: { strokeDasharray: strokeDasharray }},
+    { id: 'e3-4', source: '3', target: '4', sourceHandle: 'right-s', targetHandle: 'left-t'},
+    { id: 'e4-4.1', source: '4', target: '4.1', sourceHandle: 'bottom-s', targetHandle: 'top-t', style: { strokeDasharray: strokeDasharray }},
   ];
 
   return { projectNodes, projectEdges };
 }
 
 export const getWrapTintFlowData = (parentWidth: number): { projectNodes: Node[], projectEdges: Edge[] } => {
-  const [column1, column2, column3] = calculateColumnPositions(parentWidth);
 
   const projectNodes: Node[] = [
-    { id: '0', position: { x: column1 + 50, y: yPositions[0] }, data: { label: '' }, type: 'anchor'},
-    { id: '1', position: { x: column1 + 50, y: yPositions[2] }, data: { label: '' }, type: 'main'},
+    { id: '0', position: { x: 0, y: yPositions[0] }, data: { label: '' }, type: 'anchor'},
+    { id: '1', position: { x: 32, y: yPositions[2] }, data: { label: 'WebFlow' }, type: 'main'},
+    { id: '1.1', position: { x: 25, y: yPositions[4] }, data: { label: 'Client First' }, type: 'sub'},
+    { id: '2', position: { x: 833, y: yPositions[5] }, data: { label: 'Hosting' }, type: 'main'},
+    { id: '2.1', position: { x: 802, y: yPositions[6] + 40 }, data: { label: 'AWS Route 53' }, type: 'sub'},
+    { id: '3', position: { x: 57, y: yPositions[8]}, data: { label: 'Design' }, type: 'main'},
+    { id: '3.1', position: { x: 61, y: yPositions[9]}, data: { label: 'Figma' }, type: 'sub'},
   ];
   
   const projectEdges: Edge[] = [
     { id: 'e0-1', source: '0', target: '1', sourceHandle: 'bottom-s', targetHandle: 'top-t'},
+    { id: 'e1-1.1', source: '1', target: '1.1', sourceHandle: 'bottom-s', targetHandle: 'top-t', style: { strokeDasharray: strokeDasharray }},
+    { id: 'e1-2', source: '1', target: '2', sourceHandle: 'right-s', targetHandle: 'left-t'},
+    { id: 'e2-2.1', source: '2', target: '2.1', sourceHandle: 'bottom-s', targetHandle: 'top-t', style: { strokeDasharray: strokeDasharray }},
+    { id: 'e2-3', source: '2', target: '3', sourceHandle: 'left-s', targetHandle: 'right-t'},
+    { id: 'e3-3.1', source: '3', target: '3.1', sourceHandle: 'bottom-s', targetHandle: 'top-t', style: { strokeDasharray: strokeDasharray }},
+    { id: 'e3-4', source: '3', target: '4', sourceHandle: 'right-s', targetHandle: 'left-t'},
+    { id: 'e4-4.1', source: '4', target: '4.1', sourceHandle: 'bottom-s', targetHandle: 'top-t', style: { strokeDasharray: strokeDasharray }},
   ];
 
   return { projectNodes, projectEdges };
 }
 
 export const getInfiniteUiFlowData = (parentWidth: number): { projectNodes: Node[], projectEdges: Edge[] } => {
-  const [column1, column2, column3] = calculateColumnPositions(parentWidth);
 
   const projectNodes: Node[] = [
-    { id: '0', position: { x: column1 + 50, y: yPositions[0] }, data: { label: '' }, type: 'anchor'},
-    { id: '1', position: { x: column1 + 50, y: yPositions[2] }, data: { label: '' }, type: 'main'},
+    { id: '0', position: { x: 0, y: yPositions[0] }, data: { label: '' }, type: 'anchor'},
+    { id: '1', position: { x: 25, y: yPositions[2] }, data: { label: 'TypeScript' }, type: 'main'},
+    { id: '1.1', position: { x: 50, y: yPositions[4] }, data: { label: 'React' }, type: 'sub'},
+    { id: '2', position: { x: 790, y: yPositions[5] }, data: { label: 'Module Bundler' }, type: 'main'},
+    { id: '2.1', position: { x: 820, y: yPositions[6] + 40 }, data: { label: 'Webpack' }, type: 'sub'},
+    { id: '3', position: { x: 57, y: yPositions[8]}, data: { label: 'UI Library' }, type: 'main'},
+    { id: '3.1', position: { x: 51, y: yPositions[9]}, data: { label: 'Ant Design' }, type: 'sub'},
+    { id: '4', position: { x: 784, y: yPositions[10] }, data: { label: 'Formatter' }, type: 'main'},
+    { id: '4.1', position: { x: 795, y: yPositions[11] + 10}, data: { label: 'Prettier' }, type: 'sub'},
+    { id: '5', position: { x: 63, y: yPositions[12]}, data: { label: 'Server' }, type: 'main'},
+    { id: '5.1', position: { x: 61, y: yPositions[14] + 40}, data: { label: 'Python' }, type: 'sub'},
   ];
   
   const projectEdges: Edge[] = [
     { id: 'e0-1', source: '0', target: '1', sourceHandle: 'bottom-s', targetHandle: 'top-t'},
+    { id: 'e1-1.1', source: '1', target: '1.1', sourceHandle: 'bottom-s', targetHandle: 'top-t', style: { strokeDasharray: strokeDasharray }},
+    { id: 'e1-2', source: '1', target: '2', sourceHandle: 'right-s', targetHandle: 'left-t'},
+    { id: 'e2-2.1', source: '2', target: '2.1', sourceHandle: 'bottom-s', targetHandle: 'top-t', style: { strokeDasharray: strokeDasharray }},
+    { id: 'e2-3', source: '2', target: '3', sourceHandle: 'left-s', targetHandle: 'right-t'},
+    { id: 'e3-3.1', source: '3', target: '3.1', sourceHandle: 'bottom-s', targetHandle: 'top-t', style: { strokeDasharray: strokeDasharray }},
+    { id: 'e3-4', source: '3', target: '4', sourceHandle: 'right-s', targetHandle: 'left-t'},
+    { id: 'e4-4.1', source: '4', target: '4.1', sourceHandle: 'bottom-s', targetHandle: 'top-t', style: { strokeDasharray: strokeDasharray }},
+    { id: 'e4-5', source: '4', target: '5', sourceHandle: 'left-s', targetHandle: 'right-t'},
+    { id: 'e5-5.1', source: '5', target: '5.1', sourceHandle: 'bottom-s', targetHandle: 'top-t', style: { strokeDasharray: strokeDasharray }},
   ];
 
   return { projectNodes, projectEdges };
