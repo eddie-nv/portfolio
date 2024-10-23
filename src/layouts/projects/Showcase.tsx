@@ -1,10 +1,9 @@
 'use client'
 import { AspectRatio, Stack, Title, Flex, Box } from '@mantine/core'
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef } from 'react'
 import Image, { StaticImageData } from 'next/image'
 import Flow from '@/components/Flow'
 import { Edge, Node } from 'reactflow'
-// import { getProjectFlowData } from '@/utils/flowData'
 
 const Showcase = ({ project, flow }: { 
   project: { 
@@ -13,28 +12,11 @@ const Showcase = ({ project, flow }: {
     pic: StaticImageData, 
     bg: StaticImageData,  
   },
-  flow: (parentWidth: number) => { projectNodes: Node[], projectEdges: Edge[] };
+  flow: () => { projectNodes: Node[], projectEdges: Edge[], height: number };
 }) => {
   const flowWrapperRef = useRef<HTMLDivElement>(null);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-  const { projectNodes, projectEdges } = flow(dimensions.width);
-
-  useEffect(() => {
-    const updateDimensions = () => {
-      if (flowWrapperRef.current) {
-        setDimensions({
-          width: flowWrapperRef.current.offsetWidth,
-          height: flowWrapperRef.current.offsetHeight,
-        });
-      }
-    };
-
-    updateDimensions();
-    window.addEventListener('resize', updateDimensions);
-
-    return () => window.removeEventListener('resize', updateDimensions);
-  }, []);
+  const { projectNodes, projectEdges, height } = flow();
 
   return (
     <Stack gap={70}>
@@ -45,7 +27,7 @@ const Showcase = ({ project, flow }: {
         Project Stack
       </Title>
       <Box ref={flowWrapperRef}>
-        <Flow initialNodes={projectNodes} initialEdges={projectEdges}/>
+        <Flow initialNodes={projectNodes} initialEdges={projectEdges} height={height}/>
       </Box>
       <Flex justify='end'>
         <Title order={2}>

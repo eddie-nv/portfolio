@@ -84,7 +84,7 @@ export const getHeroFlowData = () => {
   return { heroNodes, heroEdges };
 };
 
-export const getTouchstoneFlowData = (parentWidth: number): { projectNodes: Node[], projectEdges: Edge[] } => {
+export const getTouchstoneFlowData = (): { projectNodes: Node[], projectEdges: Edge[]} => {
 
   const projectNodes: Node[] = [
     { id: '0', position: { x: 0, y: yPositions[0] }, data: { label: '' }, type: 'anchor'},
@@ -112,7 +112,7 @@ export const getTouchstoneFlowData = (parentWidth: number): { projectNodes: Node
   return { projectNodes, projectEdges };
 }
 
-export const getWrapTintFlowData = (parentWidth: number): { projectNodes: Node[], projectEdges: Edge[] } => {
+export const getWrapTintFlowData = (): { projectNodes: Node[], projectEdges: Edge[] } => {
 
   const projectNodes: Node[] = [
     { id: '0', position: { x: 0, y: yPositions[0] }, data: { label: '' }, type: 'anchor'},
@@ -138,7 +138,7 @@ export const getWrapTintFlowData = (parentWidth: number): { projectNodes: Node[]
   return { projectNodes, projectEdges };
 }
 
-export const getInfiniteUiFlowData = (parentWidth: number): { projectNodes: Node[], projectEdges: Edge[] } => {
+export const getInfiniteUiFlowData = (): { projectNodes: Node[], projectEdges: Edge[]} => {
 
   const projectNodes: Node[] = [
     { id: '0', position: { x: 0, y: yPositions[0] }, data: { label: '' }, type: 'anchor'},
