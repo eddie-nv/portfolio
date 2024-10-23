@@ -8,7 +8,7 @@ const MyStack = () => {
     const flowWrapperRef = useRef<HTMLDivElement>(null);
     // const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-    const { heroNodes, heroEdges } = getHeroFlowData();
+    const { heroNodes, heroEdges, height } = getHeroFlowData();
 
     
     // useEffect(() => {
@@ -33,7 +33,7 @@ const MyStack = () => {
                 My Stack
             </Title>    
             <Box ref={flowWrapperRef}>
-                <Flow initialNodes={heroNodes} initialEdges={heroEdges} />    
+                <Flow initialNodes={heroNodes} initialEdges={heroEdges} height={height} />    
             </Box>
             
         </Stack>

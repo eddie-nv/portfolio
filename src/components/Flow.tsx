@@ -13,11 +13,12 @@ const nodeTypes = {
 type FlowProps = {
   initialNodes: Node[];
   initialEdges: Edge[];
+  height: Number;
 };
 
 const Flow: React.FC<FlowProps> = ({ initialNodes, initialEdges }) => {
   const flowWrapperRef = useRef<HTMLDivElement>(null);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [dimensions, setDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
 
   const [zoomLevel, setZoomLevel] = useState(1);
   const reactFlowInstance = useRef<ReactFlowInstance | null>(null);
@@ -27,16 +28,16 @@ const Flow: React.FC<FlowProps> = ({ initialNodes, initialEdges }) => {
 
   const updateDimensions = useCallback(() => {
     if (flowWrapperRef.current) {
-      const { offsetWidth, offsetHeight } = flowWrapperRef.current;
-      setDimensions({ width: offsetWidth, height: offsetHeight });
-
-      const newZoomLevel = Math.max(0.5, Math.min(1, offsetWidth / 1000));
+      const { offsetWidth } = flowWrapperRef.current;
+      const newZoomLevel = Math.max(0.3, Math.min(1, offsetWidth / 1000));
+      const maxYPosition = (Math.max(...nodes.map(node => node.position.y)) + 100) * newZoomLevel;
+      setDimensions({ width: offsetWidth, height: maxYPosition });
       setZoomLevel(newZoomLevel);
       if (reactFlowInstance.current) {
-        reactFlowInstance.current.setViewport({ x: 0, y: 0, zoom: newZoomLevel});
+        reactFlowInstance.current.setViewport({ x: 0, y: 0, zoom: newZoomLevel });
       }
     }
-  }, []);
+  }, [nodes]);
 
   useEffect(() => {
     updateDimensions();
@@ -61,7 +62,7 @@ const Flow: React.FC<FlowProps> = ({ initialNodes, initialEdges }) => {
   }, [initialNodes, initialEdges, setNodes, setEdges]);
 
   return (
-    <div style={{ width: '100%', height: '1500px' }} ref={flowWrapperRef}>
+    <div style={{ width: '100%', height: `${dimensions.height}px` }} ref={flowWrapperRef}>
       <ReactFlow
         nodes={nodes}
         edges={edges}

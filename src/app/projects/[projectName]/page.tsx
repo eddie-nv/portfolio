@@ -115,7 +115,7 @@ const Projects = ({ params }: { params: { projectName: string } }) => {
             <Stack gap={135}>
                 <Showcase 
                     project={PROJECT_CONTENT[project]?.showcase} 
-                    flow={getFlowData(params.projectName) || (() => ({ projectNodes: [], projectEdges: [] }))}
+                    flow={getFlowData(params.projectName) || (() => ({ projectNodes: [], projectEdges: [], height: 0 }))}
                 />
                 <ProjectHero project={PROJECT_CONTENT[project]?.hero}/>
             </Stack>
