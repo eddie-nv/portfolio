@@ -12,11 +12,11 @@ const Showcase = ({ project, flow }: {
     pic: StaticImageData, 
     bg: StaticImageData,  
   },
-  flow: () => { projectNodes: Node[], projectEdges: Edge[], height: number };
+  flow: () => { projectNodes: Node[], projectEdges: Edge[] };
 }) => {
   const flowWrapperRef = useRef<HTMLDivElement>(null);
 
-  const { projectNodes, projectEdges, height } = flow();
+  const { projectNodes, projectEdges } = flow();
 
   return (
     <Stack gap={70}>
@@ -27,7 +27,7 @@ const Showcase = ({ project, flow }: {
         Project Stack
       </Title>
       <Box ref={flowWrapperRef}>
-        <Flow initialNodes={projectNodes} initialEdges={projectEdges} height={height}/>
+        <Flow initialNodes={projectNodes} initialEdges={projectEdges}/>
       </Box>
       <Flex justify='end'>
         <Title order={2}>

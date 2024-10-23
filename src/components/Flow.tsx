@@ -13,7 +13,6 @@ const nodeTypes = {
 type FlowProps = {
   initialNodes: Node[];
   initialEdges: Edge[];
-  height: Number;
 };
 
 const Flow: React.FC<FlowProps> = ({ initialNodes, initialEdges }) => {
