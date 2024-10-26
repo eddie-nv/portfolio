@@ -10,10 +10,10 @@ const About = () => {
         <Group w='100%' justify='space-around' pt={50}>
             <Stack>
                 <Text size='lg'>
-                    Hello, I&aposm Eduardo
+                    Hello, I'm Eduardo
                 </Text>
                 <Text size='sm' maw={410} >
-                    I&aposm a new resident of North Beach SF, and I&aposm here to be surounded by the best in the world. I set out to learn programming 3 years ago and in that time I gained a deep understanding of frontend techniques. 
+                    I'm a new resident of North Beach SF, and I'm here to be surounded by the best in the world. I set out to learn programming 3 years ago and in that time I gained a deep understanding of frontend techniques. 
                 </Text>
             </Stack>
             <AspectRatio ratio={0.7} w={200} bg='gray'>
