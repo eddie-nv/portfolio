@@ -67,7 +67,7 @@ export const useGsapInView = (
                 defaultFadeIn(element, effect);
             }
         }
-    }, [inViewport, effect]);
+    }, [inViewport, effect, ref]);
 
     return { ref };
 };
