@@ -18,6 +18,7 @@ const PROJECTS_DATA = [
         title: 'Wrap and Tint My Ride',
         description: 'Applied Client-First principles to develop a site on Webflow for window tinting classes',
         slug: 'wrap_tint_my_ride',
+        link: 'https://www.wrapandtintmyride.com/'
     },
     {
         image: infiniteUi,
