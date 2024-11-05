@@ -20,15 +20,6 @@ const Showcase = ({ project, flow }: {
 
   return (
     <Stack gap={70}>
-      <AspectRatio ratio={3.5} style={{borderRadius: '5px', overflow: 'hidden'}}>
-          <Image src={project?.pic} alt={project?.title} style={{objectFit: 'cover', width: '100%', height: '100%'}}/>
-      </AspectRatio>
-      <Title order={2}>
-        Project Stack
-      </Title>
-      <Box ref={flowWrapperRef}>
-        <Flow initialNodes={projectNodes} initialEdges={projectEdges}/>
-      </Box>
       <Flex justify='end'>
         <Title order={2}>
           Showcase

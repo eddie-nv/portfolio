@@ -1,8 +1,11 @@
 'use client'
 import React from 'react'
-import { Container, Stack } from '@mantine/core'
+import { Container, Flex, Stack } from '@mantine/core'
+import Header from '@/layouts/projects/Header'
+import Description from '@/layouts/projects/Description'
 import ProjectHero from '@/layouts/projects/ProjectHero'
 import Showcase from '@/layouts/projects/Showcase'
+import ProjectStack from '@/layouts/projects/ProjectStack'
 import touchHeader from '/public/images/touchstone_header.png'
 import touchBg from '/public/images/touchstone_bg.png'
 import wrapTintHeader from '/public/images/wrap_and_tint_header.png'
@@ -11,6 +14,7 @@ import infiniteUiHeader from '/public/images/infinite_ui_header.png'
 import infiniteUiBg from '/public/images/infinite_ui_bg.png'
 import { getTouchstoneFlowData, getWrapTintFlowData, getInfiniteUiFlowData } from '@/utils/flowData'
 import { StaticImageData } from 'next/image'
+import ProjectSwitch from '@/components/ProjectSwitch'
 
 
 type Hero = {
@@ -116,12 +120,17 @@ const Projects = ({ params }: { params: { projectName: string } }) => {
     const project = params.projectName as keyof Projects;
     return (
         <Container mt={50} mb={150}>
-            <Stack gap={135}>
+            <Stack gap={70}>
+                <Header project={PROJECT_CONTENT[project]?.showcase}/>
+                <Description project={PROJECT_CONTENT[project]?.hero}/>
                 <Showcase 
                     project={PROJECT_CONTENT[project]?.showcase} 
                     flow={getFlowData(params.projectName) || (() => ({ projectNodes: [], projectEdges: []}))}
                 />
-                <ProjectHero project={PROJECT_CONTENT[project]?.hero}/>
+                <ProjectStack flow={getFlowData(params.projectName) || (() => ({ projectNodes: [], projectEdges: []}))}/>
+                <Flex justify='end'>
+                    <ProjectSwitch prev={PROJECT_CONTENT[project]?.hero.prev} next={PROJECT_CONTENT[project]?.hero.next} />
+                </Flex>
             </Stack>
         </Container>
     )
