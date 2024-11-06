@@ -48,11 +48,12 @@ const Hero = () => {
                         I set out to walk the path of a coder 3 years ago, along the way learning what it takes to bring dreams to life. 
                     </Title>    
                 </Box>
-                <AspectRatio ratio={1} w={500} className='fade-in-up' style={{overflow: 'hidden'}}>
+                <AspectRatio ratio={1} w={500} h={500} className='fade-in-up'>
                     <GridParent 
                         fill={({ cellHeight, cellWidth, index }) => (
                             <BackgroundFiller cellHeight={cellHeight} cellWidth={cellWidth} index={index} />
                         )}
+                        type='fixed'
                     />
                 </AspectRatio>
             </Group>
