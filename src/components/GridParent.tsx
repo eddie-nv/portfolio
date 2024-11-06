@@ -3,10 +3,11 @@ import { Grid, Box, rem } from '@mantine/core';
 
 type GridParentProps = {
     gap?: number;
+    type?: 'fixed' | 'dynamic';
     fill?: (props: { cellHeight: number; cellWidth: number; index: number }) => React.ReactNode;
 };
 
-function GridParent({ gap = 0, fill }: GridParentProps) {
+function GridParent({ gap = 0, fill, type = 'dynamic' }: GridParentProps) {
     const parentRef = useRef<HTMLDivElement>(null);
     const [columns, setColumns] = useState<number>(0);
     const [rows, setRows] = useState<number>(0);
@@ -18,13 +19,22 @@ function GridParent({ gap = 0, fill }: GridParentProps) {
     useEffect(() => {
         const calculateGridSize = () => {
             if (!parentRef.current) return;
-            const size = 27
-            const newColumns = Math.floor(parentRef.current.clientWidth / size);
-            const newRows = Math.floor(parentRef.current.clientHeight / size);
-            setColumns(newColumns);
-            setRows(newRows);
-            setCellHeight((parentRef.current.clientHeight - (gap * (newRows + 1))) / newRows);
-            setCellWidth((parentRef.current.clientWidth - (gap * (newColumns + 1))) / newColumns);
+            if (type === 'fixed') {
+                const newColumns = 18;
+                const newRows = 18;
+                setColumns(newColumns);
+                setRows(newRows);
+                setCellHeight((parentRef.current.clientHeight - (gap * (newRows + 1))) / newRows);
+                setCellWidth((parentRef.current.clientWidth - (gap * (newColumns + 1))) / newColumns);
+            } else if (type === 'dynamic') {
+                const size = 25
+                const newColumns = Math.floor(parentRef.current.clientWidth / size);
+                const newRows = Math.floor(parentRef.current.clientHeight / size);
+                setColumns(newColumns);
+                setRows(newRows);
+                setCellHeight((parentRef.current.clientHeight - (gap * (newRows + 1))) / newRows);
+                setCellWidth((parentRef.current.clientWidth - (gap * (newColumns + 1))) / newColumns);
+            }
         };
 
         calculateGridSize();
