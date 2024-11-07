@@ -1,13 +1,15 @@
 import { Stack, Title, Group, AspectRatio, Box, Text } from '@mantine/core'
+import { useMediaQuery } from '@mantine/hooks'
 import React from 'react'
 
 const About = () => {
+    const isTablet = useMediaQuery('(max-width: 53em)')
   return (
-    <Stack pb={150} mt={200} gap={100}>
+    <Stack pb={150} mt={200} gap={100} >
         <Title order={2} >
             ABOUT
         </Title>
-        <Group w='100%' justify='space-around' pt={50}>
+        <Group w='100%' justify='space-around' pt={50} wrap='wrap-reverse' gap={isTablet ? 50 : 0}>
             <Stack>
                 <Text size='lg'>
                     Hello, I&apos;m Eduardo

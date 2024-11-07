@@ -5,7 +5,7 @@ import React from 'react'
 import touchstone from '/public/images/touchstone.png'
 import wrapTintMyRide from '/public/images/wrap_and_tint.png'
 import infiniteUi from '/public/images/infinite_ui.png'
-
+import { useMediaQuery } from '@mantine/hooks'
 const PROJECTS_DATA = [
     {
         image: touchstone,
@@ -29,17 +29,18 @@ const PROJECTS_DATA = [
 ]
 
 const Projects = () => {
+    const isTablet = useMediaQuery('(max-width: 53em)')
     const renderProjects = () => (
         PROJECTS_DATA.map((project, i) => {
             if (i % 2 === 0) {
                 return (
-                    <Group key={project.title} pl={( i + 1 ) % 3 === 0 ? 80 : 0} gap={40}>
+                    <Group key={project.title} gap={40}>
                         <Link href={`/projects/${project.slug}`} passHref>
                             <AspectRatio ratio={1.2} w={200} style={{borderRadius: 5, overflow: 'hidden'}}>
                                 <Image src={project.image} alt={project.title} style={{objectFit: 'cover', width: '100%', height: '100%'}}/>
                             </AspectRatio>
                         </Link>
-                        <Box w={200} pos='relative'>
+                        <Box w={isTablet ? '100%' : 300} pos='relative' bg='red'>
                             <Stack pos='absolute' top={62}>
                                 <Text size='sm'>{i + 1}</Text>
                                 <Title order={5} >
@@ -58,7 +59,7 @@ const Projects = () => {
                                 <Image src={project.image} alt={project.title} style={{objectFit: 'cover', width: '100%', height: '100%'}}/>
                             </AspectRatio>
                         </Link>
-                        <Box w={200} pos='relative'>
+                        <Box w={isTablet ? '100%' : 300} pos='relative'>
                             <Stack pos='absolute' top={62} ta='right'>
                                 <Text size='sm'>{i + 1}</Text>
                                 <Title order={5} >
