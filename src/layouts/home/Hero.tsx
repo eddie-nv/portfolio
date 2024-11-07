@@ -1,15 +1,19 @@
 'use client'
 import { useGsapInView } from '@/utils/animations/gsap'
 import { useGSAP } from '@gsap/react'
-import {Group, Stack, Title, Box, AspectRatio } from '@mantine/core'
+import {Group, Stack, Title, Box, AspectRatio, Flex } from '@mantine/core'
 import React from 'react'
 import gsap from 'gsap'
 import GridParent from '@/components/GridParent'
 import BackgroundFiller from '@/components/BackgroundFiller'
 
 gsap.registerPlugin(useGSAP);
+import { useMediaQuery } from '@mantine/hooks'
 
 const Hero = () => {
+    const isMobile = useMediaQuery('(max-width: 30em)') 
+    const isTablet = useMediaQuery('(max-width: 53em)') 
+
     const { ref } = useGsapInView({
         opacity: 1,
         y: 0,
@@ -18,8 +22,15 @@ const Hero = () => {
     })
     return (
         <Stack justify='center' align='center' gap={80} h='100%' >
-            <Group justify='space-between' align='end' w='100%'>
-                <Title order={1} lts={5} ref={ref} opacity={1} className='fade-in-left'>
+            <Group justify='space-between' align='end' w='100%' gap={isMobile ? 30 : 40}>
+                <Title 
+                    order={1} 
+                    lts={5} 
+                    ref={ref} 
+                    opacity={1}
+                    className='fade-in-left'
+                    style={{ fontSize: isMobile ? '3rem' : isTablet ? '4rem' : '5rem' }}
+                >
                     <Stack>
                         <span style={{letterSpacing: 6}}>
                             FRONTEND
@@ -29,7 +40,7 @@ const Hero = () => {
                         </span>
                     </Stack>
                 </Title>
-                <Box>
+                <Flex w={isTablet ? '100%' : ''} justify='flex-end'>
                     <Title order={5} ta='right' className='fade-in-right'>
                         <Stack gap={0}>
                             <span>
@@ -40,22 +51,24 @@ const Hero = () => {
                             </span>
                         </Stack>
                     </Title>    
-                </Box>
+                </Flex>
             </Group>
-            <Group justify='space-between' align='start' w='100%'>
+            <Group justify='space-between' align='start' w='100%' gap={isTablet ? 70 : 0}>
                 <Box maw={300}>
                     <Title order={5} className='fade-in-up'>
                         I set out to walk the path of a coder 3 years ago, along the way learning what it takes to bring dreams to life. 
                     </Title>    
                 </Box>
-                <AspectRatio ratio={1} w={500} h={500} className='fade-in-up'>
+                <Flex w={isTablet ? '100%' : ''} justify='flex-end'>
+                <AspectRatio w={isMobile ? 400 : 500} h={isMobile ? 400 : 500}>
                     <GridParent 
                         fill={({ cellHeight, cellWidth, index }) => (
                             <BackgroundFiller cellHeight={cellHeight} cellWidth={cellWidth} index={index} />
                         )}
                         type='fixed'
                     />
-                </AspectRatio>
+                </AspectRatio>    
+                </Flex>
             </Group>
         </Stack>
     )
