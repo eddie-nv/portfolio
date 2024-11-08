@@ -10,7 +10,9 @@ import BackgroundFiller from '@/components/BackgroundFiller'
 gsap.registerPlugin(useGSAP);
 import { useMediaQuery } from '@mantine/hooks'
 
-const Hero = () => {
+const Hero = ({ setPosition }: { 
+    setPosition: (position: { x: number, y: number }) => void 
+}) => {
     const isMobile = useMediaQuery('(max-width: 30em)') 
     const isTablet = useMediaQuery('(max-width: 53em)') 
 
@@ -66,6 +68,7 @@ const Hero = () => {
                             <BackgroundFiller cellHeight={cellHeight} cellWidth={cellWidth} index={index} />
                         )}
                         type='fixed'
+                        setPosition={setPosition}
                     />
                 </AspectRatio>    
                 </Flex>
