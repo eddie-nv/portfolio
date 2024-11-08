@@ -5,9 +5,10 @@ type GridParentProps = {
     gap?: number;
     type?: 'fixed' | 'dynamic';
     fill?: (props: { cellHeight: number; cellWidth: number; index: number }) => React.ReactNode;
-};
+    setPosition?: (position: { x: number, y: number }) => void;
+};          
 
-function GridParent({ gap = 0, fill, type = 'dynamic' }: GridParentProps) {
+function GridParent({ gap = 0, fill, type = 'dynamic', setPosition }: GridParentProps) {
     const parentRef = useRef<HTMLDivElement>(null);
     const [columns, setColumns] = useState<number>(0);
     const [rows, setRows] = useState<number>(0);
@@ -19,6 +20,10 @@ function GridParent({ gap = 0, fill, type = 'dynamic' }: GridParentProps) {
     useEffect(() => {
         const calculateGridSize = () => {
             if (!parentRef.current) return;
+            const rect = parentRef.current.getBoundingClientRect();
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const absoluteTop = rect.top + scrollTop;
+            const absoluteLeft = rect.left;
             if (type === 'fixed') {
                 const newColumns = 18;
                 const newRows = 18;
@@ -26,8 +31,12 @@ function GridParent({ gap = 0, fill, type = 'dynamic' }: GridParentProps) {
                 setRows(newRows);
                 setCellHeight((parentRef.current.clientHeight - (gap * (newRows + 1))) / newRows);
                 setCellWidth((parentRef.current.clientWidth - (gap * (newColumns + 1))) / newColumns);
+                setPosition && setPosition({ 
+                    x: absoluteLeft, 
+                    y: absoluteTop 
+                });
             } else if (type === 'dynamic') {
-                const size = 25
+                const size = 30
                 const newColumns = Math.floor(parentRef.current.clientWidth / size);
                 const newRows = Math.floor(parentRef.current.clientHeight / size);
                 setColumns(newColumns);
