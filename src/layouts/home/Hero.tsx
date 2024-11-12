@@ -2,10 +2,8 @@
 import { useGsapInView } from '@/utils/animations/gsap'
 import { useGSAP } from '@gsap/react'
 import {Group, Stack, Title, Box, AspectRatio, Flex } from '@mantine/core'
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import gsap from 'gsap'
-import GridParent from '@/components/GridParent'
-import BackgroundFiller from '@/components/BackgroundFiller'
 
 gsap.registerPlugin(useGSAP);
 import { useMediaQuery } from '@mantine/hooks'
@@ -13,8 +11,19 @@ import { useMediaQuery } from '@mantine/hooks'
 const Hero = ({ setPosition }: { 
     setPosition: (position: { x: number, y: number }) => void 
 }) => {
+    const parentRef = useRef<HTMLDivElement>(null);
     const isMobile = useMediaQuery('(max-width: 30em)') 
     const isTablet = useMediaQuery('(max-width: 53em)') 
+
+    useEffect(() => {
+        if (parentRef.current) {
+            const rect = parentRef.current.getBoundingClientRect();
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const absoluteTop = rect.top + scrollTop;
+            const absoluteLeft = rect.left;
+            setPosition && setPosition({ x: absoluteLeft, y: absoluteTop });
+        }
+    }, [])
 
     const { ref } = useGsapInView({
         opacity: 1,
@@ -23,7 +32,7 @@ const Hero = ({ setPosition }: {
         ease: 'power3.out'
     })
     return (
-        <Stack justify='center' align='center' gap={80} h='100%' >
+        <Stack gap={80} h='100%' >
             <Group justify='space-between' align='end' w='100%' gap={isMobile ? 30 : 40}>
                 <Title 
                     order={1} 
@@ -62,14 +71,8 @@ const Hero = ({ setPosition }: {
                     </Title>    
                 </Box>
                 <Flex w={isTablet ? '100%' : ''} justify='flex-end'>
-                <AspectRatio w={isMobile ? 400 : 500} h={isMobile ? 400 : 500}>
-                    <GridParent 
-                        fill={({ cellHeight, cellWidth, index }) => (
-                            <BackgroundFiller cellHeight={cellHeight} cellWidth={cellWidth} index={index} />
-                        )}
-                        type='fixed'
-                        setPosition={setPosition}
-                    />
+                <AspectRatio w={isMobile ? 350 : 500} h={isMobile ? 350 : 500} style={{ overflow: 'hidden' }}>
+                    <Box w='100%' h='100%' ref={parentRef}/>
                 </AspectRatio>    
                 </Flex>
             </Group>
