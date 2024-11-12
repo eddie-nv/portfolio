@@ -5,10 +5,9 @@ type GridParentProps = {
     gap?: number;
     type?: 'fixed' | 'dynamic';
     fill?: (props: { cellHeight: number; cellWidth: number; index: number }) => React.ReactNode;
-    setPosition?: (position: { x: number, y: number }) => void;
 };          
 
-function GridParent({ gap = 0, fill, type = 'dynamic', setPosition }: GridParentProps) {
+function GridParent({ gap = 0, fill, type = 'dynamic' }: GridParentProps) {
     const parentRef = useRef<HTMLDivElement>(null);
     const [columns, setColumns] = useState<number>(0);
     const [rows, setRows] = useState<number>(0);
@@ -20,10 +19,6 @@ function GridParent({ gap = 0, fill, type = 'dynamic', setPosition }: GridParent
     useEffect(() => {
         const calculateGridSize = () => {
             if (!parentRef.current) return;
-            const rect = parentRef.current.getBoundingClientRect();
-            const scrollTop = window.scrollY || document.documentElement.scrollTop;
-            const absoluteTop = rect.top + scrollTop;
-            const absoluteLeft = rect.left;
             if (type === 'fixed') {
                 const newColumns = 18;
                 const newRows = 18;
@@ -31,10 +26,6 @@ function GridParent({ gap = 0, fill, type = 'dynamic', setPosition }: GridParent
                 setRows(newRows);
                 setCellHeight((parentRef.current.clientHeight - (gap * (newRows + 1))) / newRows);
                 setCellWidth((parentRef.current.clientWidth - (gap * (newColumns + 1))) / newColumns);
-                setPosition && setPosition({ 
-                    x: absoluteLeft, 
-                    y: absoluteTop 
-                });
             } else if (type === 'dynamic') {
                 const size = 30
                 const newColumns = Math.floor(parentRef.current.clientWidth / size);
@@ -52,10 +43,24 @@ function GridParent({ gap = 0, fill, type = 'dynamic', setPosition }: GridParent
     }, [gap]);
 
     return (
-        <Box ref={parentRef} p={rem(gap)} w='100%' h='100%' pos='relative'>
-            <Grid columns={columns} gutter={rem(gap)} style={cellHeight ? { borderBottom: '1px solid lightgray', borderRight: '1px solid lightgray' } : {}}>
+        <Box ref={parentRef} p={rem(gap)} h="100%" w="100%">
+            <Grid 
+                columns={columns} 
+                gutter={rem(gap)} 
+                style={{
+                    height: '100%',
+                    width: '100%',
+                    borderBottom: cellHeight ? '1px solid lightgray' : 'none',
+                    borderRight: cellHeight ? '1px solid lightgray' : 'none'
+                }}
+            >
                 {Array.from(Array(columns * rows)).map((_, index) => (
-                    <Grid.Col span={1} key={index} className='grid-box'>
+                    <Grid.Col 
+                        span={1} 
+                        key={index} 
+                        className='grid-box'
+                        style={{ height: `${100 / rows}%` }}
+                    >
                         {cellHeight && cellWidth && fill &&
                             fill({ cellHeight, cellWidth, index })
                         }

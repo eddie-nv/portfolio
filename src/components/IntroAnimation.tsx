@@ -40,9 +40,9 @@ const IntroAnimation = ({
             y: deltaY,
             duration: 3,
             ease: 'power2.inOut'
-        }, '<')
+        })
         .to('.intro-container', {
-            opacity: 0,
+            backgroundColor: 'transparent',
             duration: 3,
             ease: 'power2.inOut'
         });
@@ -54,7 +54,7 @@ const IntroAnimation = ({
             className="intro-container"
             h="100vh" 
             bg="black"
-            pos='fixed'
+            pos='absolute'
             justify='center'
             align='center'
             style={{

@@ -8,17 +8,26 @@ import MyStack from '@/layouts/home/MyStack';
 import IntroAnimation from '@/components/IntroAnimation';
 
 function Home() {
-  const [showIntro, setShowIntro] = useState(true)
-  const [position, setPosition] = useState({ x: 0, y: 0 })
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
 
   return (
     <>
-      {showIntro && <IntroAnimation 
+      <IntroAnimation 
         onComplete={() => {
-          setShowIntro(false)
+          document.body.style.overflow = 'unset';
         }} 
         position={position}
-      />}
+      />
       <Container mt={100} style={{ 
         opacity: 1,
         transition: 'opacity 5s ease-in'
