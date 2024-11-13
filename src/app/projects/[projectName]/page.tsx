@@ -124,7 +124,6 @@ const Projects = ({ params }: { params: { projectName: string } }) => {
                 <Description project={PROJECT_CONTENT[project]?.hero}/>
                 <Showcase 
                     project={PROJECT_CONTENT[project]?.showcase} 
-                    flow={getFlowData(params.projectName) || (() => ({ projectNodes: [], projectEdges: []}))}
                 />
                 <ProjectStack flow={getFlowData(params.projectName) || (() => ({ projectNodes: [], projectEdges: []}))}/>
                 <Flex justify='end'>
