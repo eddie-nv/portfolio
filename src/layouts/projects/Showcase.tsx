@@ -1,22 +1,16 @@
 'use client'
 import { AspectRatio, Stack, Title, Flex, Box } from '@mantine/core'
-import React, { useRef } from 'react'
+import React from 'react'
 import Image, { StaticImageData } from 'next/image'
-import Flow from '@/components/Flow'
-import { Edge, Node } from 'reactflow'
 
-const Showcase = ({ project, flow }: { 
+const Showcase = ({ project }: { 
   project: { 
     title: string
     video: string, 
     pic: StaticImageData, 
     bg: StaticImageData,  
-  },
-  flow: () => { projectNodes: Node[], projectEdges: Edge[] };
+  }
 }) => {
-  const flowWrapperRef = useRef<HTMLDivElement>(null);
-
-  const { projectNodes, projectEdges } = flow();
 
   return (
     <Stack gap={70}>

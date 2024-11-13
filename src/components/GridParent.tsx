@@ -40,7 +40,7 @@ function GridParent({ gap = 0, fill, type = 'dynamic' }: GridParentProps) {
         calculateGridSize();
         window.addEventListener('resize', calculateGridSize);
         return () => window.removeEventListener('resize', calculateGridSize);
-    }, [gap]);
+    }, [gap, type]);
 
     return (
         <Box ref={parentRef} p={rem(gap)} h="100%" w="100%">

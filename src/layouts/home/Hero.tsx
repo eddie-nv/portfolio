@@ -23,7 +23,7 @@ const Hero = ({ setPosition }: {
             const absoluteLeft = rect.left;
             setPosition && setPosition({ x: absoluteLeft, y: absoluteTop });
         }
-    }, [])
+    }, [setPosition])
 
     const { ref } = useGsapInView({
         opacity: 1,
