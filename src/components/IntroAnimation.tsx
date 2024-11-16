@@ -43,8 +43,9 @@ const IntroAnimation = ({
         })
         .to('.intro-container', {
             backgroundColor: 'transparent',
-            duration: 3,
-            ease: 'power2.inOut'
+            duration: 2.5,
+            ease: 'power2.inOut',
+            zIndex: -1
         });
     }, [x, y]);
 
