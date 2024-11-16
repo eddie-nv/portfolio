@@ -21,7 +21,7 @@
       "declarativeJSX": "true"
     },
     "styling": {
-      "uiFramework": "Mantine",
+      "uiFramework": ["Mantine", "Ant Design"],
       "responsiveDesign": "true"
     },
     "animation": {
