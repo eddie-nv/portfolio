@@ -1,23 +1,28 @@
 'use client';
 import { Avatar, Flex, Typography } from 'antd';
-import React from 'react';
+import { useUser } from './UserProvider';
 
-type UserDisplayProps = {
-  name: string;
-  avatarUrl?: string;
-};
+export const UserDisplay = () => {
+  const { user, isLoading } = useUser();
 
-export const UserDisplay = ({ name, avatarUrl }: UserDisplayProps) => {
+  if (isLoading) {
+    return <Flex align='center' gap={10}>Loading...</Flex>;
+  }
+
+  if (!user) {
+    return null;
+  }
+
   return (
     <Flex align='center' gap={10}>
       <Avatar 
-        src={avatarUrl} 
+        src={user.imageUrl} 
         size="small"
-        style={{ backgroundColor: !avatarUrl ? '#87d068' : undefined }}
+        style={{ backgroundColor: !user.imageUrl ? '#87d068' : undefined }}
       >
-        {!avatarUrl ? name.charAt(0) : null}
+        {!user.imageUrl ? user.name.charAt(0) : null}
       </Avatar>
-      <Typography.Text>{name}</Typography.Text>
+      <Typography.Text>{user.name}</Typography.Text>
     </Flex>
   );
 };

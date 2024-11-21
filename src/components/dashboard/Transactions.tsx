@@ -61,7 +61,7 @@ const Transactions: React.FC = () => {
   return (
     <Card title="Transactions" extra={
       <Select defaultValue="all" onChange={handleFilterChange}>
-        <Option value="all">All Statuses</Option>
+        <Option value="all">All Data</Option>
         <Option value="Draft">Draft</Option>
         <Option value="Pending">Pending</Option>
         <Option value="Done">Done</Option>
