@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import 'reactflow/dist/style.css';
 import './global.css';
 import '@mantine/core/styles.css';
+import { UserProvider } from "@/components/dashboard/UserProvider";
 
 export const metadata: Metadata = {
   title: "Eduardo Nava",
@@ -16,7 +17,9 @@ function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}  
+        <UserProvider>
+          {children}  
+        </UserProvider>
       </body>
     </html>
   );

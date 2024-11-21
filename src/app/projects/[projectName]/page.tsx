@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import { Container, Flex, Stack } from '@mantine/core'
+import { AppLayout } from '@/components/AppLayout'
 import Header from '@/layouts/projects/Header'
 import Description from '@/layouts/projects/Description'
 import Showcase from '@/layouts/projects/Showcase'
@@ -118,19 +119,21 @@ const getFlowData = (projectName: string) => {
 const Projects = ({ params }: { params: { projectName: string } }) => {
     const project = params.projectName as keyof Projects;
     return (
-        <Container mt={50} mb={150}>
-            <Stack gap={70}>
-                <Header project={PROJECT_CONTENT[project]?.showcase}/>
-                <Description project={PROJECT_CONTENT[project]?.hero}/>
-                <Showcase 
-                    project={PROJECT_CONTENT[project]?.showcase} 
-                />
-                <ProjectStack flow={getFlowData(params.projectName) || (() => ({ projectNodes: [], projectEdges: []}))}/>
-                <Flex justify='end'>
-                    <ProjectSwitch prev={PROJECT_CONTENT[project]?.hero.prev} next={PROJECT_CONTENT[project]?.hero.next} />
-                </Flex>
-            </Stack>
-        </Container>
+        <AppLayout>
+            <Container mt={50} mb={150}>
+                <Stack gap={70}>
+                    <Header project={PROJECT_CONTENT[project]?.showcase}/>
+                    <Description project={PROJECT_CONTENT[project]?.hero}/>
+                    <Showcase 
+                        project={PROJECT_CONTENT[project]?.showcase} 
+                    />
+                    <ProjectStack flow={getFlowData(params.projectName) || (() => ({ projectNodes: [], projectEdges: []}))}/>
+                    <Flex justify='end'>
+                        <ProjectSwitch prev={PROJECT_CONTENT[project]?.hero.prev} next={PROJECT_CONTENT[project]?.hero.next} />
+                    </Flex>
+                </Stack>
+            </Container>
+        </AppLayout>
     )
 }
 
