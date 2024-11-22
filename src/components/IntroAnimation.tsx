@@ -31,19 +31,19 @@ const IntroAnimation = ({
 
         tl.to('.intro-container', {
             backgroundColor: 'white',
-            duration: 3,
+            duration: 1,
             ease: 'expo.out',
             delay: 0.5
         })
         .to('.grid-container', {
             x: deltaX,
             y: deltaY,
-            duration: 3,
+            duration: 2,
             ease: 'power2.inOut'
         })
         .to('.intro-container', {
             backgroundColor: 'transparent',
-            duration: 2.5,
+            duration: 1,
             ease: 'power2.inOut',
             zIndex: -1
         });
