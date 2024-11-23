@@ -17,7 +17,10 @@ const About = () => {
                     Hello, I&apos;m Eduardo
                 </Text>
                 <Text size='sm' maw={410} >
-                    I&apos;m a new resident of North Beach SF, and I&apos;m here to be surrounded by the best in the world. I set out to learn programming 3 years ago and in that time I gained a deep understanding of frontend techniques. 
+                    I&apos;m Eduardo, a passionate software developer based in North Beach, San Francisco. 
+                </Text>
+                <Text size='sm' maw={410} >
+                    I am excited to connect with the vibrant community here and continue growing in my craft.
                 </Text>
             </Stack>
             <AspectRatio ratio={0.76} w={330} bg='gray' style={{borderRadius: 5, overflow: 'hidden'}}>

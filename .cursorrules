@@ -22,6 +22,7 @@
     },
     "styling": {
       "uiFramework": ["Mantine", "Ant Design"],
+      "chartLibrary": "AG Charts",
       "responsiveDesign": "true"
     },
     "animation": {
