@@ -2,10 +2,51 @@
 import React from 'react';
 import { Card, Avatar, Typography, Button, Space, Row, Col } from 'antd';
 import { UserOutlined, LinkOutlined } from '@ant-design/icons';
+import { AgCharts } from 'ag-charts-react';
+import { AgChartOptions, AgBarSeriesOptions } from 'ag-charts-community';
+import { useEffect, useState } from 'react';
 
 const { Title, Text } = Typography;
 
 const TeamInfoCards: React.FC = () => {
+  const [performanceData, setPerformanceData] = useState([]);
+  const [chartOptions, setChartOptions] = useState<AgChartOptions>({
+    data: performanceData,
+    series: [{
+      type: 'bar',
+      xKey: 'label',
+      yKey: 'performance',
+      stroke: '#1890ff',
+      marker: {
+        enabled: true,
+        fill: '#1890ff',
+      }
+    } as AgBarSeriesOptions],
+    background: {
+      fill: 'transparent',
+    },
+    axes: [{
+      type: 'category',
+      position: 'bottom',
+    }, {
+      type: 'number',
+      position: 'left',
+    }],
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('/api/team');
+      const data = await response.json();
+      setPerformanceData(data);
+      setChartOptions(prev => ({
+        ...prev,
+        data: data,
+      }));
+    };
+    fetchData();
+  }, []);
+
   return (
     <Row gutter={[0, 24]}>
       <Col span={24}>
@@ -19,7 +60,7 @@ const TeamInfoCards: React.FC = () => {
               <Text type="secondary">15 Members</Text>
             </Space>
             <Space align="center" style={{ justifyContent: 'space-between', width: '100%' }}>
-              <Button type="text">Notion File</Button>
+              <Button type="primary">Notion File</Button>
               <Avatar.Group>
                 <Avatar icon={<UserOutlined />} />
                 <Avatar icon={<UserOutlined />} />
@@ -41,7 +82,7 @@ const TeamInfoCards: React.FC = () => {
               <Text>16th Oct</Text>
               <Text type="secondary">11:00 - 12:00</Text>
             </Space>
-            <Button type="text" icon={<LinkOutlined />}>Meeting Zoom Link</Button>
+            <Button type="primary" icon={<LinkOutlined />}>Meeting Zoom Link</Button>
           </Space>
         </Card>
       </Col>
@@ -51,9 +92,7 @@ const TeamInfoCards: React.FC = () => {
           <Space direction="vertical" style={{ width: '100%' }}>
             <Text type="secondary">Team Performance</Text>
             <Text type="secondary">Last 4 months</Text>
-            <div style={{ marginTop: 16, height: 150 }}>
-              {/* Chart placeholder */}
-            </div>
+            <AgCharts options={chartOptions} />
           </Space>
         </Card>
       </Col>

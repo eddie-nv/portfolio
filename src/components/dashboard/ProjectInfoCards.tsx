@@ -1,9 +1,18 @@
 'use client';
-import React from 'react';
-import { Col, Card, Typography, Space } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Col, Card, Typography, Space, Spin, Row } from 'antd';
 import { ProjectOutlined, CheckCircleOutlined, SyncOutlined } from '@ant-design/icons';
 
 const { Title, Text } = Typography;
+
+type ProjectsResponse = {
+  totalProjects: number;
+  completedProjects: number;
+  completionRate: number;
+  runningProjects: number;
+  runningRate: number;
+  runningRateSentence: string;
+};
 
 type ProjectCardProps = {
   icon: React.ReactNode;
@@ -53,32 +62,68 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             </Text>
           </Space>
         </Space>
-        
       </Space>
     </Card>
   </Col>
 );
 
 export const ProjectInfoCards: React.FC = () => {
+  const [data, setData] = useState<ProjectsResponse | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/projects');
+        const result: ProjectsResponse = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error('Error fetching project data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (isLoading) {
+    return (
+        <Row 
+            justify="center" 
+            align="middle" 
+            style={{ width: '100%' }}
+        >
+            <Col>
+                <Spin />
+            </Col>
+        </Row>
+    );
+  }
+
+  if (!data) {
+    return <Text type="danger">Failed to load project data.</Text>;
+  }
+
   return (
     <>
       <ProjectCard
         icon={<ProjectOutlined style={{ fontSize: '24px' }} />}
         title="Total Projects"
-        count={10724}
+        count={data.totalProjects}
         subtitle="All running & completed projects"
       />
       <ProjectCard
         icon={<CheckCircleOutlined style={{ fontSize: '24px' }} />}
         title="Completed Projects"
-        count={9801}
-        subtitle="+1.4% Completion rate this month"
+        count={data.completedProjects}
+        subtitle={`${data.completionRate}% Completion rate this month`}
       />
       <ProjectCard
         icon={<SyncOutlined style={{ fontSize: '24px' }} />}
         title="Running Projects"
-        count={923}
-        subtitle="+4.3% Running projects increases"
+        count={data.runningProjects}
+        subtitle={`${data.runningRate}% ${data.runningRateSentence}`}
       />
     </>
   );
