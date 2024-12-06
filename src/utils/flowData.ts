@@ -166,5 +166,32 @@ export const getInfiniteUiFlowData = (): { projectNodes: Node[], projectEdges: E
     { id: 'e5-5.1', source: '5', target: '5.1', sourceHandle: 'bottom-s', targetHandle: 'top-t', style: strokeDasharray},
   ];
 
+
+
+  return { projectNodes, projectEdges };
+}
+
+export const getDashboardFlowData = (): { projectNodes: Node[], projectEdges: Edge[] } => {
+
+  const projectNodes: Node[] = [
+    { id: '0', position: { x: 0, y: yPositions[0] }, data: { label: '' }, type: 'anchor'},
+    { id: '1', position: { x: 45, y: yPositions[2] }, data: { label: 'Next.js' }, type: 'main'},
+    { id: '1.1', position: { x: 26, y: yPositions[4] }, data: { label: 'TypeScript' }, type: 'sub'},
+    { id: '2', position: { x: 790, y: yPositions[2] }, data: { label: 'Chart Library' }, type: 'main'},
+    { id: '2.1', position: { x: 805, y: yPositions[4] }, data: { label: 'AG Charts' }, type: 'sub'},
+    { id: '3', position: { x: 45, y: yPositions[7]}, data: { label: 'UI Library' }, type: 'main'},
+    { id: '3.1', position: { x: 39, y: yPositions[8] + 40 }, data: { label: 'Ant Design' }, type: 'sub'}
+  ];
+  const projectEdges: Edge[] = [
+    { id: 'e0-1', source: '0', target: '1', sourceHandle: 'bottom-s', targetHandle: 'top-t'},
+    { id: 'e1-1.1', source: '1', target: '1.1', sourceHandle: 'bottom-s', targetHandle: 'top-t', style: strokeDasharray},
+    { id: 'e1-2', source: '1', target: '2', sourceHandle: 'right-s', targetHandle: 'left-t'},
+    { id: 'e2-2.1', source: '2', target: '2.1', sourceHandle: 'bottom-s', targetHandle: 'top-t', style: strokeDasharray},
+    { id: 'e2-3', source: '2', target: '3', sourceHandle: 'left-s', targetHandle: 'right-t'},
+    { id: 'e3-3.1', source: '3', target: '3.1', sourceHandle: 'bottom-s', targetHandle: 'top-t', style: strokeDasharray},
+    { id: 'e3-4', source: '3', target: '4', sourceHandle: 'right-s', targetHandle: 'left-t'},
+    { id: 'e4-4.1', source: '4', target: '4.1', sourceHandle: 'bottom-s', targetHandle: 'top-t', style: strokeDasharray},
+  ];
+
   return { projectNodes, projectEdges };
 }

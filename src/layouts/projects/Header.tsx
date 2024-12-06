@@ -5,7 +5,7 @@ import Image, { StaticImageData } from 'next/image'
 type HeaderProps = {
   project: {
     title: string
-    pic: StaticImageData
+    pic?: StaticImageData
   }
 }
 
@@ -13,7 +13,7 @@ const Header = ({ project }: HeaderProps) => {
   return (
     <AspectRatio ratio={3.5} style={{ borderRadius: '5px', overflow: 'hidden' }}>
       <Image 
-        src={project.pic} 
+        src={project.pic || ''} 
         alt={project.title} 
         style={{ objectFit: 'cover', width: '100%', height: '100%' }}
       />

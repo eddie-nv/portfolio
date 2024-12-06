@@ -67,7 +67,7 @@ const Hero = ({ setPosition }: {
             <Group justify='space-between' align='start' w='100%' gap={isTablet ? 70 : 0}>
                 <Box maw={300}>
                     <Title order={5} className='fade-in-up'>
-                        I set out to walk the path of a coder 3 years ago, along the way learning what it takes to bring dreams to life. 
+                        I set out on my development journey 3 years ago, discovering the art of transforming ideas into digital reality.
                     </Title>    
                 </Box>
                 <Flex w={isTablet ? '100%' : ''} justify='flex-end'>

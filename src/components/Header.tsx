@@ -28,7 +28,7 @@ const Header = () => {
                             Eduardo Nava Valencia
                         </Text>
                     </Box>
-                    <Box component={Link} href='/projects/touchstone'>
+                    <Box component={Link} href='/projects/dashboard'>
                         <Text size={projectBP} fw={400}>
                             Projects
                         </Text>

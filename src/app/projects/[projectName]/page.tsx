@@ -12,7 +12,9 @@ import wrapTintHeader from '/public/images/wrap_and_tint_header.png'
 import wrapTintBg from '/public/images/wrap_and_tint_bg.png'
 import infiniteUiHeader from '/public/images/infinite_ui_header.png'
 import infiniteUiBg from '/public/images/infinite_ui_bg.png'
-import { getTouchstoneFlowData, getWrapTintFlowData, getInfiniteUiFlowData } from '@/utils/flowData'
+import dashboardHeader from '/public/images/dashboard_header.png'
+import dashboardBg from '/public/images/dashboard_bg.png'
+import { getTouchstoneFlowData, getWrapTintFlowData, getInfiniteUiFlowData, getDashboardFlowData } from '@/utils/flowData'
 import { StaticImageData } from 'next/image'
 import ProjectSwitch from '@/components/ProjectSwitch'
 
@@ -30,19 +32,40 @@ type Project = {
     approach: string;
     showcase: {
         title: string;
-        pic: StaticImageData;
-        bg: StaticImageData;
-        video: string;
+        pic?: StaticImageData;
+        bg?: StaticImageData;
+        video?: string;
     }
 };
 
 type Projects = {
+    dashboard: Project;
     touchstone: Project;
     wrap_tint_my_ride: Project;
     infinite_ui: Project;
 };
 
 const PROJECT_CONTENT: Projects = {
+    dashboard: {
+        hero: {
+            title: 'Dashboard',
+            info: [
+                'A dashboard for managing and visualizing data inspired by a dribbble design',
+                'I built the dashboard using Next.js, TypeScript, AG Charts, and Ant Design',
+                'Check out the dashboard '
+            ],
+            prev: '/',
+            next: '/projects/touchstone',
+            link: '/demo/dashboard'
+        },
+        approach: '',
+        showcase: {
+            title: 'Dashboard',
+            video: '',
+            pic: dashboardHeader,
+            bg: dashboardBg,
+        },
+    },
     touchstone: {
         hero: {
             title: 'TouchStone',
@@ -51,7 +74,7 @@ const PROJECT_CONTENT: Projects = {
                 "I was tasked with setting up the frontend architecture which included picking which libraries to use, organizing the project's file structure, setting up rules for contributing code, and building the initial landing page.", 
                 "Check out TouchStone's journey so far "
             ],
-            prev: '/',
+            prev: '/projects/dashboard',
             next: '/projects/wrap_tint_my_ride',
             link: 'https://www.linkedin.com/company/touchstone-inc/'
         },
@@ -107,6 +130,8 @@ const PROJECT_CONTENT: Projects = {
 
 const getFlowData = (projectName: string) => {
     switch (projectName) {
+        case 'dashboard':
+            return getDashboardFlowData;
         case 'touchstone':
             return getTouchstoneFlowData;
         case 'wrap_tint_my_ride':

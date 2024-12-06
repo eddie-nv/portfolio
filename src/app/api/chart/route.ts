@@ -6,18 +6,18 @@ type RevenueData = {
 }
 
 const revenueByMonth: RevenueData[] = [
-  { label: 'jan', revenue: 100000 },
-  { label: 'feb', revenue: 95000 },
-  { label: 'mar', revenue: 110000 },
-  { label: 'apr', revenue: 105000 },
-  { label: 'may', revenue: 120000 },
-  { label: 'jun', revenue: 115000 },
-  { label: 'jul', revenue: 130000 },
-  { label: 'aug', revenue: 125000 },
-  { label: 'sep', revenue: 140000 },
-  { label: 'oct', revenue: 135000 },
-  { label: 'nov', revenue: 150000 },
-  { label: 'dec', revenue: 145000 },
+  { label: 'Jan', revenue: 100000 },
+  { label: 'Feb', revenue: 95000 },
+  { label: 'Mar', revenue: 110000 },
+  { label: 'Apr', revenue: 105000 },
+  { label: 'May', revenue: 120000 },
+  { label: 'Jun', revenue: 115000 },
+  { label: 'Jul', revenue: 130000 },
+  { label: 'Aug', revenue: 125000 },
+  { label: 'Sep', revenue: 140000 },
+  { label: 'Oct', revenue: 135000 },
+  { label: 'Nov', revenue: 150000 },
+  { label: 'Dec', revenue: 145000 },
 ]
 
 const revenueByDay: RevenueData[] = [
