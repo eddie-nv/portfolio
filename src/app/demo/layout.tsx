@@ -53,7 +53,7 @@ const DemoLayout = ({ children }: React.PropsWithChildren) => {
         <Layout style={{marginLeft: 200}}>
           <Header style={{backgroundColor: 'transparent'}}>
             <Flex justify='space-between' align='center' style={{height: '100%'}}>
-              <Typography.Text>
+              <Typography.Text style={{fontSize: '25px'}}>
                 Dashboard
               </Typography.Text>
               <Flex gap={10} align='center'>

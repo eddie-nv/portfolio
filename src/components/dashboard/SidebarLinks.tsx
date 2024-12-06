@@ -24,37 +24,37 @@ const topMenuItems: MenuProps['items'] = [
   {
     key: '/demo/projects',
     icon: <ProjectOutlined />,
-    label: <Link href="/demo/projects">Projects</Link>,
+    label: <Link href="#">Projects</Link>,
   },
   {
     key: '/demo/transaction',
     icon: <TransactionOutlined />,
-    label: <Link href="/demo/transaction">Transaction</Link>,
+    label: <Link href="#">Transaction</Link>,
   },
   {
     key: '/demo/my-team',
     icon: <TeamOutlined />,
-    label: <Link href="/demo/my-team">My Team</Link>,
+    label: <Link href="#">My Team</Link>,
   },
   {
     key: '/demo/research-data',
     icon: <DatabaseOutlined />,
-    label: <Link href="/demo/research-data">Research Data</Link>,
+    label: <Link href="#">Research Data</Link>,
   },
   {
     key: '/demo/reports',
     icon: <FileTextOutlined />,
-    label: <Link href="/demo/reports">Reports</Link>,
+    label: <Link href="#">Reports</Link>,
   },
   {
     key: '/demo/settings',
     icon: <SettingOutlined />,
-    label: <Link href="/demo/settings">Settings</Link>,
+    label: <Link href="#">Settings</Link>,
   },
   {
     key: '/demo/help',
     icon: <QuestionCircleOutlined />,
-    label: <Link href="/demo/help">Help</Link>,
+    label: <Link href="#">Help</Link>,
   },
 ];
 
@@ -62,7 +62,7 @@ const bottomMenuItem: MenuProps['items'] = [
   {
     key: '/',
     icon: <LogoutOutlined />,
-    label: <Link href="/">Log Out</Link>,
+    label: <Link href="/projects/dashboard">Log Out</Link>,
   },
 ];
 

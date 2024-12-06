@@ -21,7 +21,11 @@ const Description = ({ project }: DescriptionProps) => {
             <Text key={text}>
               {text}
               {i === 2 && (
-                <Link href={project.link} target='_blank' style={{ color: 'purple' }}>
+                <Link 
+                  href={project.link} 
+                  target={project.link.startsWith('/') ? undefined : '_blank'}
+                  style={{ color: 'darkviolet' }}
+                >
                   here
                 </Link>
               )}

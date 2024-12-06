@@ -5,8 +5,15 @@ import React from 'react'
 import touchstone from '/public/images/touchstone.png'
 import wrapTintMyRide from '/public/images/wrap_and_tint.png'
 import infiniteUi from '/public/images/infinite_ui.png'
+import dashboard from '/public/images/dashboard.png'
 import { useMediaQuery } from '@mantine/hooks'
 const PROJECTS_DATA = [
+    {
+        image: dashboard,
+        title: 'Dashboard',
+        description: 'A dashboard for managing and visualizing data',
+        slug: 'dashboard',
+    },
     {
         image: touchstone,
         title: 'Touchstone',

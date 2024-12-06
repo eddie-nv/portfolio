@@ -39,6 +39,18 @@
     },
     "eslint": {
       "extends": ["next/core-web-vitals", "next/typescript"]
+    },
+    "pragmatic": {
+      "problemSolving": "focus on real-world solutions",
+      "adaptability": "be open to new technologies",
+      "efficiency": "write clean and maintainable code",
+      "continuousLearning": "stay updated with industry trends",
+      "automation": "automate repetitive tasks",
+      "codeQuality": "emphasize readability and simplicity",
+      "testingAndDebugging": "ensure code reliability",
+      "collaboration": "communicate and share knowledge",
+      "riskManagement": "identify and address risks early",
+      "responsibility": "take ownership of your work"
     }
   }
 }
