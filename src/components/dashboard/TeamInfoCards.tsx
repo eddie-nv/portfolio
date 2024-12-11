@@ -1,26 +1,32 @@
 'use client';
-import React from 'react';
-import { Card, Avatar, Typography, Button, Space, Row, Col } from 'antd';
+import React, { useContext } from 'react';
+import { Card, Avatar, Typography, Button, Space, Row, Col, Spin } from 'antd';
 import { UserOutlined, LinkOutlined } from '@ant-design/icons';
 import { AgCharts } from 'ag-charts-react';
 import { AgChartOptions, AgBarSeriesOptions } from 'ag-charts-community';
 import { useEffect, useState } from 'react';
+import { ThemeContext } from '@/app/demo/layout';
 
 const { Title, Text } = Typography;
 
 const TeamInfoCards: React.FC = () => {
+  const { isDarkMode } = useContext(ThemeContext);
   const [performanceData, setPerformanceData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [chartOptions, setChartOptions] = useState<AgChartOptions>({
     data: performanceData,
+    theme: isDarkMode ? 'ag-default-dark' : 'ag-default',
     series: [{
       type: 'bar',
       xKey: 'label',
       yKey: 'performance',
-      stroke: '#1890ff',
+      fill: '#4c8bf5',
+      stroke: '#4c8bf5',
       marker: {
         enabled: true,
-        fill: '#1890ff',
-      }
+        fill: '#4c8bf5',
+      },
+      cornerRadius: 7
     } as AgBarSeriesOptions],
     background: {
       fill: 'transparent',
@@ -36,6 +42,7 @@ const TeamInfoCards: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       const response = await fetch('/api/team');
       const data = await response.json();
       setPerformanceData(data);
@@ -43,9 +50,17 @@ const TeamInfoCards: React.FC = () => {
         ...prev,
         data: data,
       }));
+      setIsLoading(false);
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    setChartOptions(prev => ({
+      ...prev,
+      theme: isDarkMode ? 'ag-default-dark' : 'ag-default',
+    }));
+  }, [isDarkMode]);
 
   return (
     <Row gutter={[0, 24]}>
@@ -92,7 +107,9 @@ const TeamInfoCards: React.FC = () => {
           <Space direction="vertical" style={{ width: '100%' }}>
             <Text type="secondary">Team Performance</Text>
             <Text type="secondary">Last 4 months</Text>
-            <AgCharts options={chartOptions} />
+            <Spin spinning={isLoading}>
+              <AgCharts options={chartOptions} />
+            </Spin>
           </Space>
         </Card>
       </Col>
