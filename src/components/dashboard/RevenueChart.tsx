@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Card, Select, Typography, Spin } from 'antd';
 import { AgCharts } from 'ag-charts-react';
 import { AgChartOptions, AgBarSeriesOptions } from 'ag-charts-community';
