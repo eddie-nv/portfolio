@@ -1,16 +1,16 @@
 'use client';
-import React, { useContext } from 'react';
+import React from 'react';
 import { Card, Avatar, Typography, Button, Space, Row, Col, Spin } from 'antd';
 import { UserOutlined, LinkOutlined } from '@ant-design/icons';
 import { AgCharts } from 'ag-charts-react';
 import { AgChartOptions, AgBarSeriesOptions } from 'ag-charts-community';
 import { useEffect, useState } from 'react';
-import { ThemeContext } from '@/app/demo/layout';
+import { useTheme } from '@/utils/context/ThemeContext';
 
 const { Title, Text } = Typography;
 
 const TeamInfoCards: React.FC = () => {
-  const { isDarkMode } = useContext(ThemeContext);
+  const { isDarkMode } = useTheme();
   const [performanceData, setPerformanceData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [chartOptions, setChartOptions] = useState<AgChartOptions>({

@@ -1,14 +1,14 @@
 'use client';
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Select, Typography, Spin } from 'antd';
 import { AgCharts } from 'ag-charts-react';
 import { AgChartOptions, AgBarSeriesOptions } from 'ag-charts-community';
-import { ThemeContext } from '@/app/demo/layout';
+import { useTheme } from '@/utils/context/ThemeContext';
 
 const { Title } = Typography;
 
 const RevenueChart: React.FC = () => {
-  const { isDarkMode } = useContext(ThemeContext);
+  const { isDarkMode } = useTheme();
   const [chartData, setChartData] = useState([]);
   const [chartType, setChartType] = useState<'month' | 'day'>('month');
   const [options, setOptions] = useState<AgChartOptions>({
@@ -69,8 +69,6 @@ const RevenueChart: React.FC = () => {
     setChartType(value);
     fetchData(value);
   };
-
-
 
   return (
     <Card>
