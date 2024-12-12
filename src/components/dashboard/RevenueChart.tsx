@@ -1,22 +1,26 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Card, Select, Typography, Spin } from 'antd';
 import { AgCharts } from 'ag-charts-react';
 import { AgChartOptions, AgBarSeriesOptions } from 'ag-charts-community';
+import { ThemeContext } from '@/app/demo/layout';
 
 const { Title } = Typography;
 
 const RevenueChart: React.FC = () => {
+  const { isDarkMode } = useContext(ThemeContext);
   const [chartData, setChartData] = useState([]);
   const [chartType, setChartType] = useState<'month' | 'day'>('month');
   const [options, setOptions] = useState<AgChartOptions>({
     data: chartData,
+    theme: isDarkMode ? 'ag-default-dark' : 'ag-default',
     series: [
       {
         type: 'bar',
         xKey: 'label',
         yKey: 'revenue',
         fill: '#4c8bf5',
+        cornerRadius: 7
       } as AgBarSeriesOptions
     ],
     background: {
@@ -24,7 +28,7 @@ const RevenueChart: React.FC = () => {
     },
     axes: [{
       type: 'category',
-      position: 'bottom',
+      position: 'bottom'
     }, {
       type: 'number',
       position: 'left',
@@ -53,6 +57,13 @@ const RevenueChart: React.FC = () => {
       data: chartData,
     }));
   }, [chartData]);
+
+  useEffect(() => {
+    setOptions((prevOptions) => ({
+      ...prevOptions,
+      theme: isDarkMode ? 'ag-default-dark' : 'ag-default',
+    }));
+  }, [isDarkMode]);
 
   const handleChange = (value: 'month' | 'day') => {
     setChartType(value);

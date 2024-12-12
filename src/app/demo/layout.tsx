@@ -11,6 +11,8 @@ import { useUser } from '@/components/dashboard/UserProvider';
 
 const { Header, Sider, Content } = Layout;
 
+export const ThemeContext = React.createContext({ isDarkMode: false });
+
 const DemoLayout = ({ children }: React.PropsWithChildren) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const { user, isLoading, error } = useUser();
@@ -43,34 +45,36 @@ const DemoLayout = ({ children }: React.PropsWithChildren) => {
         algorithm: isDarkMode ? theme.darkAlgorithm : theme.defaultAlgorithm,
       }}
     >
-      <Layout style={{ height: '100vh' }} hasSider>
-        <Sider width={200} theme={`${isDarkMode ? 'dark' : 'light'}`} style={{height: '100vh', position: 'fixed'}}>
-          <Flex align='center' vertical gap={20} style={{height: '100%', paddingTop: '21px'}} >
-            <UserDisplay />
-            <SidebarLinks />
-          </Flex>
-        </Sider>
-        <Layout style={{marginLeft: 200}}>
-          <Header style={{backgroundColor: 'transparent'}}>
-            <Flex justify='space-between' align='center' style={{height: '100%'}}>
-              <Typography.Text style={{fontSize: '25px'}}>
-                Dashboard
-              </Typography.Text>
-              <Flex gap={10} align='center'>
-                <Search/>
-                <ThemeToggle isDarkMode={isDarkMode} onToggle={toggleTheme} />
-                <Notifications />
-                <UserDisplay />
-              </Flex>
+      <ThemeContext.Provider value={{ isDarkMode }}>
+        <Layout style={{ height: '100vh' }} hasSider>
+          <Sider width={200} theme={`${isDarkMode ? 'dark' : 'light'}`} style={{height: '100vh', position: 'fixed'}}>
+            <Flex align='center' vertical gap={20} style={{height: '100%', paddingTop: '21px'}} >
+              <UserDisplay />
+              <SidebarLinks />
             </Flex>
-          </Header>
-          <Content>
-            <AntdRegistry>
-              {children}
-            </AntdRegistry>
-          </Content>
+          </Sider>
+          <Layout style={{marginLeft: 200}}>
+            <Header style={{backgroundColor: 'transparent'}}>
+              <Flex justify='space-between' align='center' style={{height: '100%'}}>
+                <Typography.Text style={{fontSize: '25px'}}>
+                  Dashboard
+                </Typography.Text>
+                <Flex gap={10} align='center'>
+                  <Search/>
+                  <ThemeToggle isDarkMode={isDarkMode} onToggle={toggleTheme} />
+                  <Notifications />
+                  <UserDisplay />
+                </Flex>
+              </Flex>
+            </Header>
+            <Content>
+              <AntdRegistry>
+                {children}
+              </AntdRegistry>
+            </Content>
+          </Layout>
         </Layout>
-      </Layout>
+      </ThemeContext.Provider>
     </ConfigProvider>
   );
 };

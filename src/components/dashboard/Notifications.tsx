@@ -1,7 +1,8 @@
 'use client';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Badge, Button, Dropdown, List, Space, Typography } from 'antd';
 import { BellOutlined } from '@ant-design/icons';
+import { ThemeContext } from '@/app/demo/layout';
 
 type NotificationItem = {
   id: string;
@@ -26,9 +27,18 @@ const mockNotifications: NotificationItem[] = [
 ];
 
 export const Notifications = () => {
+  const { isDarkMode } = useContext(ThemeContext);
   const notificationContent = (
     <List
-      style={{ width: 300, maxHeight: 400, overflow: 'auto' }}
+      style={{ 
+        width: 300, 
+        padding: 10, 
+        maxHeight: 400, 
+        borderRadius: 10,
+        overflow: 'auto', 
+        boxShadow: isDarkMode ? '0 0 10px 0 rgba(255, 255, 255, 0.1)' : '0 0 10px 0 rgba(0, 0, 0, 0.1)',
+        backgroundColor: isDarkMode ? '#111111' : '#ffffff' 
+      }}
       dataSource={mockNotifications}
       renderItem={(item) => (
         <List.Item>
