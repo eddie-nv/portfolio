@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import { Badge, Button, Dropdown, List, Space, Typography } from 'antd';
 import { BellOutlined } from '@ant-design/icons';
-import { ThemeContext } from '@/app/demo/layout';
+import { useTheme } from '@/utils/context/ThemeContext';
 
 type NotificationItem = {
   id: string;
@@ -27,7 +27,7 @@ const mockNotifications: NotificationItem[] = [
 ];
 
 export const Notifications = () => {
-  const { isDarkMode } = useContext(ThemeContext);
+  const { isDarkMode } = useTheme();
   const notificationContent = (
     <List
       style={{ 
