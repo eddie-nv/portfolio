@@ -11,8 +11,8 @@
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.1",
     "@gsap/react": "^2.1.1",
-    "@mantine/core": "^7.12.2",
-    "@mantine/hooks": "^7.12.2",
+    "@mantine/core": "^7.17.4",
+    "@mantine/hooks": "^7.17.4",
     "ag-charts-community": "^10.3.3",
     "ag-charts-react": "^10.3.3",
     "animejs": "^3.2.2",
