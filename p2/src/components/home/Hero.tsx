@@ -1,78 +1,73 @@
 'use client'
 import React, { useState } from 'react'
 import { Box, Center, Stack, Text } from '@mantine/core'
+import { useMantineTheme } from '@mantine/core'
+import type { FC, MouseEvent } from 'react'
 import HeroVideo from './HeroVideo'
 
-// Define our gradient colors for easy reference
+type Color = { r: number; g: number; b: number }
+type RGBA = Color & { a: number }
 
-const gradientColors = [
-    { r: 255, g: 0, b: 0 }, // red
-    { r: 0, g: 255, b: 255 }, // blue
-    { r: 0, g: 255, b: 0 }, // green
-    { r: 255, g: 255, b: 0 }, // yellow
+type HeroProps = {
+  jobTitle: string
+  title: string
+  subtitle: string
+  gradientColors?: Color[]
+}
+
+const defaultGradientColors: Color[] = [
+  { r: 255, g: 0, b: 0 },     // red
+  { r: 0, g: 255, b: 255 },   // cyan
+  { r: 0, g: 255, b: 0 },     // green
+  { r: 255, g: 255, b: 0 },   // yellow
 ]
 
-// const gradientColors = [
-//   { r: 255, g: 0, b: 0 },      // red
-//   { r: 255, g: 128, b: 0 },    // orange
-//   { r: 255, g: 255, b: 0 },    // yellow
-//   { r: 0, g: 255, b: 0 },      // green
-//   { r: 0, g: 255, b: 255 },    // cyan
-//   { r: 0, g: 0, b: 255 },      // blue
-//   { r: 128, g: 0, b: 128 },    // purple
-//   { r: 255, g: 0, b: 255 }     // pink
-// ]
+const interpolateColor = (colors: Color[], percentage: number): RGBA => {
+  const idx = Math.floor(percentage * (colors.length - 1))
+  const nextIdx = Math.min(idx + 1, colors.length - 1)
+  const ratio = (percentage * (colors.length - 1)) - idx
+  const { r: r1, g: g1, b: b1 } = colors[idx]
+  const { r: r2, g: g2, b: b2 } = colors[nextIdx]
+  return {
+    r: Math.round(r1 + (r2 - r1) * ratio),
+    g: Math.round(g1 + (g2 - g1) * ratio),
+    b: Math.round(b1 + (b2 - b1) * ratio),
+    a: 0.8,
+  }
+}
 
-const Hero = () => {
-  const [currentColor, setCurrentColor] = useState({ r: 255, g: 0, b: 0, a: 0.8 })
+export const Hero: FC<HeroProps> = ({
+  jobTitle,
+  title,
+  subtitle,
+  gradientColors = defaultGradientColors,
+}) => {
+  const theme = useMantineTheme()
+  const [currentColor, setCurrentColor] = useState<RGBA>({ ...gradientColors[0], a: 0.8 })
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const percentage = x / rect.width
-
-    // Find the two colors to interpolate between
-    const colorIndex = Math.floor(percentage * (gradientColors.length - 1))
-    const nextColorIndex = Math.min(colorIndex + 1, gradientColors.length - 1)
-    
-    const colorRatio = (percentage * (gradientColors.length - 1)) - colorIndex
-
-    // Interpolate between the two colors
-    const color1 = gradientColors[colorIndex]
-    const color2 = gradientColors[nextColorIndex]
-
-    const r = Math.round(color1.r + (color2.r - color1.r) * colorRatio)
-    const g = Math.round(color1.g + (color2.g - color1.g) * colorRatio)
-    const b = Math.round(color1.b + (color2.b - color1.b) * colorRatio)
-
-    setCurrentColor({ r, g, b, a: 0.8 })
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    const { left, width } = e.currentTarget.getBoundingClientRect()
+    const x = e.clientX - left
+    const percentage = Math.min(Math.max(x / width, 0), 1)
+    setCurrentColor(interpolateColor(gradientColors, percentage))
   }
 
   return (
-    <Box pos='relative' h='100vh' w='100vw' onMouseMove={handleMouseMove}>
-      <HeroVideo overlayColor={`rgba(${currentColor.r}, ${currentColor.g}, ${currentColor.b}, ${currentColor.a})`}/>
-      {/* <Box 
-        pos='absolute' 
-        bottom='0' 
-        left='0' 
-        right='0' 
-        h={2} 
-        style={{
-          background: 'linear-gradient(to right,rgba(255, 0, 0, 0.8),rgba(255, 128, 0, 0.8), rgba(255, 255, 0, 0.8), rgba(0, 255, 0, 0.8), rgba(0, 255, 255, 0.8), rgba(0, 0, 255, 0.8), rgba(128, 0, 128, 0.8), rgba(255, 0, 255, 0.8))'
-        }}
-      /> */}
-      <Center pos='absolute' bottom='0' left='0' right='0' top='0'>
-        <Stack align='center' justify='center' gap='0'>
-            <Text  c='white' tt='uppercase' fw={700}>
-                Frontend Software Engineer
-            </Text>
-            <Text size="xl" c='white' fw={700}>
-                Eduardo Nava
-            </Text>    
+    <Box pos="relative" h="100vh" w="100vw" onMouseMove={handleMouseMove}>
+      <HeroVideo overlayColor={`rgba(${currentColor.r},${currentColor.g},${currentColor.b},${currentColor.a})`} />
+      <Center pos="absolute" inset={0}>
+        <Stack align="center" justify="center" gap={0}>
+          <Text c="white" tt="uppercase" lts={1.8}>
+            {jobTitle}
+          </Text>
+          <Text size="xl" c="white" fw={500} ff={theme.fontFamilyMonospace}>
+            {title}
+          </Text>
+          <Text c="white" lts={1.8} size="sm">
+            {subtitle}
+          </Text>
         </Stack>
       </Center>
     </Box>
   )
 }
-
-export default Hero

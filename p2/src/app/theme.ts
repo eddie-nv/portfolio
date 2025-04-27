@@ -1,13 +1,20 @@
 import { createTheme } from '@mantine/core';
+import { Open_Sans } from 'next/font/google';
 import '/public/font/fonts.css';
 
+const openSans = Open_Sans({
+    weight: ['400', '500', '600', '700'],
+    subsets: ['latin'],
+    display: 'swap',
+})
 
 export const theme = createTheme({
-    fontFamily: `FilsonPro, sans-serif`,
+    fontFamily: openSans.style.fontFamily,
+    fontFamilyMonospace: `FilsonPro, sans-serif`,
     fontSizes: {
         xl: '4rem',
-        lg: '2rem',
-        md: '1.25rem',
+        lg: '3.2rem',
+        md: '1.3rem',
         sm: '1rem',
         xs: '0.5rem',
     },
