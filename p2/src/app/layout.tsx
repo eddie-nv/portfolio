@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { MantineProvider } from "@mantine/core";
-import Navbar from "@/components/ui/Navbar";
-import { theme } from "./theme";
+import { Box, MantineProvider } from "@mantine/core"; 
+import { theme, globalTheme } from "./theme";
 import "@mantine/core/styles.css";
 import "./globals.css";
 
@@ -19,8 +18,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <MantineProvider theme={theme}>
-          <Navbar />
-          {children}
+          <Box style={{...globalTheme.dark, ...globalTheme.common}}>
+            {children}
+          </Box>
         </MantineProvider>
       </body>
     </html>

@@ -13,7 +13,7 @@ export const theme = createTheme({
     fontFamilyMonospace: `FilsonPro, sans-serif`,
     fontSizes: {
         xl: '4rem',
-        lg: '3.2rem',
+        lg: '2.5rem',
         md: '1.3rem',
         sm: '1rem',
         xs: '0.5rem',
@@ -28,5 +28,16 @@ export const theme = createTheme({
             h5: { fontSize: '1rem',    fontWeight: '500', lineHeight: '1.2'},
             h6: { fontSize: '0.5rem' }
         }
-    }
+    },
+    black: '#141414',
 });
+
+export const globalTheme = {
+    common: {
+        letterSpacing: '1.8px',
+    },
+    dark: {
+        backgroundColor: `var(--mantine-color-black)`,
+        color: 'var(--mantine-color-white)',
+    }
+}
