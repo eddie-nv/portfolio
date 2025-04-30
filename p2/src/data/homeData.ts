@@ -1,4 +1,4 @@
-export const homeData = {
+const initialHomeData = {
     hero: {
       jobTitle: 'Frontend Engineer',
       title: 'Eduardo Nava',
@@ -60,5 +60,26 @@ export const homeData = {
         link: 'https://project4.com'
       },
     ]
+}
+
+const COLOR_CYCLE = ['red', 'blue', 'green', 'yellow']
+
+const homeDataWithProjectsBadgeColors = (homeData: typeof initialHomeData) => {
+  let colorIndex = -1
+  const projects = homeData.projects
+
+  const projectsWithBadgeColors = projects.map(project => ({
+    ...project,
+    badgeColor: project.technologies.map(() => {
+      colorIndex = (colorIndex + 1) % COLOR_CYCLE.length
+      return COLOR_CYCLE[colorIndex]
+    })
+  }))
+
+  return {
+    ...homeData,
+    projects: projectsWithBadgeColors
   }
-  
+}
+
+export const homeData = homeDataWithProjectsBadgeColors(initialHomeData)

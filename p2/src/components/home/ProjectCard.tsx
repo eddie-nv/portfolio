@@ -17,7 +17,7 @@ const ProjectCard = ({ title, description, image, technologies, link, badgeColor
   return (
     <Stack align='flex-start' w={500}>
         <Group justify='space-between' w='100%'>
-                <Text>{title}</Text>
+                <Text fw={600}>{title}</Text>
                 <Group gap='xs' maw={350}>
                     {technologies.map((technology, index) => (
                         <Badge key={technology} name={technology} color={badgeColor[index]}>{technology}</Badge>
