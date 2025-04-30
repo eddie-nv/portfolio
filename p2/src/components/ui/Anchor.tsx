@@ -17,7 +17,7 @@ export const Anchor: FC<AnchorProps> = ({
   c = "white",
   td = 'none',
   variant = "default",
-  size = "sm",
+  size = "md",
   onMouseEnter,
   onMouseLeave,
   href,

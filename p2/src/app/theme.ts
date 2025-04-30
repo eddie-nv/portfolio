@@ -27,14 +27,22 @@ export const theme = createTheme({
             h4: { fontSize: '1.25rem', fontWeight: '400' },
             h5: { fontSize: '1rem',    fontWeight: '500', lineHeight: '1.2'},
             h6: { fontSize: '0.5rem' }
-        }
+        },
     },
-    black: '#141414',
+    colors: {
+        'red': ['#FFF5F5', '#FFF5F5', '#FFF5F5', '#FFF5F5', '#FFF5F5', '#FFF5F5', '#FA5252', '#FA5252', '#FA5252', '#FA5252'],
+        'blue': ['#E7F5FF', '#E7F5FF', '#E7F5FF', '#E7F5FF', '#E7F5FF', '#E7F5FF', '#228BE6', '#228BE6', '#228BE6', '#228BE6'],
+        'green': ['#EBFBEE', '#EBFBEE', '#EBFBEE', '#EBFBEE', '#EBFBEE', '#EBFBEE', '#40C057', '#40C057', '#40C057', '#40C057'],
+        'yellow': ['#FFFED4', '#FFFED4', '#FFFED4', '#FFFED4', '#FFFED4', '#FFFED4', '#FA9252', '#FA9252', '#FA9252', '#FA9252'],
+        'gray': ['#CACACA', '#CACACA', '#CACACA', '#CACACA', '#CACACA', '#CACACA', '#CACACA', '#CACACA', '#CACACA', '#CACACA'],
+    },
+    black: '#141414',   
 });
 
 export const globalTheme = {
     common: {
         letterSpacing: '1.8px',
+        height: '100%',
     },
     dark: {
         backgroundColor: `var(--mantine-color-black)`,

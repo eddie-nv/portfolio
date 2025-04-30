@@ -50,6 +50,7 @@ export const Hero: FC<HeroProps> = ({
                 <Anchor 
                     key={link.label}
                     href={link.href}
+                    size='sm'
                     onMouseEnter={() => handleOnHover(index)}
                     onMouseLeave={handleOnLeave}
                 >

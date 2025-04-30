@@ -5,7 +5,7 @@ const HeroVideo = ({ overlayColor }: { overlayColor: string }) => {
   return (
     <Box w='100%' h='100vh' pos='relative' style={{overflow: 'hidden'}}>
       <video 
-        src={'/media/future_shadows.mp4'} 
+        src={'/media/future_inverted.mp4'} 
         autoPlay 
         muted 
         loop

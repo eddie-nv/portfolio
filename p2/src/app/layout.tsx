@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Box, MantineProvider } from "@mantine/core"; 
+import { MantineProvider } from "@mantine/core"; 
 import { theme, globalTheme } from "./theme";
 import "@mantine/core/styles.css";
 import "./globals.css";
@@ -16,11 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body style={{...globalTheme.dark, ...globalTheme.common}}>
         <MantineProvider theme={theme}>
-          <Box style={{...globalTheme.dark, ...globalTheme.common}}>
-            {children}
-          </Box>
+          {children}
         </MantineProvider>
       </body>
     </html>

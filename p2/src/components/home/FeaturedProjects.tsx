@@ -9,12 +9,12 @@ type Project = {
     timeWorked: string
     technologies: string[]
     link: string
+    badgeColor: string[]
 }
 
 const FeaturedProjects = ({ projects }: { projects: Project[] }) => {
-    // Calculate the max width based on the longest timeWorked string
     const maxTimeWorked = Math.max(...projects.map(p => p.timeWorked.length))
-    const timeWorkedWidth = maxTimeWorked * 14 // Approximate width based on character count
+    const timeWorkedWidth = maxTimeWorked * 14
 
     const TimeWorkedSpacing = ({ children }: { children?: React.ReactNode }) => (
         <Box ta='right' h={40} w={timeWorkedWidth} style={{ minWidth: timeWorkedWidth }}>

@@ -1,5 +1,6 @@
-import { Group, Text, Badge, Stack, AspectRatio, Image, Paper } from '@mantine/core'
+import { Group, Text, Stack, AspectRatio, Image, Paper } from '@mantine/core'
 import { Anchor } from '@/components/ui/Anchor'
+import Badge from '@/components/ui/Badge'
 import React from 'react'
 
 type ProjectCardProps = {
@@ -9,16 +10,17 @@ type ProjectCardProps = {
     timeWorked: string
     technologies: string[]
     link: string
+    badgeColor: string[]
 }
 
-const ProjectCard = ({ title, description, image, technologies, link }: ProjectCardProps) => {
+const ProjectCard = ({ title, description, image, technologies, link, badgeColor }: ProjectCardProps) => {
   return (
-    <Stack align='flex-start' w={400}>
+    <Stack align='flex-start' w={500}>
         <Group justify='space-between' w='100%'>
                 <Text>{title}</Text>
                 <Group gap='xs' maw={350}>
-                    {technologies.map((technology) => (
-                        <Badge key={technology}>{technology}</Badge>
+                    {technologies.map((technology, index) => (
+                        <Badge key={technology} name={technology} color={badgeColor[index]}>{technology}</Badge>
                     ))}
                 </Group>
         </Group>  
