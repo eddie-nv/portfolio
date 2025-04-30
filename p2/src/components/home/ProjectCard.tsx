@@ -1,6 +1,7 @@
 import { Group, Text, Stack, AspectRatio, Image, Paper } from '@mantine/core'
 import { Anchor } from '@/components/ui/Anchor'
 import Badge from '@/components/ui/Badge'
+import { useScrollAnimation } from '@/hooks/animations/useScrollAnimation'
 import React from 'react'
 
 type ProjectCardProps = {
@@ -14,6 +15,7 @@ type ProjectCardProps = {
 }
 
 const ProjectCard = ({ title, description, image, technologies, link, badgeColor }: ProjectCardProps) => {
+    const ImageRef = useScrollAnimation<HTMLDivElement>({ variant: 'rotate', options: { scrub: true } })
   return (
     <Stack align='flex-start' w={500}>
         <Group justify='space-between' w='100%'>
@@ -28,14 +30,19 @@ const ProjectCard = ({ title, description, image, technologies, link, badgeColor
         <Anchor href={link}>
             <Text fw={700}>View Project</Text>
         </Anchor>
-        <Paper bg='gray.2' w='100%' radius='sm' style={{ overflow: 'hidden' }}>
-            <AspectRatio ratio={16 / 9} bg='gray.2'>
+        <Paper 
+            bg='gray.2' 
+            w='100%' 
+            radius='md' 
+            opacity={0}
+            style={{ overflow: 'hidden' }} 
+            ref={ImageRef}
+        >
+            <AspectRatio ratio={16 / 9} >
                 <Image src={image} alt={title} />
             </AspectRatio>    
         </Paper>
-        
     </Stack>
-        
   )
 }
 

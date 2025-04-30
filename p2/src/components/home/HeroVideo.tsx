@@ -1,7 +1,16 @@
 import { Box } from '@mantine/core'
 import React from 'react'
+import type { TransitionType } from '@/hooks/useGradientColor'
 
-const HeroVideo = ({ overlayColor }: { overlayColor: string }) => {
+type HeroVideoProps = {
+  overlayColor: string;
+  transitionType?: TransitionType;
+}
+
+const HeroVideo = ({ overlayColor, transitionType = 'smooth' }: HeroVideoProps) => {
+  // Set transition duration based on transition type
+  const transitionDuration = transitionType === 'instant' ? '0.2s linear' : '1.5s ease-out'
+  
   return (
     <Box w='100%' h='100vh' pos='relative' style={{overflow: 'hidden'}}>
       <video 
@@ -18,7 +27,18 @@ const HeroVideo = ({ overlayColor }: { overlayColor: string }) => {
           transform: 'scale(1.1)',
         }}
       />
-      <Box pos='absolute' top='0' left='0' right='0' bottom='0' style={{ backgroundColor: overlayColor, mixBlendMode: 'overlay'}}/>
+      <Box 
+        pos='absolute' 
+        top='0' 
+        left='0' 
+        right='0' 
+        bottom='0' 
+        style={{ 
+          backgroundColor: overlayColor, 
+          mixBlendMode: 'overlay',
+          transition: `background-color ${transitionDuration} `
+        }}
+      />
       <Box pos='absolute' top='0' left='0' right='0' bottom='0' style={{ backgroundColor: 'rgba(0, 0, 0, 0.45)'}}/>
     </Box>
   )

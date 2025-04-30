@@ -4,7 +4,15 @@ import { Badge as MantineBadge, BadgeProps, useMantineTheme } from '@mantine/cor
 const Badge = ({ children, color, name }: BadgeProps & { name: string }) => {
     const theme = useMantineTheme()
     return (
-        <MantineBadge key={name} color={color} radius='sm' variant='light' bg={theme.colors?.[color as keyof typeof theme.colors]?.[0]}>{children}</MantineBadge>
+        <MantineBadge 
+            key={name} 
+            color={color} 
+            radius='sm' 
+            variant='light' 
+            bg={theme.colors?.[color as keyof typeof theme.colors]?.[0]}
+        >
+            {children}
+        </MantineBadge>
     )
 }
 

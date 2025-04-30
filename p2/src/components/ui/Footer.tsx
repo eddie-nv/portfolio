@@ -24,7 +24,7 @@ const FOOTER_LINKS = [
 const Footer = () => {
     
     return (
-        <Box pt={1} bg='linear-gradient(to right, transparent 20%, #BCBCBC 50%, transparent 80%)'>
+        <Box pt={1} bg='linear-gradient(to right, transparent 20%, #BCBCBC 50%, transparent 80%)' w='100%'>
             <Box bg='black' py='xl'>
                 <Center>
                     <Stack>

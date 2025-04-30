@@ -33,7 +33,7 @@ const initialHomeData = {
         image: 'https://via.placeholder.com/150',
         timeWorked: '2021-Current',
         technologies: ['React', 'CI/CD'],
-        link: 'https://project1.com'
+        link: '/projects/project1'
       },
       {
         title: 'Project 2',
@@ -41,7 +41,7 @@ const initialHomeData = {
         image: 'https://via.placeholder.com/150',
         timeWorked: '2020-2021',
         technologies: ['React', 'Next.js'],
-        link: 'https://project2.com'
+        link: '/projects/project2'
       },
       {
         title: 'Project 3',
@@ -49,7 +49,7 @@ const initialHomeData = {
         image: 'https://via.placeholder.com/150',
         timeWorked: '2019-2020',
         technologies: ['React', 'TypeScript'],
-        link: 'https://project3.com'
+        link: '/projects/project3'
       },
       {
         title: 'Project 4',
@@ -57,7 +57,7 @@ const initialHomeData = {
         image: 'https://via.placeholder.com/150',
         timeWorked: '2018-2019',
         technologies: ['React', 'Next.js'],
-        link: 'https://project4.com'
+        link: '/projects/project4'
       },
     ]
 }
