@@ -7,7 +7,7 @@ type NavItem = {
   label: string
   href: string
   isCapitalized?: boolean
-  handleOnHover: (index: number) => void
+  handleOnHover?: (index: number) => void
   handleOnLeave?: () => void
   colorIndex: number
 }
@@ -27,8 +27,8 @@ const NavLink = ({ label, href, isCapitalized, handleOnHover, handleOnLeave, col
   <UnstyledButton
     component="a"
     href={href}
-    onMouseEnter={() => handleOnHover(colorIndex)}
-    onMouseLeave={handleOnLeave}
+    onMouseEnter={() => handleOnHover && handleOnHover(colorIndex)}
+    onMouseLeave={() => handleOnLeave && handleOnLeave()}
   >
     <Text c="white" size="sm" lts={1.8} tt={isCapitalized ? 'uppercase' : 'none'}>
       {label}
@@ -36,7 +36,7 @@ const NavLink = ({ label, href, isCapitalized, handleOnHover, handleOnLeave, col
   </UnstyledButton>
 )
 
-const Navbar = ({ handleOnHover, handleOnLeave }: { handleOnHover: (index: number) => void, handleOnLeave: () => void }) => {
+const Navbar = ({ handleOnHover, handleOnLeave }: { handleOnHover?: (index: number) => void, handleOnLeave?: () => void }) => {
   const navbarRef = useAnimateIn<HTMLDivElement>({ variant: 'slideDown', options: { delay: 0.2 } })
   return (
     <Box pos="absolute" w="100%" p={10} opacity={0} style={{ zIndex: 1000 }} ref={navbarRef}>

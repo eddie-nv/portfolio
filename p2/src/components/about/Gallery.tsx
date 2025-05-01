@@ -1,5 +1,7 @@
+'use client'
 import React from 'react';
 import { AspectRatio, Group, Image, Stack, Text } from '@mantine/core';
+import { useStaggerAnimation } from '@/hooks/animations/useStaggerAnimation';
 
 type ImageItem = {
   src: string;
@@ -17,11 +19,23 @@ type GalleryProps = {
   gap?: number;
 };
 
-
 export const Gallery = ({ images, gap = 5 }: GalleryProps) => {
+  const galleryAndTitleRef = useStaggerAnimation<HTMLDivElement>({ 
+    variant: 'slideUpFadeIn', 
+    options: { delay: 0.2, staggerAmount: 0.3 } 
+  });
+  
+  const galleryRef = useStaggerAnimation<HTMLDivElement>({ 
+    variant: 'fadeIn',
+    options: { 
+      delay: 0.2, 
+      staggerAmount: 0.3,
+    } 
+  });
+  
   return (
-    <Stack justify='center' align='center' gap={0} >
-        <Group gap={gap} wrap="nowrap" py='xl' style={{transform: 'translateX(10px)'}}>
+    <Stack justify='center' align='center' gap={0} ref={galleryAndTitleRef}>
+        <Group gap={gap} wrap="nowrap" py='xl' style={{transform: 'translateX(10px)'}} ref={galleryRef}>
             {images.map((image, index) => (
                 <AspectRatio 
                     key={index}
@@ -43,7 +57,7 @@ export const Gallery = ({ images, gap = 5 }: GalleryProps) => {
                 </AspectRatio>
             ))}
         </Group>
-        <Text>Hello</Text>
+        <Text opacity={0}>Hello</Text>
     </Stack>
   );
 };

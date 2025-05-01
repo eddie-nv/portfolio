@@ -11,7 +11,8 @@ export type AnimationVariant =
   | 'stagger'
   | 'slideUpFadeIn'
   | 'slideDownFadeIn'
-  | 'shrinkWithBorder';
+  | 'shrinkWithBorder'
+  | 'slideToTarget';
 
 export type AnimationOptions = {
   duration?: number;

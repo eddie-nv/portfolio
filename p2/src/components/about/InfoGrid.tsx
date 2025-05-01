@@ -1,7 +1,8 @@
+'use client'
 import React from 'react';
 import { Box, Grid, GridCol, Text, Stack, Group } from '@mantine/core';
 import { Anchor } from '@/components/ui/Anchor';
-
+import { useScrollChildren } from '@/hooks/animations/useScrollChildren';
 // Define types for the different content structures
 type AboutMeContent = string[];
 
@@ -36,11 +37,21 @@ type InfoGridProps = {
 };
 
 export const InfoGrid = ({ items }: InfoGridProps) => {
+  // Create refs array for each grid item
+  const infoGridRef = useScrollChildren<HTMLDivElement>({ 
+    variant: 'slideUpFadeIn', 
+    options: { 
+      delay: 0.2, 
+      scrub: false,
+      start: 'top 90%'
+    } 
+  });
+
   const renderContent = (item: InfoItem) => {
     switch (item.id) {
       case 'about-me':
         return (
-          <Stack gap='lg'>
+          <Stack gap='lg' >
             {(item.content as AboutMeContent).map((paragraph, i) => (
               <Text key={i} size='sm'>{paragraph}</Text>
             ))}
@@ -101,9 +112,9 @@ export const InfoGrid = ({ items }: InfoGridProps) => {
   };
 
   return (
-    <Stack gap={60} maw='640px'>
+    <Stack gap={60} maw='640px' ref={infoGridRef}>
         {items.map((item, index) => (
-            <Grid gutter={0} key={index} w='100%'>
+            <Grid gutter={0} key={index} w='100%' opacity={0}>
                 <GridCol span={3} >
                     <Text c='gray' >{item.title}</Text>
                 </GridCol>
@@ -113,6 +124,5 @@ export const InfoGrid = ({ items }: InfoGridProps) => {
             </Grid>
         ))}    
     </Stack>
-      
   );
 };
