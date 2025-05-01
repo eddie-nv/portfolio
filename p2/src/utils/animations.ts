@@ -55,6 +55,12 @@ const shrinkWithBorder = {
   duration: 0.3,
 }   
 
+const slideToTarget = {
+  from: { opacity: 0, y: 50 },
+  to: { opacity: 1, y: 0 },
+  duration: 0.7,
+}
+
 
 
 const animations: Record<AnimationVariant, AnimationConfig> = {
@@ -67,6 +73,7 @@ const animations: Record<AnimationVariant, AnimationConfig> = {
   rotate,
   stagger,
   shrinkWithBorder,
+  slideToTarget,
   slideUpFadeIn: {
     from: { ...slideUp.from, ...fadeIn.from },
     to: { ...slideUp.to, ...fadeIn.to },
