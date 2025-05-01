@@ -62,7 +62,6 @@ const slideToTarget = {
 }
 
 
-
 const animations: Record<AnimationVariant, AnimationConfig> = {
   fadeIn,
   slideUp,
