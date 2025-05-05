@@ -10,6 +10,7 @@ type NavItem = {
   handleOnHover?: (index: number) => void
   handleOnLeave?: () => void
   colorIndex: number
+  target?: string
 }
 
 const BRAND_NAME = {
@@ -20,13 +21,14 @@ const BRAND_NAME = {
 
 const NAV_ITEMS: NavItem[] = [
   { label: 'About', href: '/about', handleOnHover: () => {}, handleOnLeave: () => {}, colorIndex: 0 },
-  { label: 'LinkedIn', href: 'https://linkedin.com', handleOnHover: () => {}, handleOnLeave: () => {}, colorIndex: 1 },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/e-nava-valencia/', handleOnHover: () => {}, handleOnLeave: () => {}, colorIndex: 1, target: '_blank' },
 ]
 
-const NavLink = ({ label, href, isCapitalized, handleOnHover, handleOnLeave, colorIndex }: NavItem ) => (
+const NavLink = ({ label, href, isCapitalized, handleOnHover, handleOnLeave, colorIndex, target }: NavItem ) => (
   <UnstyledButton
     component="a"
     href={href}
+    target={target ? target : '_self'}
     onMouseEnter={() => handleOnHover && handleOnHover(colorIndex)}
     onMouseLeave={() => handleOnLeave && handleOnLeave()}
   >

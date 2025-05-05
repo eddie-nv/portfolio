@@ -31,6 +31,7 @@ export const Anchor: FC<AnchorProps> = ({
       c={c}
       td={td}
       href={href}
+      target='_blank'
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       {...props}
