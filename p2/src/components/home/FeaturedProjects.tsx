@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Text, Stack, Grid, Box } from '@mantine/core'
+import { Container, Text, Stack, Grid, Box, Group } from '@mantine/core'
 import ProjectCard from './ProjectCard'
 
 type Project = {
@@ -17,8 +17,8 @@ const FeaturedProjects = ({ projects }: { projects: Project[] }) => {
         <Container py='xl' w='100%'>
             <Stack gap={80}>
                 <Grid>
-                    <Grid.Col span={3}>
-                        <Box ta="right"/>
+                    <Grid.Col span={3} >
+                        <Box ta="right" h={50}/>
                     </Grid.Col>
                     <Grid.Col span={6}>
                         <Text size='lg'>Selected Projects</Text>
@@ -27,7 +27,9 @@ const FeaturedProjects = ({ projects }: { projects: Project[] }) => {
                 {projects.map((project) => (
                     <Grid key={project.title} gutter={25}>
                         <Grid.Col span={3}>
-                            <Text ta='right' size='sm'>{project.timeWorked}</Text>
+                            <Group justify='flex-end' h={35}>
+                                <Text ta='right' size='sm'>{project.timeWorked}</Text>
+                            </Group>
                         </Grid.Col>
                         <Grid.Col span={6}>
                             <ProjectCard {...project} />
