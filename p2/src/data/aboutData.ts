@@ -77,15 +77,27 @@ export const aboutData = {
             id: 'experience',
             content: [
                 {
+                    position: 'Full Stack Developer',
+                    company: 'Yes Chef',
+                    timeWorked: 'Mar. 2025 - Present',
+                    companyUrl: 'https://www.google.com'
+                },
+                {
                     position: 'Contract Developer',
                     company: 'Connect for Purpose',
-                    timeWorked: '2021-Current',
+                    timeWorked: 'Sept. 2024 - Mar. 2025',
+                    companyUrl: 'https://www.google.com'
+                },
+                {
+                    position: 'Freelance Developer',
+                    company: 'Wrap and Tint My Ride',
+                    timeWorked: 'Jan. 2024 - Sept. 2024',
                     companyUrl: 'https://www.google.com'
                 },
                 {
                     position: 'Frontend Engineer',
                     company: 'TouchStone Inc',
-                    timeWorked: '2021-Current',
+                    timeWorked: 'Oct. 2023 - Jan. 2024',
                     companyUrl: 'https://www.google.com'
                 }
             ],

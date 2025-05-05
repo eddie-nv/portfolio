@@ -31,12 +31,11 @@ export const Anchor: FC<AnchorProps> = ({
       c={c}
       td={td}
       href={href}
-      target='_blank'
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       {...props}
     >
-      <Box style={{ borderBottom: `1px solid ${underlineColor || 'currentColor'}` }}>
+      <Box w='fit-content' style={{ borderBottom: `1px solid ${underlineColor || 'currentColor'}` }}>
         {children}
       </Box>
     </MantineAnchor>

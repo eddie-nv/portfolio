@@ -78,8 +78,8 @@ export const InfoGrid = ({ items }: InfoGridProps) => {
         return (
           <Stack>
             {(item.content as ExperienceItem[]).map((exp, i) => (
-              <Group key={i} justify="space-between" w="100%">
-                <Group>
+              <Group key={i} justify="space-between" w="100%" align='center'>
+                <Group align='center'>
                   <Anchor size='sm' href={exp.companyUrl}>{exp.company}</Anchor>
                   <Text size='sm'>{exp.position}</Text>
                 </Group>
@@ -112,7 +112,7 @@ export const InfoGrid = ({ items }: InfoGridProps) => {
   };
 
   return (
-    <Stack gap={60} maw='640px' ref={infoGridRef}>
+    <Stack gap={60} ref={infoGridRef}>
         {items.map((item, index) => (
             <Grid gutter={0} key={index} w='100%' opacity={0}>
                 <GridCol span={3} >
