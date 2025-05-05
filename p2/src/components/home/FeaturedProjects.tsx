@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Flex, Text, Stack, Group, Box } from '@mantine/core'
+import { Container, Text, Stack, Grid, Box } from '@mantine/core'
 import ProjectCard from './ProjectCard'
 
 type Project = {
@@ -13,31 +13,28 @@ type Project = {
 }
 
 const FeaturedProjects = ({ projects }: { projects: Project[] }) => {
-    const maxTimeWorked = Math.max(...projects.map(p => p.timeWorked.length))
-    const timeWorkedWidth = maxTimeWorked * 14
-
-    const TimeWorkedSpacing = ({ children }: { children?: React.ReactNode }) => (
-        <Box ta='right' h={40} w={timeWorkedWidth} style={{ minWidth: timeWorkedWidth }}>
-            {children}
-        </Box>
-    )
-
     return (
-        <Container py='xl'>
-            <Flex justify='center' align='center' h='100%'>
-                <Stack gap='xl' align='stretch' style={{ transform: `translateX(-${timeWorkedWidth / 2}px)` }}>
-                    <Group>
-                        <TimeWorkedSpacing />
+        <Container py='xl' w='100%'>
+            <Stack gap={80}>
+                <Grid>
+                    <Grid.Col span={3}>
+                        <Box ta="right"/>
+                    </Grid.Col>
+                    <Grid.Col span={6}>
                         <Text size='lg'>Selected Projects</Text>
-                    </Group>
-                    {projects.map((project) => (
-                        <Group key={project.title} align='flex-start'>
-                            <TimeWorkedSpacing>{project.timeWorked}</TimeWorkedSpacing>
+                    </Grid.Col>
+                </Grid>
+                {projects.map((project) => (
+                    <Grid key={project.title} gutter={25}>
+                        <Grid.Col span={3}>
+                            <Text ta='right' size='sm'>{project.timeWorked}</Text>
+                        </Grid.Col>
+                        <Grid.Col span={6}>
                             <ProjectCard {...project} />
-                        </Group>
-                    ))} 
-                </Stack>
-            </Flex>
+                        </Grid.Col>
+                    </Grid>
+                ))} 
+            </Stack>
         </Container>    
     )
 }

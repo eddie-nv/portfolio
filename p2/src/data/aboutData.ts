@@ -46,10 +46,10 @@ export const aboutData = {
             title: 'About Me',
             id: 'about-me',
             content: [
-                'paragraph 1 lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
-                'paragraph 2 lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
-                'paragraph 3 lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
-            ],
+                "I worked in the warehouse industry for 5 years and when I was promoted to be an inventory specialist, I was tasked with improving the inventory management system. It was a challenge that I had to iterate on a few times, but the feeling when I started seeing results lit a fire in my eyes.",
+                "Thats when I discovered my passion for software development and system design! I self taught myself the basics of frontend and backend system development. I started building small projects, joining hackathons, working on personal projects all which led me to getting my first contract job as a freelance developer. Currently, I'm upping my game by attending the Hack Reactor bootcamp to polish my full stack developer skills.",
+                "Outside of coding, I'm passionate about fitness and health. I love to cook healthy meals for my friends and family. I also love to stay active through jiu jitsu, and running.",
+            ]
         },
         {
             title: 'Connect',
@@ -61,18 +61,13 @@ export const aboutData = {
                     color: 'white'
                 },
                 {
-                    label: 'Phone',
-                    href: 'tel:+52 993 123 4567',
-                    color: 'white'
-                },
-                {
                     label: 'LinkedIn',
-                    href: 'https://www.linkedin.com/in/edunava/',
+                    href: 'https://www.linkedin.com/in/e-nava-valencia/',
                     color: 'white'
                 },
                 {
                     label: 'GitHub',
-                    href: 'https://github.com/edunava',
+                    href: 'https://github.com/eddie-nv',
                     color: 'white'
                 }   
             ],
@@ -82,14 +77,14 @@ export const aboutData = {
             id: 'experience',
             content: [
                 {
-                    position: 'Software Engineer',
-                    company: 'Google',
+                    position: 'Contract Developer',
+                    company: 'Connect for Purpose',
                     timeWorked: '2021-Current',
                     companyUrl: 'https://www.google.com'
                 },
                 {
-                    position: 'Software Engineer',
-                    company: 'Google',
+                    position: 'Frontend Engineer',
+                    company: 'TouchStone Inc',
                     timeWorked: '2021-Current',
                     companyUrl: 'https://www.google.com'
                 }

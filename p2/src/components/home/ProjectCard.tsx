@@ -17,7 +17,7 @@ type ProjectCardProps = {
 const ProjectCard = ({ title, description, image, technologies, link, badgeColor }: ProjectCardProps) => {
     const ImageRef = useScrollAnimation<HTMLDivElement>({ variant: 'rotate', options: { scrub: true } })
   return (
-    <Stack align='flex-start' w={500}>
+    <Stack align='flex-start' >
         <Group justify='space-between' w='100%'>
                 <Text fw={600}>{title}</Text>
                 <Group gap='xs' maw={350}>
