@@ -1,12 +1,13 @@
 'use client'
 import Footer from '@/components/ui/Footer'
 import Navbar from '@/components/ui/Navbar'
-import { UnstyledButton, Container, Group, Stack, Text, Image, List, rem, AspectRatio } from '@mantine/core'
+import { UnstyledButton, Container, Group, Stack, Text, Image, List, rem, AspectRatio, MantineProvider } from '@mantine/core'
 import { Anchor } from '@/components/ui/Anchor'
 import { ArrowLeft } from '@phosphor-icons/react'
 import React from 'react'
 import { useRouter } from 'next/navigation'
 import { projectsData } from '@/data/projectsData'
+import { theme } from '@/app/theme'
 
 type ProjectKey = keyof typeof projectsData
 
@@ -77,6 +78,7 @@ const ProjectPage = ({ params }: { params: { project: ProjectKey } }) => {
   
   return (
     <>
+    <MantineProvider theme={theme}>
       <Navbar />
       <Container py={120} size='xs'>
         <Stack gap={32}>
@@ -92,6 +94,7 @@ const ProjectPage = ({ params }: { params: { project: ProjectKey } }) => {
         </Stack>
       </Container>
       <Footer />
+      </MantineProvider>
     </>
   )
 }

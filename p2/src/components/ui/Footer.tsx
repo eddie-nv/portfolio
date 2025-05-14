@@ -8,16 +8,16 @@ const FOOTER_LINKS = [
         href: 'https://www.linkedin.com/in/ed-nava-valencia/',
     },
     {
-        label: 'Twitter',
-        href: 'https://www.twitter.com/ednava',
+        label: 'X',
+        href: 'https://x.com/e_nava_valencia',
     },
     {
         label: 'GitHub',
-        href: 'https://www.github.com/ednava',
+        href: 'https://www.github.com/eddie-nv',
     },
     {
         label: 'LinkedIn',
-        href: 'https://www.linkedin.com/in/ed-nava-valencia/',
+        href: 'https://www.linkedin.com/in/e-nava-valencia/',
     },
 ]
 

@@ -59,6 +59,14 @@ const initialHomeData = {
         technologies: ['React Native', 'Expo'],
         link: '/projects/touchstone'
       },
+      {
+        title: 'Dashboard',
+        description: 'An example dashboard for a fictional company',
+        image: '/image/dashboard.png',
+        timeWorked: 'Sept. 2023 - Oct. 2023',
+        technologies: ['Ant Design', 'Typescript'],
+        link: '/projects/dashboard'
+      }
     ]
 }
 
