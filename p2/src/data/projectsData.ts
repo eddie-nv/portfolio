@@ -153,7 +153,7 @@ export const projectsData: Record<string, Project> = {
     'wrap-and-tint-my-ride': {
         mainTitle: 'Wrap and Tint My Ride',
         hook: 'A platform for connecting volunteers with organizations in need',
-        titleLink: 'https://connectforpurpose.com',
+        titleLink: 'https://wrapandtintmyride.com',
         description: 'Car customization is an art, but learning how to wrap and tint vehicles can be intimidating for beginners. We wanted to create a site for a local car shop that not only promoted their services, but also offered hands-on classes—making the process approachable, professional, and fun.',
         projectContent: [
             {
@@ -201,9 +201,9 @@ export const projectsData: Record<string, Project> = {
     },
     'touchstone': {
         mainTitle: 'Touchstone',
-        hook: 'A platform for connecting volunteers with organizations in need',
-        titleLink: 'https://connectforpurpose.com',
-        description: 'Car customization is an art, but learning how to wrap and tint vehicles can be intimidating for beginners. We wanted to create a site for a local car shop that not only promoted their services, but also offered hands-on classes—making the process approachable, professional, and fun.',
+        hook: 'STD testing and verification service',
+        titleLink: 'https://touchstone.com',
+        description: 'Touchstone is a platform for at-home STD testing and verification. It offers a range of tests, including HIV, syphilis, and chlamydia, and provides a digital verification service. The platform is designed to be user-friendly and accessible, with a focus on privacy and convenience.',
         projectContent: [
             {
                 type: 'title',
@@ -264,6 +264,80 @@ export const projectsData: Record<string, Project> = {
                 type: 'text',
                 description: [
                     'Touchstone is already making it easier to take control of sexual health, and the groundwork laid in the initial React Native build will support a full suite of features as the platform grows.'
+                ]
+            }
+        ]
+    },
+    'dashboard': {
+        mainTitle: 'Dashboard',
+        hook: 'An example dashboard for a fictional company',
+        titleLink: '/demo/dashboard',
+        description: 'Data overload is a real problem for businesses today. Teams have metrics spread across multiple platforms, making it difficult to spot trends and make informed decisions. I built this dashboard to tackle that challenge—bringing critical business metrics into a single, intuitive interface that updates in real-time.',
+        projectContent: [
+            {
+                type: 'title',
+                title: 'The challenge',
+            },
+            {
+                type: 'text',
+                description: [
+                    'The goal was to create a dashboard that didn\'t just display data, but made it immediately understandable and actionable. The interface needed to be clean enough to avoid overwhelming users, while still providing deep insights across multiple business functions.'
+                ]   
+            },
+            {
+                type: 'image',
+                image: '/image/dashboard.png',
+                imageDescription: 'The dashboard showing key metrics with data visualization',
+            },
+            {
+                type: 'title',
+                title: 'Technical approach',
+            },
+            {
+                type: 'text',
+                description: [
+                    'I built the dashboard using Next.js and TypeScript for a solid foundation, with Mantine UI providing the component library. For data visualization, I integrated Recharts to create responsive, interactive graphs that adapt to any screen size. The real-time updates are powered by Server-Sent Events (SSE), giving users live data without the overhead of WebSockets.'
+                ]
+            },
+            {
+                type: 'title',
+                title: 'Core features',
+            },
+            {
+                type: 'list',
+                list: [
+                    'Real-time KPI cards showing critical metrics with trend indicators',
+                    'Interactive charts with customizable time ranges and comparison periods',
+                    'Data tables with sorting, filtering, and export capabilities',
+                    'User-configurable dashboard layouts using a drag-and-drop interface',
+                    'Role-based access control for different data sensitivity levels'
+                ]
+            },
+            {
+                type: 'title',
+                title: 'Performance considerations',
+            },
+            {
+                type: 'text',
+                description: [
+                    'With dashboards, performance is everything—users expect data to load quickly and updates to happen instantly. I implemented several optimizations to ensure a smooth experience:',
+                    'Charts render on the client side but use data prefetched at build time where possible. Live updates use efficient delta patching to minimize payload size. The entire UI is virtualized to handle large datasets without performance degradation, and React Query handles caching and background refreshes to keep everything snappy.'
+                ]
+            },
+            {
+                type: 'title',
+                title: 'Lessons learned',
+            },
+            {
+                type: 'text',
+                description: [
+                    'Building this dashboard reinforced how important it is to deeply understand user workflows before designing data visualizations. What looks impressive isn\'t always what\'s most useful. Through user testing and iteration, I found that simple, focused views with clear actions attached were far more valuable than complex, feature-rich displays.'
+                ]
+            },
+            {
+                type: 'text',
+                description: [
+                    'The project continues to evolve based on user feedback, with planned additions including predictive analytics and more customizable alert thresholds.'
                 ]
             }
         ]

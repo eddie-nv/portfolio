@@ -12,6 +12,7 @@
     "@mantine/core": "^7.17.4",
     "@mantine/hooks": "^7.17.4",
     "@phosphor-icons/react": "^2.1.7",
+    "antd": "^5.25.1",
     "gsap": "^3.12.7",
     "next": "15.3.1",
     "react": "^19.0.0",
