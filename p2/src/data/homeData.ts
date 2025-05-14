@@ -33,31 +33,31 @@ const initialHomeData = {
         image: 'https://via.placeholder.com/150',
         timeWorked: 'Mar. 2025 - Present',
         technologies: ['Nextjs', 'Supabase'],
-        link: '/projects/project1'
+        link: '/projects/yes-chef'
       },
       {
         title: 'Connect for Purpose',
         description: 'A platform for nonprofits to connect with volunteers',
-        image: 'https://via.placeholder.com/150',
+        image: '/image/cfp-.png',
         timeWorked: 'Sept. 2024 - Mar. 2025',
         technologies: ['React', 'CI/CD'],
-        link: '/projects/project2'
+        link: '/projects/connect-for-purpose'
       },
       {
         title: 'Wrap and Tint My Ride',
         description: 'A call to action for a local car wrap and tint shop',
-        image: 'https://via.placeholder.com/150',
+        image: '/image/wrapandtintmyride.png',
         timeWorked: 'Jan. 2024 - Sept. 2024',
         technologies: ['Webflow', 'Figma'],
-        link: '/projects/project3'
+        link: '/projects/wrap-and-tint-my-ride'
       },
       {
         title: 'TouchStone Inc',
         description: 'STD testing and verification service',
-        image: 'https://via.placeholder.com/150',
+        image: '/image/touchstone.png',
         timeWorked: 'Oct. 2023 - Jan. 2024',
         technologies: ['React Native', 'Expo'],
-        link: '/projects/project4'
+        link: '/projects/touchstone'
       },
     ]
 }

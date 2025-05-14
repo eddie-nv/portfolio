@@ -40,7 +40,7 @@ export const Gallery = ({ images, gap = 5 }: GalleryProps) => {
                 <AspectRatio 
                     key={index}
                     ratio={image.ratio}
-                    bg={image.bg}
+                    // bg={image.bg}
                     w={image.width}
                     style={{
                         borderRadius: '5px',
@@ -50,9 +50,9 @@ export const Gallery = ({ images, gap = 5 }: GalleryProps) => {
                     }}
                 >
                     <Image 
-                        src={image.src} 
-                        alt={image.alt} 
-                        style={{ objectFit: 'cover' }}
+                      src={image.src} 
+                      alt={image.alt} 
+                      style={{scale: 1.4}}
                     />
                 </AspectRatio>
             ))}

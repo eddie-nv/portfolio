@@ -13,7 +13,7 @@ export default function AboutPage() {
   return (
     <>
       <Navbar />
-      <Container size='md' py={120}>
+      <Container size={750} py={120}>
         <Stack gap={100} justify='center' align='center' ref={aboutPageRef}>
           <Gallery images={aboutData.images} />
           <InfoGrid items={aboutData.infoItems} />
