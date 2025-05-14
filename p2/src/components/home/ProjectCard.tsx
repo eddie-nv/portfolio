@@ -39,7 +39,7 @@ const ProjectCard = ({ title, description, image, technologies, link, badgeColor
             ref={ImageRef}
         >
             <AspectRatio ratio={16 / 9} >
-                <Image src={image} alt={title} />
+                <Image src={image} alt={title} style={{ objectPosition: 'top' }}/>
             </AspectRatio>    
         </Paper>
     </Stack>

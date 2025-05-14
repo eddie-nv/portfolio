@@ -38,7 +38,7 @@ const scale = {
 }   
 
 const rotate = {
-  from: { opacity: 0.5, rotation: 20, y: 90 },
+  from: { opacity: 0.5, rotation: 20, y: 120 },
   to: { opacity: 1, rotation: 0, y: 0 },
   duration: 0.5,
 }   
