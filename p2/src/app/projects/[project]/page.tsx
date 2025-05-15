@@ -86,7 +86,7 @@ const ProjectPage = ({ params }: { params: { project: ProjectKey } }) => {
           <Text fw={700} size={rem(32)}>{project?.mainTitle}</Text>
           <Text fw={500} >{project?.hook}</Text>
           <Text >{project?.description}</Text>
-          <Anchor href={project?.titleLink}>{project?.titleLink}</Anchor>
+          <Anchor href={project?.titleLink}>Check it out</Anchor>
           
           {project?.projectContent.map((content, index) => renderProjectContent(content, index))}
           
