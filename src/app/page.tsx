@@ -1,45 +1,38 @@
 'use client'
-import { Container, Stack } from '@mantine/core';
-import { useState, useEffect } from 'react';
-import Hero from '@/layouts/home/Hero';
-import Projects from '@/layouts/home/Projects';
-import About from '@/layouts/home/About';
-import MyStack from '@/layouts/home/MyStack';
-import IntroAnimation from '@/components/IntroAnimation';
-import { AppLayout } from '@/components/AppLayout';
+
+import { MantineProvider, Stack } from '@mantine/core'
+import { Hero } from '@/components/home/Hero'
+import Navbar from '@/components/ui/Navbar'
+import FeaturedProjects from '@/components/home/FeaturedProjects'
+import Footer from '@/components/ui/Footer'
+import { useGradientColor } from '@/hooks/useGradientColor'
+import { homeData } from '@/data/homeData'
+import { useScrollAnimation } from '@/hooks/animations/useScrollAnimation'
+import { theme } from './theme'
 
 function Home() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, []);
+  const { currentColor, transitionType, handleOnHover, handleOnLeave } = useGradientColor()
+  const heroRef = useScrollAnimation<HTMLDivElement>({ variant: 'shrinkWithBorder', options: { scrub: true, start: '50px', end: 'bottom top' } })
 
   return (
-    <AppLayout>
-      <IntroAnimation 
-        onComplete={() => {
-          document.body.style.overflow = 'unset';
-        }} 
-        position={position}
-      />
-      <Container mt={100} style={{ 
-        opacity: 1,
-        transition: 'opacity 5s ease-in'
-      }}>
-        <Stack gap={100}>
-          <Hero setPosition={setPosition}/>
-          <MyStack />
-          <Projects />
-          <About />  
-        </Stack>
-      </Container>
-    </AppLayout>
-  );
+    
+    <MantineProvider theme={theme}>
+    <Stack gap={100} justify='center' align='center' w='100%'>
+      <Stack ref={heroRef} h='100vh' w='100%' style={{ overflow: 'hidden' }}>
+        <Navbar handleOnHover={handleOnHover} handleOnLeave={handleOnLeave}/>
+        <Hero 
+          {...homeData.hero} 
+          currentColor={{...currentColor, a: 0.8}} 
+          transitionType={transitionType}
+          handleOnHover={handleOnHover} 
+          handleOnLeave={handleOnLeave}
+        />
+      </Stack>
+      <FeaturedProjects projects={homeData.projects} />
+      <Footer />
+    </Stack>
+    </MantineProvider>
+  )
 }
 
-export default Home;
+export default Home

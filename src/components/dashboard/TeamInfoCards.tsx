@@ -5,7 +5,7 @@ import { UserOutlined, LinkOutlined } from '@ant-design/icons';
 import { AgCharts } from 'ag-charts-react';
 import { AgChartOptions, AgBarSeriesOptions } from 'ag-charts-community';
 import { useEffect, useState } from 'react';
-import { useTheme } from '@/utils/context/ThemeContext';
+import { useTheme } from '@/components/dashboard/ThemeContext';
 
 const { Title, Text } = Typography;
 

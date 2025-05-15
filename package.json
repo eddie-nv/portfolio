@@ -9,28 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ant-design/nextjs-registry": "^1.0.1",
-    "@gsap/react": "^2.1.1",
+    "@ant-design/nextjs-registry": "^1.0.2",
     "@mantine/core": "^7.17.4",
     "@mantine/hooks": "^7.17.4",
-    "ag-charts-community": "^10.3.3",
-    "ag-charts-react": "^10.3.3",
-    "animejs": "^3.2.2",
-    "antd": "^5.22.1",
-    "gsap": "^3.12.5",
-    "next": "14.2.11",
-    "react": "^18",
-    "react-dom": "^18",
-    "reactflow": "^11.11.4",
-    "sharp": "^0.33.5"
+    "@phosphor-icons/react": "^2.1.7",
+    "ag-charts-community": "^11.3.0",
+    "ag-charts-react": "^11.3.0",
+    "antd": "^5.25.1",
+    "gsap": "^3.12.7",
+    "next": "15.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@types/animejs": "^3.1.12",
+    "@eslint/eslintrc": "^3",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.11",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.1",
     "typescript": "^5"
   }
 }
