@@ -7,7 +7,7 @@ type ProjectContent = {
     list?: string[]
 }
 
-type Project = {
+export type Project = {
     mainTitle: string
     hook: string
     titleLink: string

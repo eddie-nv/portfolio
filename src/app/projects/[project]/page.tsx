@@ -1,13 +1,14 @@
 'use client'
 import Footer from '@/components/ui/Footer'
 import Navbar from '@/components/ui/Navbar'
-import { UnstyledButton, Container, Group, Stack, Text, Image, List, rem, AspectRatio, MantineProvider } from '@mantine/core'
+import { UnstyledButton, Container, Group, Stack, Text, Image, List, rem, AspectRatio, MantineProvider, Loader, Center } from '@mantine/core'
 import { Anchor } from '@/components/ui/Anchor'
 import { ArrowLeft } from '@phosphor-icons/react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { projectsData } from '@/data/projectsData'
 import { theme } from '@/app/theme'
+import { Project } from '@/data/projectsData'
 
 type ProjectKey = keyof typeof projectsData
 
@@ -72,26 +73,60 @@ const renderProjectContent = (content: ProjectContent, index: number) => {
   }
 }
 
-const ProjectPage = ({ params }: { params: { project: ProjectKey } }) => {
+const ProjectPage = ({ params }: { params: Promise<{ project: ProjectKey }> }) => {
   const router = useRouter()
-  const project = projectsData[params.project]
+  const [project, setProject] = useState<Project | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  
+  useEffect(() => {
+    const fetchProjectData = async () => {
+      try {
+        setLoading(true)
+        const resolvedParams = await params
+        const projectKey = resolvedParams.project
+        
+        if (!projectsData[projectKey]) {
+          setError(`Project ${projectKey} not found`)
+          return
+        }
+        
+        setProject(projectsData[projectKey])
+      } catch (err) {
+        setError('Error loading project data')
+        console.error(err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    fetchProjectData()
+  }, [params])
   
   return (
     <>
     <MantineProvider theme={theme}>
       <Navbar />
       <Container py={120} size='xs'>
-        <Stack gap={32}>
-          <BackButton onClick={() => router.back()}>Back</BackButton>
-          <Text fw={700} size={rem(32)}>{project?.mainTitle}</Text>
-          <Text fw={500} >{project?.hook}</Text>
-          <Text >{project?.description}</Text>
-          <Anchor href={project?.titleLink}>Check it out</Anchor>
-          
-          {project?.projectContent.map((content, index) => renderProjectContent(content, index))}
-          
-          <BackButton onClick={() => router.push('/')}>Back to home</BackButton>
-        </Stack>
+        {loading ? (
+          <Center>
+            <Loader size="lg" />
+          </Center>
+        ) : error ? (
+          <Text c="red" ta="center">{error}</Text>
+        ) : project && (
+          <Stack gap={32}>
+            <BackButton onClick={() => router.back()}>Back</BackButton>
+            <Text fw={700} size={rem(32)}>{project.mainTitle}</Text>
+            <Text fw={500}>{project.hook}</Text>
+            <Text>{project.description}</Text>
+            <Anchor href={project.titleLink}>Check it out</Anchor>
+            
+            {project.projectContent.map((content, index) => renderProjectContent(content, index))}
+            
+            <BackButton onClick={() => router.push('/')}>Back to home</BackButton>
+          </Stack>
+        )}
       </Container>
       <Footer />
       </MantineProvider>
