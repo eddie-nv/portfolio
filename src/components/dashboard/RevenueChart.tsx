@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, Select, Typography, Spin } from 'antd';
 import { AgCharts } from 'ag-charts-react';
 import { AgChartOptions, AgBarSeriesOptions } from 'ag-charts-community';
-import { useTheme } from '@/utils/context/ThemeContext';
+import { useTheme } from '@/components/dashboard/ThemeContext';
 
 const { Title } = Typography;
 

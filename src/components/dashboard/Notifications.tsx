@@ -2,7 +2,7 @@
 import React from 'react';
 import { Badge, Button, Dropdown, List, Space, Typography } from 'antd';
 import { BellOutlined } from '@ant-design/icons';
-import { useTheme } from '@/utils/context/ThemeContext';
+import { useTheme } from '@/components/dashboard/ThemeContext';
 
 type NotificationItem = {
   id: string;
@@ -60,7 +60,7 @@ export const Notifications = () => {
 
   return (
     <Dropdown 
-      dropdownRender={() => notificationContent}
+      popupRender={() => notificationContent}
       trigger={['click']}
       placement="bottomRight"
     >

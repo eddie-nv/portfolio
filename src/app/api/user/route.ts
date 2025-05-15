@@ -10,7 +10,7 @@ type User = {
 export async function GET() {
   const user: User = {
     name: "John Doe",
-    imageUrl: "",
+    imageUrl: "/image/IMG_1806.jpg",
     position: "Software Engineer",
     team: "Frontend Development"
   }
