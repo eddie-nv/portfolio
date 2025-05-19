@@ -27,14 +27,14 @@ const initialHomeData = {
       ],
     },
     projects: [
-      {
-        title: 'Yes Chef',
-        description: 'An AI-powered recipe generator and meal planner',
-        image: 'https://via.placeholder.com/150',
-        timeWorked: 'Mar. 2025 - Present',
-        technologies: ['Nextjs', 'Supabase'],
-        link: '/projects/yes-chef'
-      },
+      // {
+      //   title: 'Yes Chef',
+      //   description: 'An AI-powered recipe generator and meal planner',
+      //   image: 'https://via.placeholder.com/150',
+      //   timeWorked: 'Mar. 2025 - Present',
+      //   technologies: ['Nextjs', 'Supabase'],
+      //   link: '/projects/yes-chef'
+      // },
       {
         title: 'Connect for Purpose',
         description: 'A platform for nonprofits to connect with volunteers',

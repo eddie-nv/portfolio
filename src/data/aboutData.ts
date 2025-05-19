@@ -1,7 +1,7 @@
 export const aboutData = {
     images: [
         {
-            src: '/image/snow_selfie.png',
+            src: '/image/about1.png',
             alt: 'About Image 1',
             bg: 'red',
             ratio: 12/9,
@@ -11,7 +11,7 @@ export const aboutData = {
             translateY: 0,
         },
         {
-            src: '/image/IMG_3820.jpeg',
+            src: '/image/about2.jpeg',
             alt: 'About Image 2',
             bg: 'blue',
             ratio: 9/12,
@@ -21,7 +21,7 @@ export const aboutData = {
             translateY: -12,
         },
         {
-            src: '/image/IMG_3543.jpeg',
+            src: '/image/about3.jpeg',
             alt: 'About Image 3',
             bg: 'green',
             ratio: 12/8.5,
@@ -31,7 +31,7 @@ export const aboutData = {
             translateY: 30,
         },
         {
-            src: '/image/IMG_3830.jpeg',
+            src: '/image/about4.jpeg',
             alt: 'About Image 4',
             bg: 'yellow',
             ratio: 9/11,

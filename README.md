@@ -9,6 +9,4 @@ Built with modern web technologies:
 - **Framework**: [Next.js 14](https://nextjs.org) with App Router
 - **UI Components**: [Mantine UI v7](https://mantine.dev)
 - **Animations**: [GSAP](https://greensock.com/gsap/)
-- **Interactive Diagrams**: [React Flow](https://reactflow.dev)
 - **Type Safety**: TypeScript
-- **Image Optimization**: Sharp
