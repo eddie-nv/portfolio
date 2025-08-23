@@ -17,12 +17,12 @@ const FOOTER_LINKS = [
     },
     {
         label: 'LinkedIn',
-        href: 'https://www.linkedin.com/in/e-nava-valencia/',
+        href: 'https://www.linkedin.com/in/ed-nava-valencia/',
     },
 ]
 
 const Footer = () => {
-    
+
     return (
         <Box pt={1} bg='linear-gradient(to right, transparent 20%, #BCBCBC 50%, transparent 80%)' w='100%'>
             <Box bg='black' py='xl'>
@@ -30,12 +30,12 @@ const Footer = () => {
                     <Stack>
                         <Group gap='xs'>
                             <Text>
-                                Drop me an email 
-                            </Text> 
+                                Drop me an email
+                            </Text>
                             <Anchor href='mailto:ed.nava.valencia@gmail.com'>
                                 ed.nava.valencia@gmail.com
                             </Anchor>
-                        </Group>   
+                        </Group>
                         <Group gap='lg' align='center' justify='center' >
                             {FOOTER_LINKS.map((link) => (
                                 <Anchor key={link.label} href={link.href}>

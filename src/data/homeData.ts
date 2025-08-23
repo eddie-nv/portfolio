@@ -16,7 +16,7 @@ const initialHomeData = {
         },
         {
           label: 'LinkedIn',
-          href: 'https://www.linkedin.com/in/e-nava-valencia/',
+          href: 'https://www.linkedin.com/in/ed-nava-valencia/',
           color: 'white'
         },
         {

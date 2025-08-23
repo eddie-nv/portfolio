@@ -21,7 +21,7 @@ const BRAND_NAME = {
 
 const NAV_ITEMS: NavItem[] = [
   { label: 'About', href: '/about', handleOnHover: () => {}, handleOnLeave: () => {}, colorIndex: 0 },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/e-nava-valencia/', handleOnHover: () => {}, handleOnLeave: () => {}, colorIndex: 1, target: '_blank' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ed-nava-valencia/', handleOnHover: () => {}, handleOnLeave: () => {}, colorIndex: 1, target: '_blank' },
 ]
 
 const NavLink = ({ label, href, isCapitalized, handleOnHover, handleOnLeave, colorIndex, target }: NavItem ) => (
