@@ -2,7 +2,7 @@ const initialHomeData = {
     hero: {
       jobTitle: 'Frontend Engineer',
       title: 'Eduardo Nava',
-      subtitle: "I'm a Bay Area based Frontend Engineer and contributor to @mantine",
+      subtitle: "Based in the a Bay Area, currently attending Hack Reactor's Advanced Software Engineering Immersive Program",
       contactLinks: [
         {
           label: 'Email',
