@@ -45,11 +45,11 @@ export const MouseMotionProvider: React.FC<{ children: React.ReactNode }> = ({ c
     }
 
     const handlePointerLeave = () => {
-      setState((prev) => ({
+      setState({
         normalized: { x: 0, y: 0 },
         velocity: { x: 0, y: 0 },
         direction: { x: 0, y: 0 },
-      }))
+      })
     }
 
     window.addEventListener('pointermove', handlePointerMove)
