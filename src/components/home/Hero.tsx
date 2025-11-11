@@ -1,9 +1,8 @@
 'use client'
-import React from 'react'
+
 import { Box, Center, Group, Stack, Text, useMantineTheme } from '@mantine/core'
 import { Anchor } from '@/components/ui/Anchor'
-import HeroVideo from './HeroVideo'
-import type { RGBA, TransitionType } from '@/hooks/useGradientColor'
+import BackgroundShapes from './BackgroundShapes'
 import type { FC } from 'react'
 import { useAnimateIn } from '@/hooks/animations/useAnimateIn'
 import { useStaggerAnimation } from '@/hooks/animations/useStaggerAnimation'
@@ -17,10 +16,6 @@ type HeroProps = {
     href: string
     color: string
   }[]
-  currentColor: RGBA
-  transitionType: TransitionType
-  handleOnHover: (index: number) => void
-  handleOnLeave: () => void
 }
 
 export const Hero: FC<HeroProps> = ({
@@ -28,10 +23,6 @@ export const Hero: FC<HeroProps> = ({
   title,
   subtitle,
   contactLinks,
-  currentColor,
-  transitionType,
-  handleOnHover,
-  handleOnLeave,
 }) => {
   const theme = useMantineTheme()
   
@@ -46,10 +37,7 @@ export const Hero: FC<HeroProps> = ({
 
   return (
     <Box pos="relative" h="100%" w="100%" style={{ overflow: 'hidden' }}>
-      <HeroVideo 
-        overlayColor={`rgba(${currentColor.r},${currentColor.g},${currentColor.b},${currentColor.a})`} 
-        transitionType={transitionType}
-      />
+      <BackgroundShapes />
       <Center pos="absolute" inset={0} >
         <Stack align="center" justify="center" gap={30} >
           <Stack align='center' gap={0}>
@@ -64,13 +52,11 @@ export const Hero: FC<HeroProps> = ({
             </Text>  
           </Stack>
           <Group gap="sm" ref={linksRef} >
-            {contactLinks.map((link, index) => (
+            {contactLinks.map((link) => (
                 <Anchor 
                     key={link.label}
                     href={link.href}
                     size='sm'
-                    onMouseEnter={() => handleOnHover(index)}
-                    onMouseLeave={handleOnLeave}
                     opacity={0}
                 >
                     {link.label}
