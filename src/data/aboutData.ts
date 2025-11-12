@@ -102,23 +102,23 @@ export const aboutData = {
                 }
             ],
         },
-        {
-            title: 'Contributions',
-            id: 'contributions',
-            content: [
-                {
-                    company: 'Contribution 1',
-                    tagline: 'Contribution 1',
-                    viewContribution: 'https://github.com/edunava/contribution1',
-                    companyUrl: 'https://www.google.com'
-                },
-                {
-                    company: 'Contribution 2',
-                    tagline: 'Contribution 2',
-                    viewContribution: 'https://github.com/edunava/contribution2',
-                    companyUrl: 'https://www.google.com'
-                }
-            ],
-        }
+        // {
+        //     title: 'Contributions',
+        //     id: 'contributions',
+        //     content: [
+        //         {
+        //             company: 'Contribution 1',
+        //             tagline: 'Contribution 1',
+        //             viewContribution: 'https://github.com/edunava/contribution1',
+        //             companyUrl: 'https://www.google.com'
+        //         },
+        //         {
+        //             company: 'Contribution 2',
+        //             tagline: 'Contribution 2',
+        //             viewContribution: 'https://github.com/edunava/contribution2',
+        //             companyUrl: 'https://www.google.com'
+        //         }
+        //     ],
+        // }
     ],
 }

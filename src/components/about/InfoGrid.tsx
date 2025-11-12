@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+
 import { Box, Grid, GridCol, Text, Stack, Group } from '@mantine/core';
 import { Anchor } from '@/components/ui/Anchor';
 import { useScrollChildren } from '@/hooks/animations/useScrollChildren';
@@ -52,8 +52,8 @@ export const InfoGrid = ({ items }: InfoGridProps) => {
       case 'about-me':
         return (
           <Stack gap='lg' >
-            {(item.content as AboutMeContent).map((paragraph, i) => (
-              <Text key={i} size='sm'>{paragraph}</Text>
+            {(item.content as AboutMeContent).map((paragraph) => (
+              <Text key={crypto.randomUUID()} size='sm'>{paragraph}</Text>
             ))}
           </Stack>
         );
@@ -61,9 +61,9 @@ export const InfoGrid = ({ items }: InfoGridProps) => {
       case 'connect':
         return (
           <Group gap='lg'>
-            {(item.content as ConnectItem[]).map((link, i) => (
+            {(item.content as ConnectItem[]).map((link) => (
               <Anchor 
-                key={i}
+                key={crypto.randomUUID()}
                 href={link.href}
                 c={link.color}
                 size='sm'
@@ -77,8 +77,8 @@ export const InfoGrid = ({ items }: InfoGridProps) => {
       case 'experience':
         return (
           <Stack>
-            {(item.content as ExperienceItem[]).map((exp, i) => (
-              <Group key={i} justify="space-between" w="100%" align='center'>
+            {(item.content as ExperienceItem[]).map((exp) => (
+              <Group key={crypto.randomUUID()} justify="space-between" w="100%" align='center'>
                 <Group align='center'>
                   <Anchor size='sm' href={exp.companyUrl}>{exp.company}</Anchor>
                   <Text size='sm'>{exp.position}</Text>
@@ -92,8 +92,8 @@ export const InfoGrid = ({ items }: InfoGridProps) => {
       case 'contributions':
         return (
           <Stack>
-            {(item.content as ContributionItem[]).map((contribution, i) => (
-              <Group key={i} justify="space-between" w="100%">
+            {(item.content as ContributionItem[]).map((contribution) => (
+              <Group key={crypto.randomUUID()} justify="space-between" w="100%">
                 <Group>
                   <Anchor size='sm' href={contribution.companyUrl}>{contribution.company}</Anchor>
                   <Text size='sm'>{contribution.tagline}</Text>
@@ -113,8 +113,8 @@ export const InfoGrid = ({ items }: InfoGridProps) => {
 
   return (
     <Stack gap={60} ref={infoGridRef}>
-        {items.map((item, index) => (
-            <Grid gutter={0} key={index} w='100%' opacity={0}>
+        {items.map((item) => (
+            <Grid gutter={0} key={crypto.randomUUID()} w='100%' opacity={0}>
                 <GridCol span={3} >
                     <Text c='gray' >{item.title}</Text>
                 </GridCol>
