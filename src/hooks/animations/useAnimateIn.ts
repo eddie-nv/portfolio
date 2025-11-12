@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { AnimationOptions, AnimationVariant } from '@/hooks/animations/types';
+import type { AnimationOptions, AnimationVariant } from '@/hooks/animations/types';
 import { getAnimationVariant } from '@/utils/animations';
 
 type UseAnimateInProps = {

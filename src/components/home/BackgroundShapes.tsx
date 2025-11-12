@@ -1,4 +1,3 @@
-// Example usage in BackgroundShapes.tsx
 import { MouseMotionProvider } from '@/hooks/useMouseMotion'
 import { Square } from '@/components/interactive/Square'
 import { Triangle } from '@/components/interactive/Triangle'

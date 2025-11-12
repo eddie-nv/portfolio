@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+
 import { AspectRatio, Group, Image, Stack, Text } from '@mantine/core';
 import { useStaggerAnimation } from '@/hooks/animations/useStaggerAnimation';
 
@@ -34,11 +34,11 @@ export const Gallery = ({ images, gap = 5 }: GalleryProps) => {
   });
   
   return (
-    <Stack justify='center' align='center' gap={0} ref={galleryAndTitleRef}>
-        <Group gap={gap} wrap="nowrap" py='xl' style={{transform: 'translateX(10px)'}} ref={galleryRef}>
+    <Stack justify='center' align='center' gap={0} ref={galleryAndTitleRef} opacity={0}>
+        <Group gap={gap} wrap="nowrap" py='xl' style={{transform: 'translateX(10px)'}} ref={galleryRef} opacity={0}>
             {images.map((image, index) => (
                 <AspectRatio 
-                    key={index}
+                    key={crypto.randomUUID()}
                     ratio={image.ratio}
                     // bg={image.bg}
                     w={image.width}
@@ -47,6 +47,7 @@ export const Gallery = ({ images, gap = 5 }: GalleryProps) => {
                         overflow: 'hidden',
                         transform: `rotate(${image.rotation}deg) translateX(${image.translateX}px) translateY(${image.translateY}px)`,
                         zIndex: index % 2 === 0 ? 1 : 1,
+                        opacity: 0,
                     }}
                 >
                     <Image 
