@@ -1,7 +1,8 @@
 'use client'
 
-import { Box, Container, Group, Text, UnstyledButton } from '@mantine/core'
+import { Box, Container, Group, Text, UnstyledButton, Burger, Drawer, Stack } from '@mantine/core'
 import { useAnimateIn } from '@/hooks/animations/useAnimateIn'
+import { useState } from 'react'
 
 type NavItem = {
   label: string
@@ -29,8 +30,8 @@ const NavLink = ({ label, href, isCapitalized, handleOnHover, handleOnLeave, col
     component="a"
     href={href}
     target={target ? target : '_self'}
-    onMouseEnter={() => handleOnHover && handleOnHover(colorIndex)}
-    onMouseLeave={() => handleOnLeave && handleOnLeave()}
+    onMouseEnter={() => handleOnHover?.(colorIndex)}
+    onMouseLeave={() => handleOnLeave?.()}
   >
     <Text c="white" size="sm" lts={1.8} tt={isCapitalized ? 'uppercase' : 'none'}>
       {label}
@@ -38,21 +39,86 @@ const NavLink = ({ label, href, isCapitalized, handleOnHover, handleOnLeave, col
   </UnstyledButton>
 )
 
+const MobileNavLink = ({ label, href, isCapitalized, target, onClick }: NavItem & { onClick: () => void }) => (
+  <UnstyledButton
+    component="a"
+    href={href}
+    target={target ? target : '_self'}
+    onClick={onClick}
+    w="100%"
+  >
+    <Text c="white" size="lg" lts={1.8} tt={isCapitalized ? 'uppercase' : 'none'} ta="center">
+      {label}
+    </Text>
+  </UnstyledButton>
+)
+
 const Navbar = ({ handleOnHover, handleOnLeave }: { handleOnHover?: (index: number) => void, handleOnLeave?: () => void }) => {
-  const navbarRef = useAnimateIn<HTMLDivElement>({ variant: 'slideDown', options: { delay: 0.2 } })
+  const desktopNavbarRef = useAnimateIn<HTMLDivElement>({ variant: 'slideDown', options: { delay: 0.2 } })
+  const mobileNavbarRef = useAnimateIn<HTMLDivElement>({ variant: 'slideDown', options: { delay: 0.2 } })
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
   return (
-    <Box pos="absolute" w="100%" p={10} opacity={0} style={{ zIndex: 1000 }} ref={navbarRef}>
-      <Container size="lg">
-        <Group justify="space-between">
-          <NavLink key={BRAND_NAME.label} {...BRAND_NAME} handleOnHover={handleOnHover} handleOnLeave={handleOnLeave} colorIndex={4}/>
-          <Group gap={35}>
-            {NAV_ITEMS.map((item, index) => (
-              <NavLink key={item.label} {...item} handleOnHover={handleOnHover} handleOnLeave={handleOnLeave} colorIndex={index + 5}/>
-            ))}
+    <>
+      {/* Desktop Navbar */}
+      <Box pos="absolute" w="100%" p={10} opacity={0} style={{ zIndex: 1000 }} ref={desktopNavbarRef} visibleFrom="sm">
+        <Container size="lg">
+          <Group justify="space-between">
+            <NavLink key={BRAND_NAME.label} {...BRAND_NAME} handleOnHover={handleOnHover} handleOnLeave={handleOnLeave} colorIndex={4}/>
+            <Group gap={35}>
+              {NAV_ITEMS.map((item, index) => (
+                <NavLink key={item.label} {...item} handleOnHover={handleOnHover} handleOnLeave={handleOnLeave} colorIndex={index + 5}/>
+              ))}
+            </Group>
           </Group>
-        </Group>
-      </Container>
-    </Box>
+        </Container>
+      </Box>
+
+      {/* Mobile Navbar */}
+      <Box pos="absolute" w="100%" p={10} opacity={0} style={{ zIndex: 1000 }} ref={mobileNavbarRef} hiddenFrom="sm">
+        <Container size="lg">
+          <Group justify="space-between">
+            <NavLink key={BRAND_NAME.label} {...BRAND_NAME} handleOnHover={handleOnHover} handleOnLeave={handleOnLeave} colorIndex={4}/>
+            <Burger
+              opened={mobileMenuOpen}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              color="white"
+              size="sm"
+            />
+          </Group>
+        </Container>
+      </Box>
+
+      {/* Mobile Drawer Menu */}
+      <Drawer
+        opened={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+        position="right"
+        size="70%"
+        styles={{
+          content: {
+            backgroundColor: 'rgba(0, 0, 0, 0.95)',
+          },
+          header: {
+            backgroundColor: 'transparent',
+          },
+          close: {
+            color: 'white',
+          },
+        }}
+        zIndex={1001}
+      >
+        <Stack gap="xl" mt="xl" align="center">
+          {NAV_ITEMS.map((item) => (
+            <MobileNavLink
+              key={item.label}
+              {...item}
+              onClick={() => setMobileMenuOpen(false)}
+            />
+          ))}
+        </Stack>
+      </Drawer>
+    </>
   )
 }
 

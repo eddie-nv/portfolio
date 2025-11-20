@@ -37,8 +37,8 @@ type InfoGridProps = {
 };
 
 export const InfoGrid = ({ items }: InfoGridProps) => {
-  // Create refs array for each grid item
-  const infoGridRef = useScrollChildren<HTMLDivElement>({ 
+  // Create refs for desktop and mobile
+  const desktopInfoGridRef = useScrollChildren<HTMLDivElement>({ 
     variant: 'slideUpFadeIn', 
     options: { 
       delay: 0.2, 
@@ -47,7 +47,16 @@ export const InfoGrid = ({ items }: InfoGridProps) => {
     } 
   });
 
-  const renderContent = (item: InfoItem) => {
+  const mobileInfoGridRef = useScrollChildren<HTMLDivElement>({ 
+    variant: 'slideUpFadeIn', 
+    options: { 
+      delay: 0.2, 
+      scrub: false,
+      start: 'top 90%'
+    } 
+  });
+
+  const renderContent = (item: InfoItem, isMobile: boolean = false) => {
     switch (item.id) {
       case 'about-me':
         return (
@@ -60,7 +69,7 @@ export const InfoGrid = ({ items }: InfoGridProps) => {
       
       case 'connect':
         return (
-          <Group gap='lg'>
+          <Group gap='lg' wrap="wrap">
             {(item.content as ConnectItem[]).map((link) => (
               <Anchor 
                 key={crypto.randomUUID()}
@@ -75,6 +84,21 @@ export const InfoGrid = ({ items }: InfoGridProps) => {
         );
       
       case 'experience':
+        if (isMobile) {
+          return (
+            <Stack gap="md">
+              {(item.content as ExperienceItem[]).map((exp) => (
+                <Stack key={crypto.randomUUID()} gap="xs">
+                  <Group gap="xs" wrap="wrap">
+                    <Anchor size='sm' href={exp.companyUrl}>{exp.company}</Anchor>
+                    <Text size='sm'>{exp.position}</Text>
+                  </Group>
+                  <Text size='sm' c='gray'>{exp.timeWorked}</Text>
+                </Stack>
+              ))}
+            </Stack>
+          );
+        }
         return (
           <Stack>
             {(item.content as ExperienceItem[]).map((exp) => (
@@ -90,6 +114,23 @@ export const InfoGrid = ({ items }: InfoGridProps) => {
         );
       
       case 'contributions':
+        if (isMobile) {
+          return (
+            <Stack gap="md">
+              {(item.content as ContributionItem[]).map((contribution) => (
+                <Stack key={crypto.randomUUID()} gap="xs">
+                  <Group gap="xs" wrap="wrap">
+                    <Anchor size='sm' href={contribution.companyUrl}>{contribution.company}</Anchor>
+                    <Text size='sm'>{contribution.tagline}</Text>
+                  </Group>
+                  <Anchor size='xs' href={contribution.viewContribution} c='gray'>
+                    View Project
+                  </Anchor>
+                </Stack>
+              ))}
+            </Stack>
+          );
+        }
         return (
           <Stack>
             {(item.content as ContributionItem[]).map((contribution) => (
@@ -112,17 +153,30 @@ export const InfoGrid = ({ items }: InfoGridProps) => {
   };
 
   return (
-    <Stack gap={60} ref={infoGridRef}>
-        {items.map((item) => (
-            <Grid gutter={0} key={crypto.randomUUID()} w='100%' opacity={0}>
-                <GridCol span={3} >
-                    <Text c='gray' >{item.title}</Text>
-                </GridCol>
-                <GridCol span={9} pl={15}>
-                    <Box>{renderContent(item)}</Box>
-                </GridCol>
-            </Grid>
-        ))}    
-    </Stack>
+    <>
+      {/* Desktop */}
+      <Stack gap={60} ref={desktopInfoGridRef} visibleFrom="sm">
+          {items.map((item) => (
+              <Grid gutter={0} key={crypto.randomUUID()} w='100%' opacity={0}>
+                  <GridCol span={3} >
+                      <Text c='gray' >{item.title}</Text>
+                  </GridCol>
+                  <GridCol span={9} pl={15}>
+                      <Box>{renderContent(item)}</Box>
+                  </GridCol>
+              </Grid>
+          ))}    
+      </Stack>
+
+      {/* Mobile */}
+      <Stack gap={40} ref={mobileInfoGridRef} hiddenFrom="sm" w="100%">
+          {items.map((item) => (
+              <Stack key={crypto.randomUUID()} gap="sm" w='100%' opacity={0}>
+                  <Text c='gray' size="sm" fw={600}>{item.title}</Text>
+                  <Box>{renderContent(item, true)}</Box>
+              </Stack>
+          ))}    
+      </Stack>
+    </>
   );
 };

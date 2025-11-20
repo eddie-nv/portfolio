@@ -10,12 +10,22 @@ import { useStaggerAnimation } from '@/hooks/animations/useStaggerAnimation'
 import { theme } from '../theme'
 
 export default function AboutPage() {
-  const aboutPageRef = useStaggerAnimation<HTMLDivElement>({ variant: 'slideUpFadeIn', options: { staggerAmount: 0.6 } })
+  const desktopPageRef = useStaggerAnimation<HTMLDivElement>({ variant: 'slideUpFadeIn', options: { staggerAmount: 0.6 } })
+  const mobilePageRef = useStaggerAnimation<HTMLDivElement>({ variant: 'slideUpFadeIn', options: { staggerAmount: 0.6 } })
+  
   return (
     <MantineProvider theme={theme}>
       <Navbar />
-      <Container size={750} py={120}>
-        <Stack gap={100} justify='center' align='center' ref={aboutPageRef}>
+      {/* Desktop */}
+      <Container size={750} py={120} visibleFrom="sm">
+        <Stack gap={100} justify='center' align='center' ref={desktopPageRef}>
+          <Gallery images={aboutData.images} />
+          <InfoGrid items={aboutData.infoItems} />
+        </Stack>
+      </Container>
+      {/* Mobile */}
+      <Container size="lg" py={80} px="md" hiddenFrom="sm">
+        <Stack gap={60} justify='center' align='center' ref={mobilePageRef}>
           <Gallery images={aboutData.images} />
           <InfoGrid items={aboutData.infoItems} />
         </Stack>

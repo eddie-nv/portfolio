@@ -202,7 +202,7 @@ export const projectsData: Record<string, Project> = {
     'touchstone': {
         mainTitle: 'Touchstone',
         hook: 'STD testing and verification service',
-        titleLink: 'https://touchstone.com',
+        titleLink: 'https://www.linkedin.com/company/touchstone-inc/',
         description: 'Touchstone is a platform for at-home STD testing and verification. It offers a range of tests, including HIV, syphilis, and chlamydia, and provides a digital verification service. The platform is designed to be user-friendly and accessible, with a focus on privacy and convenience.',
         projectContent: [
             {

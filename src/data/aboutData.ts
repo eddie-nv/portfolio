@@ -46,9 +46,10 @@ export const aboutData = {
             title: 'About Me',
             id: 'about-me',
             content: [
-                "I worked in the warehouse industry for 5 years and when I was promoted to be an inventory specialist, I was tasked with improving the inventory management system. It was a challenge that I had to iterate on a few times, but the feeling when I started seeing results lit a fire in my eyes.",
-                "Thats when I discovered my passion for software development and system design! I self taught myself the basics of frontend and backend system development. I started building small projects, joining hackathons, working on personal projects all which led me to getting my first contract job as a freelance developer. Currently, I'm upping my game by attending the Hack Reactor bootcamp to polish my full stack developer skills.",
-                "Outside of coding, I'm passionate about fitness and health. I love to cook healthy meals for my friends and family. I also love to stay active through jiu jitsu, and running.",
+                "I am a software engineer and have worked on many full-stack projects in both a backend and frontend role.",
+                "When I set my heart to go into software engineering, I knew it would be a risk. My background is in warehousing as a inventory specialist, but I knew I wanted to make a change and that's when I discovered software engineering.",
+                "I self-taught myself the basics of frontend, started joining hackathons, and building small projects all which led me to getting my first contract job as a freelance developer. I recently attended a software bootcamp to hone my skills across the stack and learned how to create production-ready applications in a team environment.",
+                "I'm currently looking to join a company that values moving fast, creating good documentation, and are user-centric. Outside of coding, I love to cook healthy meals for my friends and family!"
             ]
         },
         {
@@ -62,7 +63,7 @@ export const aboutData = {
                 },
                 {
                     label: 'LinkedIn',
-                    href: 'https://www.linkedin.com/in/e-nava-valencia/',
+                    href: 'https://www.linkedin.com/in/ed-nava-valencia/',
                     color: 'white'
                 },
                 {
@@ -77,8 +78,8 @@ export const aboutData = {
             id: 'experience',
             content: [
                 {
-                    position: 'Full Stack Developer',
-                    company: 'Yes Chef',
+                    position: 'Founder',
+                    company: 'Zeff',
                     timeWorked: 'Mar. 2025 - Present',
                     companyUrl: 'https://www.google.com'
                 },
@@ -86,19 +87,19 @@ export const aboutData = {
                     position: 'Contract Developer',
                     company: 'Connect for Purpose',
                     timeWorked: 'Sept. 2024 - Mar. 2025',
-                    companyUrl: 'https://www.google.com'
+                    companyUrl: 'https://connectforpurpose.com'
                 },
                 {
                     position: 'Freelance Developer',
                     company: 'Wrap and Tint My Ride',
                     timeWorked: 'Jan. 2024 - Sept. 2024',
-                    companyUrl: 'https://www.google.com'
+                    companyUrl: 'https://wrapandtintmyride.com'
                 },
                 {
                     position: 'Frontend Engineer',
                     company: 'TouchStone Inc',
                     timeWorked: 'Oct. 2023 - Jan. 2024',
-                    companyUrl: 'https://www.google.com'
+                    companyUrl: 'https://www.linkedin.com/company/touchstone-inc/'
                 }
             ],
         },
