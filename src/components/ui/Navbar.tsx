@@ -47,7 +47,7 @@ const MobileNavLink = ({ label, href, isCapitalized, target, onClick }: NavItem 
     onClick={onClick}
     w="100%"
   >
-    <Text c="white" size="lg" lts={1.8} tt={isCapitalized ? 'uppercase' : 'none'} ta="center">
+    <Text c="white" size="md" lts={1.8} tt={isCapitalized ? 'uppercase' : 'none'} ta="center">
       {label}
     </Text>
   </UnstyledButton>
@@ -94,7 +94,7 @@ const Navbar = ({ handleOnHover, handleOnLeave }: { handleOnHover?: (index: numb
         opened={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
         position="right"
-        size="70%"
+        size="60%"
         styles={{
           content: {
             backgroundColor: 'rgba(0, 0, 0, 0.95)',
