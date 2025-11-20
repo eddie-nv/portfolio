@@ -14,7 +14,8 @@ type ProjectCardProps = {
 }
 
 const ProjectCard = ({ title, description, image, technologies, link, badgeColor }: ProjectCardProps) => {
-    const ImageRef = useScrollAnimation<HTMLDivElement>({ variant: 'rotate', options: { scrub: true } })
+    const desktopImageRef = useScrollAnimation<HTMLDivElement>({ variant: 'rotate', options: { scrub: true } })
+    const mobileImageRef = useScrollAnimation<HTMLDivElement>({ variant: 'rotate', options: { scrub: true } })
   
   return (
     <>
@@ -38,7 +39,7 @@ const ProjectCard = ({ title, description, image, technologies, link, badgeColor
               radius='md' 
               opacity={0}
               style={{ overflow: 'hidden' }} 
-              ref={ImageRef}
+              ref={desktopImageRef}
           >
               <AspectRatio ratio={16 / 9} >
                   <Image src={image} alt={title} style={{ objectPosition: 'top' }}/>
@@ -68,7 +69,7 @@ const ProjectCard = ({ title, description, image, technologies, link, badgeColor
           radius='md' 
           opacity={0}
           style={{ overflow: 'hidden' }} 
-          ref={ImageRef}
+          ref={mobileImageRef}
         >
           <AspectRatio ratio={16 / 9} >
             <Image src={image} alt={title} style={{ objectPosition: 'top' }}/>
